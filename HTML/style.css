@@ -392,6 +392,10 @@ section{
     height: 40px;
     border-radius: 20px;
 }
+
+.collapse:not(.show) {
+    display: none !important;
+}
 @media  screen and (max-width:1200px) {
     /* ----Section-1------ */
     .navbar .navbar-nav .nav-item:not(:last-child){
