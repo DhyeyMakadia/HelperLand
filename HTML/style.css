@@ -82,8 +82,12 @@ section{
     margin-right: 11px;
 }
 
-.navbar .dropdown-toggle{
-    border: none;
+.navbar .lang-select .nav-link::after{
+    content: url("assets/sp-arrow-down.png");
+    background-size: cover;
+    object-fit: contain;
+    width: 12px;
+    height: 7px;
 }
 
 #home .home-head{
