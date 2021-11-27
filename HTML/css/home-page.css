@@ -35,7 +35,7 @@ section{
               Section-1
 ***************************************/
 #home{
-    background: url("assets/bg1.jpg") no-repeat center center fixed; 
+    background: url("../assets/bg1.jpg") no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -84,7 +84,7 @@ section{
 }
 
 .navbar .lang-select .nav-link::after{
-    content: url("assets/sp-arrow-down.png");
+    content: url("../assets/sp-arrow-down.png");
     background-size: cover;
     object-fit: contain;
     width: 12px;
@@ -100,7 +100,7 @@ section{
 }
 
 #home .custom-list-item::before{
-    content: url("assets/bullet-list.svg");
+    content: url("../assets/bullet-list.svg");
     position: absolute;
     left: 0;
 }
@@ -394,9 +394,6 @@ section{
     border-radius: 20px;
 }
 
-.collapse:not(.show) {
-    display: none !important;
-}
 @media  screen and (max-width:1200px) {
     /* ----Section-1------ */
     .navbar .navbar-nav .nav-item:not(:last-child){
@@ -488,6 +485,10 @@ section{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+    }
+
+    .page-footer .collapse:not(.show){
+        display: none !important;
     }
 }
 
