@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQS</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/faqs.css">
+
+
+
+    <!-- -----Scripts----- -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-xl navbar-dark bg-dark text-white">
+            <a class="navbar-brand nav-logo" href="#">
+                <img src="assets/logo.png" width="175px" height="130" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <button class="btn my-sm-0 text-white book-now-faq">Book Now</button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn my-sm-0 text-white prices-faq">Prices & Services</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Warranty</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white blog-faq" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white contact-faq" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item active">
+                        <button class="btn my-sm-0 text-white login-faq">Login</button>
+                    </li>
+                    <li class="nav-item active">
+                        <button class="btn my-sm-0 text-white become-helper-faq">Become a helper</button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <Section id="banner" class="banner">
+        <img src="assets/faq-banner.png" class="banner-img" alt="">
+        <div class="container-fluid">
+
+            <div class="head text-center">
+                <h2>FAQs</h2>
+            </div>
+
+            <div class="divide-img d-flex align-items-center justify-content-center">
+                <img src="assets/forma-1-copy-5.png" alt="">
+            </div>
+
+            <div class="content mx-auto">
+                <div class="content-msg text-center mx-auto">
+                    Whether you are Customer or Service provider, We have tried our best to solve all your queries and
+                    questions.
+                </div>
+
+                <div class="qna">
+                    <ul class="nav nav-tabs text-center align-items-end" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active border-0 for-customer" data-toggle="tab" href="#customer">For Customer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link border-0 for-sp" data-toggle="tab" href="#sp">For Service Provider</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="customer" class="container tab-pane active p-0"><br>
+                            <div id="accordion-customer" class="w-100">
+
+                                <div class="card">
+                                    <div class="card-header my-auto">
+                                        <a class="card-link d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseOne-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne-Customer" class="collapse show" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseTwo_Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo_Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseThree-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseFour-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFour-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseFive-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFive-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseSix-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSix-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseSeven-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSeven-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseEight-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseEight-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse"
+                                            href="#collapseNine-Customer">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseNine-Customer" class="collapse" data-parent="#accordion-customer">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div id="sp" class="container tab-pane fade mx-0 px-0"><br>
+                            <div id="accordion-sp" class="w-100">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="card-link  d-flex flex-row" data-toggle="collapse" href="#collapseOne-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseOne-SP" class="collapse show" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseTwo_SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseTwo_SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseThree-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseThree-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseFour-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFour-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseFive-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseFive-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseSix-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSix-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseSeven-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseSeven-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseEight-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseEight-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <a class="collapsed card-link  d-flex flex-row" data-toggle="collapse" href="#collapseNine-SP">
+                                            <img src="assets/right-arrow.png" alt=""
+                                                style="margin-bottom: 4px;">
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl
+                                            nunc, iaculis mattis tellus ac ut non imperdiet velit?</p>
+                                        </a>
+                                    </div>
+                                    <div id="collapseNine-SP" class="collapse" data-parent="#accordion-sp">
+                                        <div class="card-body">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam
+                                            tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus,
+                                            efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel
+                                            semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend
+                                            eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero
+                                            tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac
+                                            ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia
+                                            tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor
+                                            eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada
+                                            rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce
+                                            viverra commodo lacus, sit amet facilisis leo luctus dictum.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </Section>
+    <div id="review">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <div class="review-news">
+                GET OUR NEWSLETTER
+            </div>
+            <div>
+                <div class="d-flex flex-row review-mail-div justify-content-center align-items-center">
+                    <input type="text" class="input-group-text review-mail bg-transparent text-left"
+                        placeholder="YOUR EMAIL">
+                    <button type="submit" class="btn review-submit text-white">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="page-footer font-small">
+        <div class="container mw-100">
+            <div class=" d-flex justify-content-between align-items-center footer-content">
+
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="">
+                </div>
+
+                <div class="footer-links">
+                    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">HOME</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">ABOUT</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">TESTIMONIALS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">FAQS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">INSURANCE POLICY</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">IMPRESSUM</a>
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <img src="assets/ic-facebook.png" class="social-fb" alt="">
+                    <img src="assets/ic-instagram.png" class="social-ig" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-copyright" class="footer-copyright text-center py-3 text-white position-relative collapse show">
+            <div class="footer-copyright-txt d-inline-block">
+                ©2018 Helperland. All rights reserved. &nbsp;&nbsp;
+                <a href="#">Terms and Conditions </a>|<a href="#"> Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
