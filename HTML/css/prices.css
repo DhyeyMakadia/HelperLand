@@ -1,0 +1,521 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+a,a:hover{
+    text-decoration: none;
+}
+
+
+.divide-img::before,
+.divide-img::after{
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+.divide-img img{
+    padding: 0 8px;
+}
+
+/***************************************
+              HEADER
+***************************************/
+#navbar{
+    background-color: #525252 !important;
+}
+
+.navbar .nav-logo img{
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .nav-item button{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+.navbar .navbar-nav li button,.navbar .navbar-nav li a{
+    font-size: 17px;
+} 
+
+.navbar .book-now-faq{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+.navbar .prices-faq{
+    width: 161px;
+    margin-right: 27px;
+}
+
+.navbar .blog-faq{
+    margin: 0 20px;
+}
+
+.navbar .contact-faq{
+    margin-right: 35px;
+}
+
+.navbar .login-faq{
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.navbar .become-helper-faq{
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#navbar.active{
+    opacity: 90%;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#banner{
+    max-width: 100%;
+    margin-top: 80px;
+}
+
+#banner .banner-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    background-position: center;
+    width: 100%;
+}
+
+#banner .head h2{
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 31px 0 9px 0;
+}
+
+#banner .prices-divide{
+    margin-bottom: 42px;
+}
+
+#banner .price-card{
+    border: 1px solid #B0C9CE;
+    max-width: 553px;
+}
+
+#banner .price-card-head{
+    background-color: #1D7A8C;
+}
+
+#banner .price-card-head h3{
+    font-size: 28px;
+    color: #FFFFFF;
+}
+
+#banner .pricing-card-title{
+    font-size:40px ;
+    color: #646464;
+}
+
+#banner .pricing-card-title small{
+    font-size:30px ;
+}
+
+#banner .pricing-discription{
+    margin-left: 120px;
+}
+
+#banner .pricing-discription li{
+    position: relative;
+    padding-left: 40px;
+}
+
+#banner .pricing-discription li:not(:last-child){
+    margin-bottom: 19px;
+}
+
+#banner .pricing-discription li::before{
+    content: url("assets/forma-1_5.png");
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 9px;
+    position: absolute;
+    left: 0;
+}
+
+#banner .extra-services{
+    border-top: 1px solid #DCDCDC;
+    max-width: 1140px;
+    min-height: 325px;
+    margin-top: 51px;
+    margin-bottom: 56px;
+}
+
+#banner .divide-es{
+    margin-bottom: 39px;
+}
+
+#banner .services-items{
+    max-width: 976px;
+    flex-wrap: wrap;
+}
+
+#banner .services-items .col{
+    padding: 0;
+}
+
+#banner .services-items .service-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #B0C9CE;
+    width: 108px;
+    height: 108px;
+    border-radius: 50%;
+} 
+
+#banner  .services-items .service-tm{
+    font-size: 18px;
+    font-weight: 700;
+    color: #1D7A8C;
+}
+
+/***************************************
+           What we Include 
+***************************************/
+#what-we-do{
+    background-color: #F6F6F6;
+    min-height: 707px;
+    max-width: 100%;
+}
+
+#what-we-do .head{
+    padding: 73px 0 8px 0;
+}
+
+#what-we-do .head h2{
+    font-size: 36px;
+    font-weight: 500;
+    color: #4F4F4F;
+}
+
+#what-we-do .divide-include{
+    margin-bottom: 42px;
+}
+
+#what-we-do .card-deck{
+    align-items: flex-start !important;
+}
+
+#what-we-do .card{
+    max-width: 360px;
+    min-height: 225px;
+    min-width: 250px;
+}
+
+#what-we-do .card .card-body{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#what-we-do .card li::before{
+    content: url('assets/right-arrow-grey.png');
+    position: absolute;
+    left: 0;
+}
+
+#what-we-do .card li{
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+#what-we-do .card li:not(:last-child){
+    margin-bottom: 10px;
+}
+
+
+/***************************************
+          Why-Helperland
+***************************************/
+#why-helperland{
+    max-width: 100%;
+    min-height: 630px;
+}
+
+#why-helperland .head{
+    padding: 71px 0 8px 0;
+}
+
+#why-helperland .head h2{
+    font-size: 36px;
+    font-weight: 500;
+    color: #4F4F4F;
+}
+
+
+#why-helperland .divide-why{
+    margin-bottom: 42px;
+}
+
+#why-helperland .why-helperland-content{
+    max-width: 1045px;
+}
+
+#why-helperland .why-helperland-content h3{
+    color: #646464;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+#why-helperland .why-helperland-content p{
+    color: #646464;
+    font-size: 14px;
+    min-height: 85px;
+}
+
+/***************************************
+              Review
+***************************************/
+
+#review .review-feedback{
+    max-width: 1420px;
+    min-height: 139px;
+    margin-top: 40px;
+}
+
+#review .review-feedback>div{
+    max-width: 1420px;
+    margin: auto;
+}
+
+#review .back-to-top-arrow{
+    margin-top: 17px;
+    margin-left: -1px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt{
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-txt a{
+    color: #9BA0A3;
+}
+
+@media screen and (max-width:1200px) {
+    /* -----Header----- */
+    .navbar .book-now-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .prices-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .blog-faq{
+        margin: 10px 0;
+    }
+    
+    .navbar .contact-faq{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .navbar .login-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* -----Extra-Services----- */
+    #banner .services-items .col{
+        flex-basis: 50%;
+    }
+
+    #banner .services-items .col>div{
+        margin-bottom: 10px;
+    }
+
+    /* -----Why-helperland----- */
+    #why-helperland .why-helperland-content p{
+        min-height: 0px;
+    }
+
+    #why-helperland .why-helperland-content{
+        flex-direction: column;
+        text-align: center;
+        order: 1;
+    }
+    
+    #why-helperland .content-bfr{
+        text-align: left !important;
+        order: 2;
+    }
+
+    #why-helperland .content-aftr{
+        text-align: left;
+        order: 3;
+    }
+
+
+    /* ----Footer------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content{
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* -----Price----- */
+    #banner .pricing-discription{
+        margin-left: 0;
+    }
+
+    /* -----Review------ */
+    #review .review-mail-div{
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    #review .review-mail{
+        margin: 0 0 10px 0;
+    }
+}
+
+@media screen and (max-width:425px){
+    /* -----Extra-Services----- */
+    #banner .services-items .col{
+        flex-basis: 100%;
+    }
+
+    #banner .services-items .col>div{
+        margin-bottom: 15px;
+    }
+
+
+    /* -----Why-Helperland----- */
+    #why-helperland .why-helperland-content img{
+        width: 300px;
+    }
+
+    /* -----Review------ */
+    #review .review-fb-content{
+        flex-direction: column-reverse !important;
+        justify-content: space-around !important;
+        min-height: 300px !important;
+    }
+
+    #review .review-news{
+        margin-bottom: 2px;
+    }
+}
+
+@media screen and (max-width:320px) {
+    /* -----Section-1----- */
+    #banner .head h2{
+        font-size: 32px;
+    }
+
+    /* -----What-we-DO----- */
+    #what-we-do .head h2{
+        font-size: 32px;
+    }
+
+    #what-we-do .card{
+        min-width: 0px;
+    }
+    
+    /* -----Why-Helperland----- */
+    #why-helperland .head h2{
+        font-size: 32px;
+    }
+
+    #why-helperland .why-helperland-content img{
+        width: 80vw;
+    }
+}
