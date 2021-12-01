@@ -145,7 +145,7 @@ a,a:hover{
 }
 
 #banner .pricing-discription li::before{
-    content: url("assets/forma-1_5.png");
+    content: url("../assets/forma-1_5.png");
     width: 24px;
     height: 24px;
     object-fit: contain;
@@ -230,7 +230,7 @@ a,a:hover{
 }
 
 #what-we-do .card li::before{
-    content: url('assets/right-arrow-grey.png');
+    content: url('../assets/right-arrow-grey.png');
     position: absolute;
     left: 0;
 }
