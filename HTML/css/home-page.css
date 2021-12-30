@@ -159,7 +159,7 @@ section{
     margin-bottom: 32.5px;
 }
 
-#why-helperland .why-helperland-content h4{
+#why-helperland .why-helperland-content h3{
     font-size: 30px;
     font-weight: 700;
 }
@@ -192,6 +192,10 @@ section{
     min-height: 366px;
 }
 
+#blog .card-title{
+    font-size: 20px;
+}
+
 #blog .card-text{
     max-width: 288px;
 }
@@ -213,7 +217,7 @@ section{
     margin-top: 99px;
 }
 
-#blog .d-flex .blog-txt-bfr h1{
+#blog .d-flex .blog-txt-bfr h2{
     font-size: 30px;
     max-width: 378px;
     min-height: 72px;
@@ -258,18 +262,14 @@ section{
     padding: 57px 0;
 }
 
-#review .review-head h5{
-    font-size: 24px !important;
-}
-
-#review .review-head h6{
-    font-size: 16px !important;
-}
-
 #review .card{
     max-width: 357px;
     min-width: 250px;
     min-height: 370px;
+}
+
+#review .card-title{
+    font-size: 20px;
 }
 
 #review .card-subtitle{

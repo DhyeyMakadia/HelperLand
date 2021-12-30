@@ -97,6 +97,7 @@ a,a:hover{
     width: 100%;
 }
 
+#banner .head h1,
 #banner .head h2{
     color: #4F4F4F;
     font-size: 36px;
@@ -117,7 +118,7 @@ a,a:hover{
     background-color: #1D7A8C;
 }
 
-#banner .price-card-head h3{
+#banner .price-card-head h2{
     font-size: 28px;
     color: #FFFFFF;
 }
@@ -227,6 +228,11 @@ a,a:hover{
 #what-we-do .card .card-body{
     padding-left: 0;
     padding-right: 0;
+}
+
+#what-we-do .card .card-body h3{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 #what-we-do .card li::before{
