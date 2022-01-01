@@ -516,9 +516,6 @@ section{
     /* ----Section-5------ */
     .page-footer .footer-content{
         flex-direction: column;
-    }
-
-    .page-footer .footer-content{
         padding: 30px 0;
     }
 }

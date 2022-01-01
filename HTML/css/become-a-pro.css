@@ -1,0 +1,408 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    width: 100vw;
+    max-width: 100%;
+}
+
+.row{
+    margin: 0 !important;
+}
+
+/***************************************
+              Header
+***************************************/
+
+header{
+    z-index: 9999;
+}
+
+#navbar{
+    background-color: transparent;
+    transition: all 1000ms ease;
+}
+
+.navbar .navbar-nav .nav-item:not(:last-child){
+    margin-left:11px;
+}
+
+.navbar .nav-link{
+    font-size: 17px;
+}
+
+.navbar .navbar-nav>.nav-item>button{
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar .btn-book-cleaner{
+    font-size: 17px;
+    width: 191px;
+}
+
+.navbar .btn-login{
+    width: 97px;
+    font-size: 16px;
+    margin-left: 9px;
+}
+
+.navbar .btn-become-helper{
+    font-size: 16px;
+    width: 191px;
+    margin-right: 11px;
+}
+
+.navbar .lang-select > a{
+    padding-top: 4px;
+}
+
+.navbar .lang-select .nav-link::after{
+    content: url("../assets/sp-arrow-down.png");
+    background-size: cover;
+    object-fit: contain;
+    width: 12px;
+    height: 7px;
+}
+
+#nav-logo{
+    transition: all .5s ease;
+}
+
+
+#navbar.active{
+    background-color: #525252 !important;
+    opacity: 90%;
+    transition: all .5s ease;
+}
+
+#nav-logo.active{
+    width: 120px;
+    transition: all .5s ease;
+}
+
+button[aria-expanded='true']{
+    background-color: #4F4F4F !important;
+}
+/***************************************
+              Section-1
+***************************************/
+
+#hero{
+    background: url("../assets/become-a-pro-banner.png") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    width: 100%;
+}
+
+#hero .card{
+    margin-top: 152px;
+    max-width: 430px;
+    min-height: 664px;
+}
+
+#hero form h2{
+    font-size: 24px;
+    color: #4F4F4F;
+    margin-bottom: 24px;
+}
+
+#hero form .custom-h{
+    height: 46px;
+}
+
+#hero form .submit-btn{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    height: 46px;
+    width: 166px;
+    border-radius: 23px;
+}
+
+.homepage-down-arrow{
+    position: relative;
+    bottom: 0;
+    margin-top: 44px;
+    padding-bottom: 30px;
+}
+
+/***************************************
+            How it Works
+***************************************/
+#how-it-works .container-fluid{
+    min-height: 1180px;
+}
+
+#how-it-works .bg-left-o{
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+#how-it-works .bg-right-o{
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+    overflow: hidden;
+}
+
+#how-it-works .bg-left-one{
+    left: -50px;
+    margin-top: 27px;
+}
+
+#how-it-works .bg-left-two{
+    margin-top: 215px;
+    left: -70px;
+}
+
+#how-it-works .bg-left-three{
+    margin-top: 132px;
+    left: -27px;
+    padding-bottom: 27px;
+}
+
+#how-it-works .bg-right-one{
+    margin-top: 20px;
+    right: -39px;
+}
+
+#how-it-works .bg-right-two{
+    margin-top: 170px;
+    right: -23px;
+}
+
+#how-it-works .bg-right-three{
+    margin-top: 281px;
+    right: -50px;
+}
+
+#how-it-works .content-main{
+    max-width: 748px;   
+}
+
+#how-it-works .content-main h1{
+    font-weight: bold;
+    margin: 61px 0 73px;
+}
+
+#how-it-works .content-main h2{
+    font-size: 30px;
+    color: #4F4F4F;
+    font-weight: bold;
+}
+
+#how-it-works .content-main p,
+#how-it-works .content-main a{
+    font-size: 18px;
+    color: #4F4F4F;
+}
+
+#how-it-works .content-main a img{
+    transition: all .5s ease;
+}
+
+#how-it-works .content-main a:hover img{
+    transform: translate(5px);
+    transition: all .5s ease;
+}
+
+#how-it-works .content>div:not(:last-child){
+    margin-bottom: 20px;
+}
+
+/***************************************
+              Review
+***************************************/
+
+#review{
+    margin-top:77px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+    max-width: 1323px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt,
+.page-footer .footer-copyright-txt a{
+    color: #9BA0A3;
+}
+
+@media  screen and (max-width:1200px) {
+    /* ----Header------ */
+    .navbar .navbar-nav .nav-item:not(:last-child){
+        margin-left:0px;
+        margin-bottom: 10px;
+    }
+
+    .navbar .btn-login{
+        margin-left: 0px;
+    }
+    
+    .navbar .btn-become-helper{
+        margin-right: 0px;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    /* -----Footer----- */
+    .page-footer .footer-copyright-txt{
+        margin-bottom: 10px;
+    }
+
+    .page-footer .footer-copyright{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* -----How-it-works----- */
+    #how-it-works .content > .d-flex{
+        flex-direction: column;
+    }
+    
+    #how-it-works .content .text{
+        text-align: center;
+        order: 2;
+        margin-bottom: 20px;
+    }
+
+    #how-it-works .content .img{
+        order: 1;
+        text-align: center !important;
+        margin-bottom: 15px;
+    }
+
+    #how-it-works .content .img img{
+        width: 195px;
+    }
+
+    #how-it-works .content h2{
+        font-size: 28px;
+    }
+
+    #how-it-works .content p{
+        font-size: 14px;
+    }
+
+    #review{
+        margin-bottom: 53px;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        flex-direction: column;
+        padding: 30px 0;
+    }
+
+    .page-footer .footer-copyright-txt{
+        margin: 0 10px;
+    }
+}
+
+@media screen and (max-width:425px) {
+    /* -----Section-1----- */
+    #hero form .captcha-img img{
+        width: 210px;
+    }
+
+    /* -----How-it-works----- */
+    #how-it-works .bg-sides{
+        display: none;
+    }
+
+    #how-it-works .content .text{
+        padding: 0 10px !important;
+    }
+
+    /* -----Review----- */
+    #review .review-mail-div{
+        flex-direction: column !important;
+    }
+    #review .review-mail{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
