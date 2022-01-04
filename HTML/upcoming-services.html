@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/upcoming-services.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+</head>
+
+<body>
+    <header>
+        <!-- NAVBAR -->
+        <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
+            <a class="navbar-brand nav-logo" href="#">
+                <img src="assets/logo.png" width="175px" height="130" alt="">
+            </a>
+
+            <div class="nav-item notify-out notify-nav">
+                <a class="nav-link" href="#">
+                    <img src="assets/icon-notification.png" alt="">
+                </a>
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#sidenavModal"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-white prices-nav" href="#">Prices & services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Warranty</a>
+                    </li>
+                    <li class="nav-item align-middle">
+                        <a class="nav-link text-white blog-nav" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white contact-nav" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item notify-nav">
+                        <a class="nav-link" href="#">
+                            <img src="assets/icon-notification.png" alt="">
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown profile-nav">
+                        <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/admin-user.png" alt="">
+                            <img src="assets/sp-arrow-down.png" alt="">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Welcome,<div>Sandip Patel</div></a>
+                            <div class="dropdown-divider"></div>
+                            <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
+                            <a class="dropdown-item" href="#">My Settings</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="modal left fade" id="sidenavModal" tabindex="" role="dialog" aria-labelledby="sidenavModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="nav flex-column">
+                        <div class="nav-item nav-link">Welcome,<br><b>Sandip Patel</b></div>
+                        <div class="dropdown-divider"></div>
+                        <a href="#dashboard" class="nav-item nav-link navlink-dashboard" data-toggle="tab" data-dismiss="modal">Dashboard</a>
+                        <a href="#newreq" class="nav-item nav-link navlink-newreq" data-toggle="tab" data-dismiss="modal">New Service Requests</a>
+                        <a href="#upcomingreq" class="nav-item nav-link navlink-upcomingreq active" data-toggle="tab" data-dismiss="modal">Upcoming Requests</a>
+                        <a href="#serviceschedule" class="nav-item nav-link navlink-serviceschedule" data-toggle="tab" data-dismiss="modal">Service Schedule</a>
+                        <a href="#servicehistory" class="nav-item nav-link navlink-servicehistory" data-toggle="tab" data-dismiss="modal">Service History</a>
+                        <a href="#ratings" class="nav-item nav-link navlink-ratings" data-toggle="tab" data-dismiss="modal">My Ratings</a>
+                        <a href="#blockcustomer" class="nav-item nav-link navlink-blockcustomer" data-toggle="tab" data-dismiss="modal">Block Customer</a>
+                        <a href="#" class="nav-item nav-link">Invoices</a>
+                        <a href="#" class="nav-item nav-link">My Settings</a>
+                        <a href="#" class="nav-item nav-link">Logout</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="nav-item nav-link">Prices & Services</a>
+                        <a href="#" class="nav-item nav-link">Warranty</a>
+                        <a href="#" class="nav-item nav-link">Blog</a>
+                        <a href="#" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="welcome-tab text-center">
+        <div class="greet align-middle">Welcome, <b>Sandip!</b></div>
+    </div>
+
+    <div class="wrapper container-fluid">
+        <aside>
+
+            <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" data-toggle="tab" href="#dashboard" role="tab"
+                        aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-newreq" id="newreq-tab" data-toggle="tab" href="#newreq" role="tab"
+                        aria-controls="newreq" aria-selected="false">New Service Request</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-upcomingreq active" id="upcomingreq-tab" data-toggle="tab" href="#upcomingreq" role="tab"
+                        aria-controls="upcomingreq" aria-selected="false">Upcoming Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" data-toggle="tab" href="#serviceschedule" role="tab"
+                        aria-controls="serviceschedule" aria-selected="false">Service Schedule</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab" data-toggle="tab" href="#servicehistory" role="tab"
+                        aria-controls="servicehistory" aria-selected="false">Service History</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-ratings" id="ratings-tab" data-toggle="tab" href="#ratings" role="tab"
+                        aria-controls="ratings" aria-selected="false">My Ratings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-blockcustomer" id="blockcustomer-tab" data-toggle="tab" href="#blockcustomer" role="tab"
+                        aria-controls="blockcustomer" aria-selected="false">Block Customer</a>
+                </li>
+            </ul>
+        </aside>
+
+        <div class="table-content">
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="home-tab">Dashboard</div>
+                <div class="tab-pane fade" id="newreq" role="tabpanel" aria-labelledby="profile-tab">New Service Request
+                </div>
+                <div class="tab-pane fade show active" id="upcomingreq" role="tabpanel" aria-labelledby="contact-tab">
+                    <table id="mysorttable" class="table mb-0" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Service ID</th>
+                                <th class="th-sm">Service date</th>
+                                <th class="th-sm">Customer details</th>
+                                <th class="th-sm">Distance</th>
+                                <th class="th-sm text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>323436</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323437</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323438</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323439</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323440</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>10</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323441</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>25</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323442</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323443</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>05</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323444</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323445</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>05</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323445</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>05</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="serviceschedule" role="tabpanel" aria-labelledby="contact-tab">Service
+                    Schedule</div>
+                <div class="tab-pane fade" id="servicehistory" role="tabpanel" aria-labelledby="contact-tab">Service
+                    History</div>
+                <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="contact-tab">My Ratings</div>
+                <div class="tab-pane fade" id="blockcustomer" role="tabpanel" aria-labelledby="contact-tab">Block
+                    Customer</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="flex-grow:1"></div>
+
+    <footer class="page-footer font-small">
+        <div class="container mw-100">
+            <div class=" d-flex justify-content-between align-items-center footer-content">
+
+                <div class="footer-logo">
+                    <a href="#"><img src="assets/logo.png" alt=""></a>
+                </div>
+
+                <div class="footer-links">
+                    <div class="row text-center justify-content-center pt-5 mb-3">
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">HOME</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">ABOUT</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">TESTIMONIALS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">FAQS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">INSURANCE POLICY</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">IMPRESSUM</a>
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb"
+                            alt=""></a>
+                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig"
+                            alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-copyright" class="footer-copyright text-center py-3 text-white position-relative collapse show">
+            <div class="footer-copyright-txt d-inline-block">
+                ©2018 Helperland. All rights reserved. &nbsp;&nbsp;
+                <a href="#">Terms and Conditions </a>|<a href="#"> Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- -----Scripts----- -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#mysorttable').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2, 4]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+
+        $(document).ready(function(){
+            $('#dd-dash').click(function(){
+                $('.sidebar-only').removeClass('active');
+                $('#dashboard-tab').addClass('active');
+            });
+
+            $('.sidebar-only').click(function(){
+                if(this.id == 'dashboard-tab'){
+                    $('#dd-dash').addClass('active');
+                }
+                else{
+                    $('#dd-dash').removeClass('active');
+                }
+            });
+        }); 
+    </script>
+</body>
+
+</html>
