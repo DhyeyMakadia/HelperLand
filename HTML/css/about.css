@@ -1,0 +1,292 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+a,a:hover{
+    text-decoration: none;
+}
+
+
+.divide-img::before,
+.divide-img::after{
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+.divide-img img{
+    padding: 0 8px;
+}
+
+/***************************************
+              HEADER
+***************************************/
+#navbar{
+    background-color: #525252 !important;
+}
+
+.navbar .nav-logo img{
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .nav-item button{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+.navbar .navbar-nav li button,.navbar .navbar-nav li a{
+    font-size: 17px;
+} 
+
+.navbar .book-now-faq{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+.navbar .prices-faq{
+    width: 161px;
+    margin-right: 27px;
+}
+
+.navbar .blog-faq{
+    margin: 0 20px;
+}
+
+.navbar .contact-faq{
+    margin-right: 35px;
+}
+
+.navbar .login-faq{
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.navbar .become-helper-faq{
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#navbar.active{
+    opacity: 90%;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#banner{
+    max-width: 100%;
+    margin-top: 77px;
+}
+
+#banner .banner-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    background-position: center;
+    width: 100%;
+}
+
+#banner .head h1,
+#banner .head h2{
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 32px 0 9px 0;
+}
+
+#banner .about-us,
+#banner .our-story{
+    max-width: 992px;
+}
+
+#banner .about-us{
+    margin-bottom: 40px;
+}
+
+#banner .our-story{
+    margin-bottom: 48px;
+}
+
+#banner .about-us .about-us-divide{
+    margin-bottom: 35px;
+}
+
+#banner .our-story .our-story-divide{
+    margin-bottom: 38px;
+}
+
+#banner .about-us .about-us-content,
+#banner .our-story .our-story-content{
+    color: #646464;
+    font-size: 16px;
+}
+
+#banner .about-us .about-us-content{
+    min-height: 265px;
+}
+
+#banner .our-story .our-story-content{
+    min-height: 284px;
+}
+/***************************************
+              Review
+***************************************/
+
+#review{
+    margin-bottom: 53px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt{
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-txt a{
+    color: #9BA0A3;
+}
+
+@media screen and (max-width:1200px) {
+    /* -----Header----- */
+    .navbar .book-now-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .prices-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .blog-faq{
+        margin: 10px 0;
+    }
+    
+    .navbar .contact-faq{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .navbar .login-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* ----Footer------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content{
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* -----Review------ */
+    #review .review-mail-div{
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    #review .review-mail{
+        margin: 0 0 10px 0;
+    }
+}
+
+@media  screen and (max-width:425px) {
+    /* -----About-Us----- */
+    #banner .head h1,
+    #banner .head h2{
+        font-size: 28px;
+    }
+
+    #banner .about-us .about-us-content,
+    #banner .our-story .our-story-content{
+        font-size: 14px;
+    }
+
+    /* -----Review------ */
+    #review .review-news{
+        margin-bottom: 2px;
+    }
+}

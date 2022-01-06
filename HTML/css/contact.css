@@ -1,0 +1,377 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+a,a:hover{
+    text-decoration: none;
+}
+
+
+.divide-img::before,
+.divide-img::after{
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+.divide-img img{
+    padding: 0 8px;
+}
+
+/***************************************
+              HEADER
+***************************************/
+#navbar{
+    background-color: #525252 !important;
+}
+
+.navbar .nav-logo img{
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .nav-item button{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+.navbar .navbar-nav li button,.navbar .navbar-nav li a{
+    font-size: 17px;
+} 
+
+.navbar .book-now-faq{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+.navbar .prices-faq{
+    width: 161px;
+    margin-right: 27px;
+}
+
+.navbar .blog-faq{
+    margin: 0 20px;
+}
+
+.navbar .contact-faq{
+    margin-right: 35px;
+}
+
+.navbar .login-faq{
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.navbar .become-helper-faq{
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#navbar.active{
+    opacity: 90%;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#banner{
+    max-width: 100%;
+    margin-top: 80px;
+}
+
+#banner .banner-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    background-position: center;
+    width: 100%;
+}
+
+#banner .head h1{
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 31px 0 9px 0;
+}
+
+#banner .contact-divide{
+    margin-bottom: 52px;
+}
+
+#banner .contact-us-content-bfr{
+    max-width: 970px;
+}
+
+#banner .contact-us-content-bfr > div{
+    max-width: 237px;
+    min-height: 37px;
+}
+
+#banner .contact-us-content-bfr .bfr-txt,
+#banner .contact-us-content-bfr .bfr-txt a{
+    color: #4F4F4F;
+} 
+
+#banner .contact-us-content-bfr .bfr-txt{
+    max-width: 237px;
+    min-height: 73px;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+#banner .contact-us-content{
+    max-width: 1140px;
+    min-height: 325px;
+    border-top: 1px solid #DCDCDC;
+    margin-top: 30px;
+}
+
+#banner .contact-us-content .head{
+    margin-top: 74px;
+}
+
+#banner .contact-us-content h2{
+    font-size: 28px;
+    font-weight: bold;
+    color: #4F4F4F;
+}
+
+#banner form{
+    margin-top: 23px;
+}
+
+#banner .contact-us-content .form-row{
+    max-width: 615px;
+}
+
+#banner .contact-us-content .form-control{
+    /* max-width: 299px; */
+    min-height: 46px;
+}
+
+#banner .contact-us-content .subject,
+#banner .contact-us-content .message
+#banner .contact-us-content .MobileNumber{
+    max-width: none;
+}
+
+#banner form .submit-btn{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 500;
+    width: 163px;
+    height: 46px;
+    border-radius: 23px;
+    margin-bottom: 80px;
+}
+
+#banner .google-maps{
+    margin-bottom: 43px;
+}
+
+#banner .map-live{
+    position: relative;
+    object-fit: contain;
+    max-width: 1560px;
+    height: 400px;
+    width: 100%;
+}
+
+#banner .map-live iframe{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+/***************************************
+              Review
+***************************************/
+
+#review{
+    margin-bottom: 53px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt{
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-txt a{
+    color: #9BA0A3;
+}
+
+@media screen and (max-width:1200px) {
+    /* -----Header----- */
+    .navbar .book-now-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .prices-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .blog-faq{
+        margin: 10px 0;
+    }
+    
+    .navbar .contact-faq{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .navbar .login-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* ----Footer------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content{
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* -----Section-1----- */
+    #banner .contact-us-content-bfr{
+        flex-wrap: wrap;
+        flex-direction: column;
+        height: 450px;
+    }
+
+    #banner .contact-us-content .MobileNumber-m{
+        margin-bottom: 15px;
+    }
+
+    #banner .google-maps .pin{
+        left: 44%;
+        top: 42%;
+    }
+    
+    #banner .google-maps .pin img{
+        width: 40px;
+        height: 52px;
+    }
+
+    /* -----Review------ */
+    #review .review-mail-div{
+        flex-direction: column !important;
+        align-items: center;
+    }
+    
+    #review .review-mail{
+        margin: 0 0 10px 0;
+    }
+}
+
+@media screen and (max-width:425px) {
+    /* -----Section-1----- */
+    #banner .contact-us-content{
+        margin-top: 10px;
+    }
+
+    #banner form{
+        margin-top: 30px;
+    }
+
+    #banner .google-maps .pin{
+        left: 43%;
+        top: 35%;
+    }
+    
+    #banner .google-maps .pin img{
+        width: 30px;
+        height: 40px;
+    }
+
+    /* -----Review------ */
+    #review .review-news{
+        margin-bottom: 2px;
+    }
+}
