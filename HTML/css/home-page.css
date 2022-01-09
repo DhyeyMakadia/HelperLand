@@ -32,21 +32,50 @@ section{
 }
 
 /***************************************
-              Section-1
+               Modal
 ***************************************/
-#home{
-    background: url("../assets/bg1.jpg") no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    position: relative;
-    min-height: 100vh;
-    max-width: 100%;
+.modal{
+    z-index: 10000;
 }
 
-.navbar{
-    z-index: 9999;
+#LoginModal .modal-header .modal-title{
+    color: #565656;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#ForgotModal .modal-body .send-btn,
+#LoginModal .modal-body .login-btn{
+    background-color: #0088a0;
+    width: 100%;
+    height: 40px;
+    border-radius: 24px;
+    color: white;
+    border: none;
+}
+
+#ForgotModal .modal-body .link-clr,
+#LoginModal .modal-body .link-clr{
+    color: #0088a0;
+}
+
+#LoginModal .modal-sm{
+    max-width: 350px !important;
+}
+
+#ForgotModal .modal-sm{
+    max-width: 300px !important;
+}
+
+/***************************************
+                Header
+***************************************/
+header{
+    z-index: 9998;
+}
+
+#navbar{
+    transition: all 1000ms ease;
 }
 
 .navbar .navbar-nav .nav-item:not(:last-child){
@@ -89,6 +118,34 @@ section{
     object-fit: contain;
     width: 12px;
     height: 7px;
+}
+
+#navbar.active{
+    background-color: #525252 !important;
+    opacity: 90%;
+    transition: all .5s ease;
+}
+
+button[aria-expanded='true']{
+    background-color: #4F4F4F !important;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#home{
+    background: url("../assets/bg1.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    max-width: 100%;
+
+    padding-top: 156px;
+    display: flex !important;
+    justify-content: end;
 }
 
 #home .home-head{
@@ -155,8 +212,14 @@ section{
     padding: 0;
 }
 
+#why-helperland .why-helperland-content img:hover{
+    transform: scale(1.1);
+    transition: transform .3s ease-out;
+}
+
 #why-helperland .why-helperland-content img{
     margin-bottom: 32.5px;
+    transition: transform .3s ease-in;
 }
 
 #why-helperland .why-helperland-content h3{
@@ -208,6 +271,17 @@ section{
     font-size: 13px;
 }
 
+#review .card-deck .card-body .card-link img,
+#blog .card-deck .card-body .card-link img{
+    transition: transform .3s ease;
+}
+
+#review .card-deck .card-body .card-link:hover img,
+#blog .card-deck .card-body .card-link:hover img{
+    transform: translate(5px);
+    transition: transform .3s ease;
+}
+
 #blog .blog-bfr{
     max-width: 1162px;
 }
@@ -233,6 +307,15 @@ section{
 
 #blog .blog-img-bfr{
     margin: 63px 0 0 85px;
+}
+
+#blog .blog-img-bfr img{
+    transition: transform .7s ease;
+}
+
+#blog .blog-img-bfr img:hover{
+    transform: perspective(700px) rotateX(30deg) rotateY(-15deg);
+    transition: transform .7s ease;
 }
 
 #blog .blog-left-bg{
@@ -388,7 +471,7 @@ section{
 }
 
 .page-footer .footer-copyright button{
-    background-color: #EED507;
+    background-color: #EED507 !important;
     width: 99px;
     height: 40px;
     border-radius: 20px;

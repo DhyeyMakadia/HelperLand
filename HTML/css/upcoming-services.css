@@ -16,6 +16,34 @@ a,a:hover{
 }
 
 /***************************************
+              Modal
+***************************************/
+#ServiceDetailsModal .modal-body .accept-req-modal button{
+    background-color: green;
+    color: #FFFFFF;
+    border-radius: 17px;
+    height: 35px;
+    border: none;
+    width: 100px;
+}
+
+#ServiceDetailsUpcomingModal .modal-body .action-upcoming-modal button{
+    border-radius: 17px;
+    height: 35px;
+    color: #FFFFFF;
+    border: none;
+}
+
+#ServiceDetailsUpcomingModal .modal-body .action-upcoming-modal .cancel-upcoming{
+    width: 80px;
+    background-color: #fa5151;
+}
+
+#ServiceDetailsUpcomingModal .modal-body .action-upcoming-modal .complete-upcoming{
+    width: 120px;
+    background-color: #1D7A8C;
+}
+/***************************************
               HEADER
 ***************************************/
 header{
@@ -268,7 +296,7 @@ bottom: 13.5px !important;
 }
 
 /* -----Side-Navbar----- */
-.modal.left .modal-dialog {
+.modal.right .modal-dialog {
 	position:fixed;
 	right: 0;
 	margin: auto;
@@ -280,7 +308,7 @@ bottom: 13.5px !important;
 	transform: translate3d(0%, 0, 0);
 }
 
-.modal.left .modal-content {
+.modal.right .modal-content {
 	height: 100%;
 	overflow-y: auto;
 }
@@ -290,11 +318,11 @@ bottom: 13.5px !important;
 }
 
 .modal.right.fade .modal-dialog {
-	left: -320px;
-	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
-	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
-	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
-	transition: opacity 0.3s linear, left 0.3s ease-out;
+	right: -320px;
+	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+	-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+	-o-transition: opacity 0.3s linear, right 0.3s ease-out;
+	transition: opacity 0.3s linear, right 0.3s ease-out;
 }
 
 .modal.right.fade.show .modal-dialog {

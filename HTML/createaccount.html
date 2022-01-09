@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prices</title>
+    <title>Create Account</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/prices.css">
+    <link rel="stylesheet" href="css/createaccount.css">
 </head>
 
 <body>
@@ -46,7 +46,7 @@
                         </div>
                         <div class="input-group mb-3">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="remember">
+                                <input type="checkbox" class="form-check-input" id="privacy-policy">
                                 <label class="form-check-label" for="remember">Remember me</label>
                             </div>
                         </div>
@@ -138,225 +138,78 @@
         </nav>
     </header>
 
-    <Section id="banner" class="banner">
-        <img src="assets/group-18.png" class="banner-img" alt="">
+    <Section id="create-account-section" class="create-account-section">        
         <div class="container-fluid">
-
-            <div class="head text-center">
-                <h1>Prices</h1>
-            </div>
-
-            <div class="divide-img prices-divide d-flex align-items-center justify-content-center">
-                <img src="assets/forma-1-copy-5.png" alt="">
-            </div>
-
-            <div class="pricing-content mx-auto">
-
-                <div class="card box-shadow price-card mx-auto">
-                    <div class="card-header price-card-head">
-                        <h2 class="my-0 font-weight-bold text-center">One Time</h2>
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title pricing-card-title text-center font-weight-bold">€20<small
-                                class="text-muted font-weight-normal">/hr</small></h3>
-                        <ul class="list-unstyled mt-3 mb-4 pricing-discription">
-                            <li>Lower prices</li>
-                            <li>Easy online & secure payment</li>
-                            <li>Easy amendment</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="extra-services mx-auto">
+            <div class="create-account-content col-md-6 mx-auto">
                 <div class="head text-center">
-                    <h2>Extra services</h2>
+                    <h1>Create Account</h1>
                 </div>
 
-                <div class="divide-img divide-es d-flex align-items-center justify-content-center">
+                <div class="divide-img d-flex align-items-center justify-content-center mb-5">
                     <img src="assets/forma-1-copy-5.png" alt="">
                 </div>
 
-                <div class="services-items d-flex justify-content-around mx-auto">
-                    <div class="col">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="service-img">
-                                <img src="assets/3.png" alt="">
-                            </div>
-                            <div class="service-nm">Inside cabinets</div>
-                            <div class="service-tm">30 minutes</div>
+                <form>
+                    <div class="form-row mx-auto">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control first-name" id="inputFirstName"
+                                placeholder="First Name">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control last-name" id="inputLastName"
+                                placeholder="Last Name">
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="service-img">
-                                <img src="assets/5.png" alt="">
+                    <div class="form-row mx-auto">
+                        <div class="form-group col-md-6 email-m">
+                            <input type="email" class="form-control email" id="inputEmail" placeholder="Email address">
+                        </div>
+                        <div class="col-md-6 MobileNumber-m">
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">+49</div>
+                                </div>
+                                <input type="tel" class="form-control MobileNumber" id="inlineFormInputGroupUsername"
+                                    placeholder="Mobile Number">
                             </div>
-                            <div class="service-nm">Inside fridge</div>
-                            <div class="service-tm">30 minutes</div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="service-img">
-                                <img src="assets/4.png" alt="">
-                            </div>
-                            <div class="service-nm">Inside oven</div>
-                            <div class="service-tm">30 minutes</div>
+                    <div class="form-row mx-auto">
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control password1" id="inputpassword1"
+                                placeholder="Password">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control password2" id="inputpassword2"
+                                placeholder="Repeat Password">
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="service-img">
-                                <img src="assets/2.png" alt="">
+                    <div class="form-row mx-auto pl-1">
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">I have read the <a href="#" class="link-clr">privacy policy</a></label>
                             </div>
-                            <div class="service-nm">Laundry wash & dry</div>
-                            <div class="service-tm">30 minutes</div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="d-flex flex-column align-items-center justify-content-center">
-                            <div class="service-img">
-                                <img src="assets/1.png" alt="">
-                            </div>
-                            <div class="service-nm">Interior windows</div>
-                            <div class="service-tm">30 minutes</div>
+
+                    <div class="form-row mx-auto justify-content-center">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary submit-btn mx-auto">Register</button>
                         </div>
                     </div>
-                </div>
+
+                    <div class="form-row mx-auto justify-content-center">
+                        <div class="form-group">
+                            Already Registered? <a href="#" data-target="#LoginModal" data-toggle="modal" class="link-clr">Login now</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </Section>
 
-    <section id="what-we-do">
-        <div class="container-fluid">
-            <div class="head text-center">
-                <h2>What we include in cleaning</h2>
-            </div>
-
-            <div class="divide-img divide-include d-flex align-items-center justify-content-center">
-                <img src="assets/forma-1-copy-5.png" alt="">
-            </div>
-
-            <div class="card-deck container-fluid m-auto align-items-center justify-content-center">
-                <div class="card what-included-card-1 bg-transparent border-0">
-                    <img class="card-img-top" src="assets/group-18_3.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Bedroom and Living Room</h3>
-                        <ul class="list-unstyled">
-                            <li>Dust all accessible surfaces</li>
-                            <li>Wipe down all mirrors and glass fixtures</li>
-                            <li>Clean all floor surfaces </li>
-                            <li>Take out garbage and recycling</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card what-included-card-2 bg-transparent border-0">
-                    <img class="card-img-top" src="assets/group-18_4.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Bathrooms</h3>
-                        <ul class="list-unstyled">
-                            <li>Wash and sanitize the toilet, shower, tub, sink</li>
-                            <li>Dust all accessible surfaces</li>
-                            <li>Wipe down all mirrors and glass fixtures</li>
-                            <li>Clean all floor surfaces </li>
-                            <li>Take out garbage and recycling</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="card what-included-card-3 bg-transparent border-0">
-                    <img class="card-img-top" src="assets/group-18_2.png" alt="Card image cap">
-                    <div class="card-body">
-                        <h3 class="card-title">Kitchen</h3>
-                        <ul class="list-unstyled">
-                            <li>Dust all accessible surfaces </li>
-                            <li>Empty sink and load up dishwasher</li>
-                            <li>Wipe down exterior of stove, oven and fridge</li>
-                            <li>Clean all floor surfaces </li>
-                            <li>Take out garbage and recycling</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="why-helperland">
-
-        <div class="container-fluid">
-            <div class="head text-center">
-                <h2>Why Helperland</h2>
-            </div>
-
-            <div class="divide-img d-flex align-items-center justify-content-center divide-why">
-                <img src="assets/forma-1-copy-5.png" alt="">
-            </div>
-
-            <div class="d-flex mx-auto justify-content-center why-helperland-content">
-                <div class="col content-bfr text-right">
-                    <div>
-                        <h3>Experienced and vetted professionals</h3>
-                        <p>dominate the industry in scale and scope with an adaptable, extensive network that
-                            consistently delivers exceptional results.</p>
-                    </div>
-                    <div>
-                        <h3>Dedicated customer service</h3>
-                        <p>to our customers and are guided in all we do by their needs. The team is always happy to
-                            support you and offer all the information. you need.</p>
-                    </div>
-                </div>
-                <div>
-                    <img src="assets/the-best-img-1.png" alt="">
-                </div>
-                <div class="col content-aftr">
-                    <div>
-                        <h3>Every cleaning is insured</h3>
-                        <p>and seek to provide exceptional service and engage in proactive behavior. We‘d be happy to
-                            clean your homes.</p>
-                    </div>
-                    <div>
-                        <h3>Secure online payment</h3>
-                        <p>Payment is processed securely online. Customers pay safely online and manage the booking.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
-
-    <div id="review">
-        <div class="review-feedback mx-auto">
-            <div class="d-flex align-items-center justify-content-between flex-row review-fb-content">
-                <div class="back-to-top">
-                    <a href="#">
-                        <div class="text-center rounded-circle"
-                            style="background-color: #525252; width: 48px; height: 48px;">
-                            <img src="assets/up-arrow.svg" alt="" class="back-to-top-arrow img-fluid">
-                        </div>
-                    </a>
-                </div>
-                <div>
-                    <div class="d-flex flex-column align-items-center justify-content-center">
-                        <div class="review-news">
-                            GET OUR NEWSLETTER
-                        </div>
-                        <div>
-                            <div class="d-flex flex-row review-mail-div justify-content-center align-items-center">
-                                <input type="text" class="input-group-text review-mail bg-transparent text-left"
-                                    placeholder="YOUR EMAIL">
-                                <button type="submit" class="btn review-submit text-white">Submit</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="review-tm">
-                    <a href="#"><img src="assets/layer-598.png" alt=""></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <div style="flex-grow: 1;"></div>
 
     <footer class="page-footer font-small">
         <div class="container mw-100">

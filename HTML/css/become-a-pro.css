@@ -15,6 +15,42 @@ section{
 }
 
 /***************************************
+               Modal
+***************************************/
+.modal{
+    z-index: 10000;
+}
+
+#LoginModal .modal-header .modal-title{
+    color: #565656;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#ForgotModal .modal-body .send-btn,
+#LoginModal .modal-body .login-btn{
+    background-color: #0088a0;
+    width: 100%;
+    height: 40px;
+    border-radius: 24px;
+    color: white;
+    border: none;
+}
+
+#ForgotModal .modal-body .link-clr,
+#LoginModal .modal-body .link-clr{
+    color: #0088a0;
+}
+
+#LoginModal .modal-sm{
+    max-width: 350px !important;
+}
+
+#ForgotModal .modal-sm{
+    max-width: 300px !important;
+}
+
+/***************************************
               Header
 ***************************************/
 
@@ -73,19 +109,9 @@ header{
     height: 7px;
 }
 
-#nav-logo{
-    transition: all .5s ease;
-}
-
-
 #navbar.active{
     background-color: #525252 !important;
     opacity: 90%;
-    transition: all .5s ease;
-}
-
-#nav-logo.active{
-    width: 120px;
     transition: all .5s ease;
 }
 

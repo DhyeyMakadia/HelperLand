@@ -17,8 +17,136 @@
 </head>
 
 <body>
+    <!-- Modal -->
+    <div class="modal fade" id="ServiceDetailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <div><b>09/04/2018 <span>12:00 - 18:00</span></b></div>
+                                <div><b>Duration:</b> 6 Hrs</div>
+                            </div><hr>
+                            <div>
+                                <b>Service Id:</b>
+                                <span>323436</span>
+                            </div>
+                            <div>
+                                <b>Extras:</b>
+                                <span></span>
+                            </div>
+                            <div>
+                                <b>Total Payment:</b>
+                                <span></span>
+                            </div><hr>
+                            <div>
+                                <b>Customer Name:</b>
+                                <span>David Bough</span>
+                            </div>
+                            <div>
+                                <b>Service Address:</b>
+                                <span>David Bough Musterstrabe 5,12345 Bonn</span>
+                            </div>
+                            <div>
+                                <b>Distance:</b>
+                                <span>15 km</span>
+                            </div><hr>
+                            <div>
+                                <b>Comments</b>
+                                <div>I Don't have pets at home.</div>
+                            </div><hr>
+                            <div class="accept-req-modal">
+                                <button>
+                                    <img src="../HTML/assets/ic-check.png" class="mr-1 ml-1" alt="">
+                                    Accept</button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-md-0 mt-3">
+                            <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979157244723!2d72.49824711533616!3d23.034861321648275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8352e403437b%3A0xdc9d4dae36889fb9!2sTatvaSoft!5e0!3m2!1sen!2sin!4v1638349079725!5m2!1sen!2sin"
+                        width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ServiceDetailsUpcomingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div>
+                                <div><b>09/04/2018 <span>12:00 - 18:00</span></b></div>
+                                <div><b>Duration:</b> 6 Hrs</div>
+                            </div><hr>
+                            <div>
+                                <b>Service Id:</b>
+                                <span>323436</span>
+                            </div>
+                            <div>
+                                <b>Extras:</b>
+                                <span></span>
+                            </div>
+                            <div>
+                                <b>Total Payment:</b>
+                                <span></span>
+                            </div><hr>
+                            <div>
+                                <b>Customer Name:</b>
+                                <span>David Bough</span>
+                            </div>
+                            <div>
+                                <b>Service Address:</b>
+                                <span>David Bough Musterstrabe 5,12345 Bonn</span>
+                            </div>
+                            <div>
+                                <b>Distance:</b>
+                                <span>15 km</span>
+                            </div><hr>
+                            <div>
+                                <b>Comments</b>
+                                <div>I Don't have pets at home.</div>
+                            </div><hr>
+                            <div class="action-upcoming-modal">
+                                <button class="cancel-upcoming">
+                                    Cancel
+                                </button>
+                                <button class="complete-upcoming">
+                                    <img src="../HTML/assets/ic-check.png" class="mr-1 ml-1" alt="">
+                                    Complete
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mt-md-0 mt-2">
+                            <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.6979157244723!2d72.49824711533616!3d23.034861321648275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e8352e403437b%3A0xdc9d4dae36889fb9!2sTatvaSoft!5e0!3m2!1sen!2sin!4v1638349079725!5m2!1sen!2sin"
+                        width="100%" height="400" style="border:0;" allowfullscreen loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
-        <!-- NAVBAR -->
         <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
             <a class="navbar-brand nav-logo" href="#">
                 <img src="assets/logo.png" width="175px" height="130" alt="">
@@ -74,7 +202,8 @@
         </nav>
     </header>
 
-    <div class="modal left fade" id="sidenavModal" tabindex="" role="dialog" aria-labelledby="sidenavModalLabel"
+    <div class="nav-modal">
+    <div class="modal right fade" id="sidenavModal" tabindex="" role="dialog" aria-labelledby="sidenavModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -104,6 +233,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <div class="welcome-tab text-center">
@@ -149,7 +279,42 @@
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="home-tab">Dashboard</div>
-                <div class="tab-pane fade" id="newreq" role="tabpanel" aria-labelledby="profile-tab">New Service Request
+                <div class="tab-pane fade" id="newreq" role="tabpanel" aria-labelledby="profile-tab">
+                    <table id="mysorttable2" class="table mb-0" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Service ID</th>
+                                <th class="th-sm">Service date</th>
+                                <th class="th-sm">Customer details</th>
+                                <th class="th-sm">Distance</th>
+                                <th class="th-sm text-center">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td data-target="#ServiceDetailsModal" data-toggle="modal" style="cursor: pointer;">323436</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <button>Cancel</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="tab-pane fade show active" id="upcomingreq" role="tabpanel" aria-labelledby="contact-tab">
                     <table id="mysorttable" class="table mb-0" cellspacing="0" width="100%">
@@ -164,7 +329,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>323436</td>
+                                <td data-target="#ServiceDetailsUpcomingModal" data-toggle="modal" style="cursor: pointer;">323436</td>
                                 <td>
                                     <img src="assets/calendar2.png" alt="">
                                     <b>09/04/2018</b>
@@ -186,7 +351,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>323437</td>
+                                <td data-target="#ServiceDetailsUpcomingModal" data-toggle="modal" style="cursor: pointer;">323437</td>
                                 <td>
                                     <img src="assets/calendar2.png" alt="">
                                     <b>09/04/2018</b>
@@ -410,8 +575,217 @@
                 </div>
                 <div class="tab-pane fade" id="serviceschedule" role="tabpanel" aria-labelledby="contact-tab">Service
                     Schedule</div>
-                <div class="tab-pane fade" id="servicehistory" role="tabpanel" aria-labelledby="contact-tab">Service
-                    History</div>
+                <div class="tab-pane fade" id="servicehistory" role="tabpanel" aria-labelledby="contact-tab">
+                    <table id="mysorttable3" class="table mb-0" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th class="th-sm">Service ID</th>
+                                <th class="th-sm">Service date</th>
+                                <th class="th-sm">Customer details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>323436</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323425</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323426</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323433</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323442</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323424</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323430</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323440</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323446</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323422</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>323441</td>
+                                <td>
+                                    <img src="assets/calendar2.png" alt="">
+                                    <b>09/04/2018</b>
+                                    <div>
+                                        <img src="assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    David Bough
+                                    <div>
+                                        <img src="assets/layer-15.png" alt="">
+                                        David Bough Musterstrabe 5,12345 Bonn
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
                 <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="contact-tab">My Ratings</div>
                 <div class="tab-pane fade" id="blockcustomer" role="tabpanel" aria-labelledby="contact-tab">Block
                     Customer</div>
@@ -510,6 +884,20 @@
                 columnDefs: [{
                     orderable: false,
                     targets: [1, 2, 4]
+                }]
+            });
+            $('#mysorttable2').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2, 4]
+                }]
+            });
+            $('#mysorttable3').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2]
                 }]
             });
             $('.dataTables_length').addClass('bs-select');

@@ -5,8 +5,28 @@ html,body{
     font-family: 'Roboto', sans-serif;
 }
 
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 a,a:hover{
     text-decoration: none;
+}
+
+
+.divide-img::before,
+.divide-img::after{
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+.divide-img img{
+    padding: 0 8px;
 }
 
 /***************************************
@@ -48,6 +68,14 @@ a,a:hover{
 /***************************************
               HEADER
 ***************************************/
+header{
+    height: 80px;
+}
+
+#navbar{
+    background-color: #525252 !important;
+}
+
 .navbar .nav-logo img{
     width: 73px;
     height: 54px;
@@ -95,151 +123,53 @@ a,a:hover{
     font-size: 16px;
 }
 
+#navbar.active{
+    opacity: 90%;
+}
 
 /***************************************
-              Section-1
+            Main-Content
 ***************************************/
-#banner .banner-img{
-    background-repeat: no-repeat;
-    background-size: cover;
-    object-fit: contain;
-    background-position: center;
-    width: 100%;
+#create-account-section{
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#banner .head h1{
+#create-account-section .head h1{
     color: #4F4F4F;
     font-size: 36px;
-    font-weight: 600;
-    margin: 32px 0 9px 0;
+    font-weight: 700;
+    margin: 31px 0 9px 0;
 }
 
-#banner .divide-img::before,#banner .divide-img::after{
-    content: '';
-    display: block;
-    background-color: #CCCCCC;
-    width: 62px;
-    height: 1px;
+#create-account-section .create-account-content .form-control{
+    /* max-width: 299px; */
+    min-height: 46px;
 }
 
-#banner .divide-img{
-    margin-bottom: 34px;
-}
-
-#banner .divide-img img{
-    padding: 0 8px;
-}
-
-#banner .content{
-    max-width: 931px;
-    min-height: 847px;
-}
-
-#banner .content-msg{
-    color: #646464;
-    font-size: 18px;
-    max-width: 498px;
-    min-height: 48px;
-    margin-bottom: 35px;
-}
-
-#banner .qna .nav-tabs{
-    border-bottom :3px solid #1D7A8C;
-    max-width: 946px;
-    min-height: 66px;
-    margin-bottom: 45px;
-}
-
-#banner .qna .nav-tabs .nav-link{
-    font-size: 24px;
-    color: #646464;
-    min-height: 60px;
-    padding: 12px;
-    margin-top: 3px;
-}
-
-#banner .qna .nav-tabs .nav-link.active{
-    background-color: #1D7A8C !important;
+#create-account-section form .submit-btn{
+    background-color: #1D7A8C;
     color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 500;
+    width: 163px;
+    height: 46px;
+    border-radius: 23px;
+    transition: all .3s ease;
 }
 
-#banner .qna .nav-tabs li{
-    width: calc(100%/2);
+#create-account-section form .submit-btn:hover{
+    background-color: #FFFFFF;
+    color: #1D7A8C;
+    transition: all .3s ease;
 }
 
-#banner .card{
-    border: 0;
+#create-account-section form .link-clr{
+    color: #0088a0;
 }
 
-#banner .card:not(:last-child){
-    margin-bottom: 20px;
-}
-
-#banner .card-header:not(:last-child){
-    background-color: inherit;
-    border: 0;
-    padding: 0;
-    padding-bottom: 20px;
-}
-
-#banner .card .collapsed img{
-    transform: rotate(0deg);
-}
-
-#banner .card img{
-    transition: .3s transform ease-in-out;
-    transform: rotate(90deg);
-}
-
-#banner .card p{
-    margin: 0;
-}
-
-#banner .card-link{
-    font-size: 16px;
-    font-weight: bold;
-    color: #646464;
-    /* max-width: 889px; */
-    min-height: 19px;
-}
-
-#banner .card-body{
-    font-size: 14px;
-    margin-left: 40px;
-    padding: 0;
-}
-
-#banner .card-link img{
-    width: 22px;
-    height: 22px;
-    margin-right: 15px;
-}
-
-#review{
-    margin-top: 55px;
-    min-height: 130px;
-}
-
-#review .review-news{
-    color: #353548;
-    font-size: 18px;
-    font-weight: 600;
-    margin-bottom: 16px;
-}
-
-#review .review-mail{
-    width: 233px;
-    height: 40px;
-    border-radius: 20px;
-    margin-right: 10px;
-}
-
-#review .review-submit{
-    background-color: #FF7B6D;
-    width: 88px;
-    height: 40px;
-    border-radius: 20px;
-}
 /***************************************
               FOOTER
 ***************************************/
@@ -290,7 +220,6 @@ a,a:hover{
     color: #9BA0A3;
 }
 
-
 @media screen and (max-width:1200px) {
     /* -----Header----- */
     .navbar .book-now-faq{
@@ -331,49 +260,5 @@ a,a:hover{
 
     .page-footer .footer-content{
         padding: 30px 0;
-    }
-}
-
-@media screen and (max-width:768px){
-    #banner .qna .nav-tabs .nav-link{
-        font-size: 16px;
-        padding: 18px;
-    }
-
-    #banner .qna .for-sp{
-        padding: 18px 0 0 0;
-    }   
-}
-
-@media screen and (max-width:425px){
-    /* -----Banner----- */
-    #banner .card-link{
-        font-size: 14px;
-    }
-    
-    #banner .card-body{
-        font-size: 13px;
-    }
-
-    #banner .qna .nav-tabs .nav-link{
-        font-size: 18px;
-        padding: 18px 0 0 0;
-    }
-
-    #review{
-        margin-bottom: 53px;
-    }
-
-    #review .review-news{
-        margin-bottom: 8px;
-    }
-
-    #review .review-mail-div{
-        flex-direction: column !important;
-    }
-
-    #review .review-mail{
-        margin-right: 0;
-        margin-bottom: 10px;
     }
 }

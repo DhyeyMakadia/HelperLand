@@ -36,6 +36,15 @@ header{
     font-size: 17px;
 } 
 
+#navbar .book-now-nav{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 28px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
 .navbar-expand-xl .navbar-nav .prices-nav{
     padding: 0 41px 0 0 !important;
 }
@@ -428,7 +437,7 @@ bottom: 13.5px !important;
 /***************************************
             Mobile-Navbar
 ***************************************/
-.modal.left .modal-dialog {
+.modal.right .modal-dialog {
 	position:fixed;
 	right: 0;
 	margin: auto;
@@ -440,7 +449,7 @@ bottom: 13.5px !important;
 	transform: translate3d(0%, 0, 0);
 }
 
-.modal.left .modal-content {
+.modal.right .modal-content {
 	height: 100%;
 	overflow-y: auto;
 }
@@ -450,11 +459,11 @@ bottom: 13.5px !important;
 }
 
 .modal.right.fade .modal-dialog {
-	left: -320px;
-	-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
-	-moz-transition: opacity 0.3s linear, left 0.3s ease-out;
-	-o-transition: opacity 0.3s linear, left 0.3s ease-out;
-	transition: opacity 0.3s linear, left 0.3s ease-out;
+	right: -320px;
+	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+	-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+	-o-transition: opacity 0.3s linear, right 0.3s ease-out;
+	transition: opacity 0.3s linear, right 0.3s ease-out;
 }
 
 .modal.right.fade.show .modal-dialog {

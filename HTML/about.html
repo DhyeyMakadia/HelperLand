@@ -15,8 +15,91 @@
 </head>
 
 <body>
+    <!-- Modals -->
+    <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login to your account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control border-right-0" placeholder="Email">
+                            <span class="input-group-append bg-white border-left-0">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <input type="password" class="form-control border-right-0" placeholder="Password">
+                            <span class="input-group-append bg-white border-left-0">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="remember">
+                                <label class="form-check-label" for="remember">Remember me</label>
+                            </div>
+                        </div>
+                        <div class="input-group justify-content-center mb-4">
+                            <button class="login-btn">Login</button>
+                        </div>
+                        <div class="input-group justify-content-center">
+                            <div><a href="#" data-dismiss="modal" data-toggle="modal" data-target="#ForgotModal"
+                                    class="link-clr">Forgot password?</a></div>
+                        </div>
+                        <div class="input-group justify-content-center">
+                            Don't have an account? <a href="#" class="link-clr">Create an account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ForgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Forgot Password</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control border-right-0" placeholder="Email Address">
+                            <span class="input-group-append bg-white border-left-0">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </span>
+                        </div>
+                        <div class="input-group justify-content-center mb-4">
+                            <button class="send-btn">Send</button>
+                        </div>
+                        <div class="input-group justify-content-center">
+                            <a href="#" class="link-clr" data-dismiss="modal" data-target="#LoginModal"
+                                data-toggle="modal"><b>Login now</b></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
     <header>
-        <!-- NAVBAR -->
         <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
             <a class="navbar-brand nav-logo" href="#">
                 <img src="assets/logo.png" width="175px" height="130" alt="">
@@ -44,7 +127,8 @@
                         <a class="nav-link text-white contact-faq" href="#">Contact</a>
                     </li>
                     <li class="nav-item active">
-                        <button class="btn my-sm-0 text-white login-faq">Login</button>
+                        <button class="btn my-sm-0 text-white login-faq" data-dismiss="modal" data-target="#LoginModal"
+                            data-toggle="modal">Login</button>
                     </li>
                     <li class="nav-item active">
                         <button class="btn my-sm-0 text-white become-helper-faq">Become a helper</button>
@@ -117,10 +201,6 @@
         </div>
     </Section>
 
-
-
-
-
     <div id="review">
         <div class="d-flex flex-column align-items-center justify-content-center">
             <div class="review-news">
@@ -135,7 +215,6 @@
             </div>
         </div>
     </div>
-
 
     <footer class="page-footer font-small">
         <div class="container mw-100">
@@ -187,10 +266,8 @@
                     </div>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb"
-                            alt=""></a>
-                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig"
-                            alt=""></a>
+                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb" alt=""></a>
+                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig" alt=""></a>
                 </div>
             </div>
         </div>
