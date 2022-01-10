@@ -16,6 +16,51 @@ a,a:hover{
 }
 
 /***************************************
+                Modal
+***************************************/
+#ServiceHistoryDashModal .modal-body .net-amount span{
+    color: #1a626e;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+#ServiceHistoryDashModal .modal-body .action-history-modal button{
+    border-radius: 17px;
+    height: 35px;
+    color: #FFFFFF;
+    border: none;
+}
+
+#ServiceHistoryDashModal .modal-body .action-history-modal .cancel-upcoming{
+    width: 80px;
+    background-color: #fa5151;
+}
+
+#ServiceHistoryDashModal .modal-body .action-history-modal .reschedule-upcoming{
+    width: 120px;
+    background-color: #1D7A8C;
+}
+
+#ServiceHistoryCancelModal .modal-title b,
+#ServiceHistoryRescheduleModal .modal-title b{
+    color: #1a626e;
+    font-size: 19px;
+}
+
+#ServiceHistoryCancelModal .modal-body .reschedule-cancel button,
+#ServiceHistoryRescheduleModal .modal-body .reschedule-update button{
+    background-color: #1D7A8C;
+    width: 100%;
+    border-radius: 17px;
+    height: 35px;
+    border: none;
+    color: #FFFFFF;
+}
+
+#ServiceHistoryCancelModal .modal-dialog{
+    max-width: 400px !important;
+}
+/***************************************
               HEADER
 ***************************************/
 header{

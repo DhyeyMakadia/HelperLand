@@ -220,6 +220,21 @@ bottom: 13.5px !important;
     text-align: center;
 }
 
+.table-content .servicehistory-head{
+    justify-content: end;
+    margin-bottom: 10px;
+}
+
+.table-content .servicehistory-head button{
+    width: 70px;
+    height: 34px;
+    border-radius: 17px;
+    background-color: #146371;
+    color: #FFFFFF;
+    font-size: 14px;
+    border: none;
+}
+
 .table-content .cancel-btn button{
     font-size: 16px;
     color: #ffffff;
@@ -232,6 +247,21 @@ bottom: 13.5px !important;
 
 .table-content .cancel-btn button:hover{
     background-color: #fa5151;
+    color: White;
+}
+
+.table-content .accept-btn button{
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1D7A8C;
+    border: none;
+    width: 80px;
+    height: 34px;
+    border-radius: 17px;
+}
+
+.table-content .accept-btn button:hover{
+    background-color: #1a626e;
     color: White;
 }
 
@@ -409,6 +439,13 @@ bottom: 13.5px !important;
 
     .page-footer .footer-content{
         padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:768px) {
+    .table-content .servicehistory-head{
+        justify-content: center;
+        margin-bottom: 10px;
     }
 }
 

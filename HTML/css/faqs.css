@@ -48,6 +48,10 @@ a,a:hover{
 /***************************************
               HEADER
 ***************************************/
+#navbar{
+    background-color: #525252 !important;
+}
+
 .navbar .nav-logo img{
     width: 73px;
     height: 54px;
@@ -95,6 +99,9 @@ a,a:hover{
     font-size: 16px;
 }
 
+#navbar.active{
+    opacity: 90%;
+}
 
 /***************************************
               Section-1

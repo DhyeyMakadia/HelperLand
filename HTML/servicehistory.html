@@ -14,9 +14,154 @@
     <link rel="stylesheet" href="css/servicehistory.css">
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
+    <div class="modal fade" id="ServiceHistoryDashModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <div><b>05/10/2021 <span>08:00 - 11:30</span></b></div>
+                                <div><b>Duration:</b> 3.5 Hrs</div>
+                            </div>
+                            <hr>
+                            <div>
+                                <b>Service Id:</b>
+                                <span>8485</span>
+                            </div>
+                            <div>
+                                <b>Extras:</b>
+                                <span>Inside Cabinets</span>
+                            </div>
+                            <div class="net-amount text-center">
+                                <b class="float-left">Net Amount:</b>
+                                <span>87,50 €</span>
+                            </div>
+                            <hr>
+                            <div>
+                                <b>Service Address:</b>
+                                <span>Koenigstrasse 112, 99897 Tambach-Dietharz</span>
+                            </div>
+                            <div>
+                                <b>Service Address:</b>
+                                <span>Same as Cleaning Address</span>
+                            </div>
+                            <div>
+                                <b>Phone:</b>
+                                <span>+49 9955648797</span>
+                            </div>
+                            <hr>
+                            <div>
+                                <b>Comments</b>
+                                <div>I Don't have pets at home.</div>
+                            </div>
+                            <hr>
+                            <div class="action-history-modal">
+                                <button class="reschedule-upcoming" data-dismiss="modal"
+                                    data-target="#ServiceHistoryRescheduleModal" data-toggle="modal">
+                                    Reschedule
+                                </button>
+                                <button class="cancel-upcoming">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ServiceHistoryRescheduleModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Reschedule Service Request</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            Select New Date and Time
+                        </div>
+                        <div class="col-6">
+                            <input data-date-format="dd/mm/yyyy" id="datepicker" class="datepicker">
+                        </div>
+                        <div class="col-6">
+                            <select class="form-control">
+                                <option selected>8:00</option>
+                                <option>9:00</option>
+                                <option>10:00</option>
+                                <option>11:00</option>
+                                <option>12:00</option>
+                                <option>13:00</option>
+                                <option>14:00</option>
+                                <option>15:00</option>
+                                <option>16:00</option>
+                                <option>17:00</option>
+                                <option>18:00</option>
+                                <option>19:00</option>
+                                <option>20:00</option>
+                                <option>21:00</option>
+                                <option>22:00</option>
+                                <option>23:00</option>
+                                <option>0:00</option>
+                                <option>1:00</option>
+                                <option>2:00</option>
+                                <option>3:00</option>
+                                <option>4:00</option>
+                                <option>5:00</option>
+                                <option>6:00</option>
+                                <option>7:00</option>
+                            </select>
+                        </div>
+                        <div class="col-12 text-center mt-2 reschedule-update">
+                            <button>Update</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ServiceHistoryCancelModal" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Cancel Service Request</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 mb-2">
+                            Why do yo want to cancel the service request?
+                        </div>
+                        <div class="col-12">
+                            <textarea name="cancel-reason" id="cancel-reason" cols="43" rows="4"></textarea>
+                        </div>
+                        <div class="col-12 text-center mt-2 reschedule-cancel">
+                            <button>Cancel Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <header>
         <!-- NAVBAR -->
         <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
@@ -176,7 +321,8 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>8485</td>
+                                <td data-target="#ServiceHistoryDashModal" data-toggle="modal" style="cursor: pointer;">
+                                    8485</td>
                                 <td>
                                     <img src="assets/calendar2.png" alt="">
                                     <b>09/04/2018</b>
@@ -187,15 +333,17 @@
                                 </td>
                                 <td>
                                     <div class="service-provider-datatab">
-                                        
+
                                     </div>
                                 </td>
                                 <td>
                                     <div class="price ml-xl-0 ml-2">87,50<span>€</span></div>
                                 </td>
                                 <td class="text-center align-middle d-flex justify-content-center align-items-center">
-                                    <button class="res-dash-btn mr-1">Reschedule</button>
-                                    <button class="cl-dash-btn">Cancel</button>
+                                    <button class="res-dash-btn mr-1" data-target="#ServiceHistoryRescheduleModal"
+                                        data-toggle="modal">Reschedule</button>
+                                    <button class="cl-dash-btn" data-target="#ServiceHistoryCancelModal"
+                                        data-toggle="modal">Cancel</button>
                                 </td>
                             </tr>
                             <tr>
@@ -270,8 +418,8 @@
                                     <button class="cl-dash-btn">Cancel</button>
                                 </td>
                             </tr>
-                            
-                            
+
+
                         </tbody>
                     </table>
                 </div>
@@ -845,10 +993,8 @@
                     </div>
                 </div>
                 <div class="footer-social">
-                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb"
-                            alt=""></a>
-                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig"
-                            alt=""></a>
+                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb" alt=""></a>
+                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig" alt=""></a>
                 </div>
             </div>
         </div>
@@ -876,15 +1022,22 @@
 
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 
     <script>
+        // Data Picker Initialization
+        $('.datepicker').datepicker({
+            inline: true,
+            autoclose: true,
+            todayHighlight: true,
+        });
 
         $(document).ready(function () {
             $('#mysorttable1').DataTable({
                 "aaSorting": [],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1,2, 4]
+                    targets: [1, 2, 4]
                 }]
             });
             $('#mysorttable2').DataTable({

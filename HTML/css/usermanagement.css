@@ -154,8 +154,24 @@ aside .sidebar {
   }
 
 
-  @media screen and (max-width:800px) {
-      div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate{
-        text-align: center !important;
+  @media screen and (max-width:850px) {
+    aside .sidebar {
+        max-width: 240px;
+      }
+
+    #content-area{
+        margin-left: 240px;
+        background-color: #F2F4F5;
+        width: calc(100% - 240px);
+        min-height: calc(100vh - 60px);
+    }
+
+      #content-area #mysorttable_wrapper .row{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #content-area #mysorttable_wrapper .row  #mysorttable_length{
+          text-align: center;
       }
   }
