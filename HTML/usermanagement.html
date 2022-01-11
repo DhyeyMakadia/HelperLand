@@ -21,13 +21,9 @@
 <body>
 
     <header>
-        <nav id="navbar" class="navbar navbar-expand-sm fixed-top">
+        <nav id="navbar" class="navbar navbar-expand fixed-top justify-content-between">
             <a class="navbar-brand" href="#">helperland</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="" id="navbarNavAltMarkup">
                 <div class="navbar-nav align-items-center">
                     <a class="nav-item nav-link active text-white" href="#">
                         <img src="assets/admin-user.png" alt="" class="mr-1">
@@ -41,476 +37,494 @@
         </nav>
     </header>
 
-    <aside>
-        <nav class="col-sm-5 d-sm-block sidebar">
-            <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Service Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Role Management</a>
-                </li>
 
-                <li class="nav-item">
-                    <a class="nav-link" href="#cc-manage" data-toggle="collapse" aria-controls="#cc-manage"
-                        aria-expanded="false">
-                        Coupon Code Management
-                        <span style="padding-right: 15px;float: right;">
-                            <img src="assets/keyboard-right-arrow-button.png"
-                                class="menu-arrow" alt="">
-                        </span>
-                    </a>
-                </li>
-                <div class="collapse" id="cc-manage">
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link1</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link2</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link3</a>
-                    </li>
-                </div>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Escalation Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Service Requests</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Service Providers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#">User Management <span class="sr-only">(current)</span></a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#finance-module" data-toggle="collapse" aria-controls="#finance-module"
-                        aria-expanded="false">
-                        Finance Module
-                        <span style="padding-right: 15px; float: right;">
-                            <img src="assets/keyboard-right-arrow-button.png"
-                                class="menu-arrow" alt="">
-                        </span>
-                    </a>
-                </li>
-                <div class="collapse" id="finance-module">
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link1</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link2</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link3</a>
-                    </li>
-                </div>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Zip Code Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Rating Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Inquiry Management</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Newsletter Management</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#content-manage" data-toggle="collapse" aria-controls="#content-manage"
-                        aria-expanded="false">
-                        Content Management
-                        <span style="padding-right: 15px; float: right;">
-                            <img src="assets/keyboard-right-arrow-button.png"
-                                class="menu-arrow" alt="">
-                        </span>
-                    </a>
-                </li>
-                <div class="collapse" id="content-manage">
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link1</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link2</a>
-                    </li>
-                    <li class="nav-item sub-item">
-                        <a class="nav-link" href="#">Submenu Link3</a>
-                    </li>
-                </div>
-            </ul>
-        </nav>
-    </aside>
-
-    <section id="content-area">
-        <div class="container-fluid">
-
-            <div class="content-header d-flex justify-content-between align-items-center">
-                <div class="heading">User Management</div>
-                <div class="add-new-user">
-                    <button role="button" class="btn">
-                        <img src="assets/add.png" class="mr-1" alt="">
-                        <span>Add New User</span>
-                    </button>
-                </div>
+        <aside class="sidebar">
+            <div class="navbar-header">
+                <a id="navbar2-btn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar2"
+                    aria-expanded="true" aria-controls="navbar2">
+                    <span class="sr-only">Toggle navigation</span>
+                    <i class="ic fa fa-bars"></i>
+                </a>
             </div>
+            <nav id="navbar2" class="col-sm-5 sidebar navbar-collapse collapse show">
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Service Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Role Management</a>
+                    </li>
 
-            <div class="card mt-3">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
-                            <select class="form-control">
-                                <option>User name</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
-                            <select class="form-control">
-                                <option>User role</option>
-                                <option>Option 1</option>
-                                <option>Option 2</option>
-                            </select>
-                        </div>
-                        <div class="col-xl-3 col-lg-3 col-md-6 mb-2">
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">+49</div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#cc-manage" data-toggle="collapse" aria-controls="#cc-manage"
+                            aria-expanded="false">
+                            Coupon Code Management
+                            <span style="padding-right: 15px;float: right;">
+                                <img src="assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <div class="collapse" id="cc-manage">
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link1</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link2</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link3</a>
+                        </li>
+                    </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Escalation Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Service Requests</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Service Providers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">User Management <span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#finance-module" data-toggle="collapse"
+                            aria-controls="#finance-module" aria-expanded="false">
+                            Finance Module
+                            <span style="padding-right: 15px; float: right;">
+                                <img src="assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <div class="collapse" id="finance-module">
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link1</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link2</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link3</a>
+                        </li>
+                    </div>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Zip Code Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Rating Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inquiry Management</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Newsletter Management</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#content-manage" data-toggle="collapse"
+                            aria-controls="#content-manage" aria-expanded="false">
+                            Content Management
+                            <span style="padding-right: 15px; float: right;">
+                                <img src="assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                            </span>
+                        </a>
+                    </li>
+                    <div class="collapse" id="content-manage">
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link1</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link2</a>
+                        </li>
+                        <li class="nav-item sub-item">
+                            <a class="nav-link" href="#">Submenu Link3</a>
+                        </li>
+                    </div>
+                </ul>
+            </nav>
+        </aside>
+
+        <section id="content-area">
+            <div class="container-fluid">
+
+                <div class="content-header d-flex justify-content-between align-items-center">
+                    <div class="heading">User Management</div>
+                    <div class="add-new-user">
+                        <button role="button" class="btn">
+                            <img src="assets/add.png" class="mr-1" alt="">
+                            <span>Add New User</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                                <select class="form-control">
+                                    <option>User name</option>
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                                <select class="form-control">
+                                    <option>User role</option>
+                                    <option>Option 1</option>
+                                    <option>Option 2</option>
+                                </select>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 mb-2">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">+49</div>
+                                    </div>
+                                    <input type="tel" class="form-control" id="inlineFormInputGroup"
+                                        placeholder="Phone Number">
                                 </div>
-                                <input type="tel" class="form-control" id="inlineFormInputGroup"
-                                    placeholder="Phone Number">
+                            </div>
+                            <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                                <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
+                            </div>
+                            <div class="col-xl-1 col-lg-2 col-md-6 mb-2">
+                                <button class="btn btn-primary">Search</button>
+                            </div>
+                            <div class="col-xl-1 col-lg-2 col-md-6 mb-2">
+                                <button class="btn border-dark">Search</button>
                             </div>
                         </div>
-                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
-                            <input type="text" class="form-control" id="inputZip" placeholder="Zipcode">
-                        </div>
-                        <div class="col-xl-1 col-lg-2 col-md-6 mb-2">
-                            <button class="btn btn-primary">Search</button>
-                        </div>
-                        <div class="col-xl-1 col-lg-2 col-md-6 mb-2">
-                            <button class="btn border-dark">Search</button>
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <table id="mysorttable" class="table mb-0 table-hover table-responsive-lg"
+                                    table-responsive="false" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="th-sm">User Name</th>
+                                            <th class="th-sm">User Type</th>
+                                            <th class="th-sm">Role</th>
+                                            <th class="th-sm">Postal Code</th>
+                                            <th class="th-sm">City</th>
+                                            <th class="th-sm">Radius</th>
+                                            <th class="th-sm text-center">User Status</th>
+                                            <th class="th-sm text-center">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Lyum Watson</td>
+                                            <td>Call Center</td>
+                                            <td>Inquiry Manager</td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Service Provider</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td>10</td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Call Center</td>
+                                            <td>Inquiry Manager</td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Customer</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Call Center</td>
+                                            <td>Content Manager</td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Customer</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-inactive">Inactive</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Service Provider</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td>20</td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Call Center</td>
+                                            <td>Finance Manager</td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Customer</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Customer</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td></td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Smith</td>
+                                            <td>Service Provider</td>
+                                            <td></td>
+                                            <td>123456</td>
+                                            <td>Berlin</td>
+                                            <td>50</td>
+                                            <td>
+                                                <div class="badge status-active">Active</div>
+                                            </td>
+                                            <td class="actions-btn text-center align-middle">
+                                                <div class="dropdown">
+                                                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                        id="dropdownMenuLink" data-toggle="dropdown"
+                                                        aria-expanded="false">
+                                                        <i class="fas fa-ellipsis-v"></i>
+                                                    </a>
+
+                                                    <div class="dropdown-menu dropdown-menu-right"
+                                                        aria-labelledby="dropdownMenuLink">
+                                                        <a class="dropdown-item" href="#">Edit</a>
+                                                        <a class="dropdown-item" href="#">Deactivate</a>
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="row mt-3">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <table id="mysorttable" class="table mb-0 table-hover table-responsive-lg" table-responsive="false" cellspacing="0" width="100%">
-                                <thead>
-                                    <tr>
-                                        <th class="th-sm">User Name</th>
-                                        <th class="th-sm">User Type</th>
-                                        <th class="th-sm">Role</th>
-                                        <th class="th-sm">Postal Code</th>
-                                        <th class="th-sm">City</th>
-                                        <th class="th-sm">Radius</th>
-                                        <th class="th-sm text-center">User Status</th>
-                                        <th class="th-sm text-center">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>Lyum Watson</td>
-                                        <td>Call Center</td>
-                                        <td>Inquiry Manager</td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
+        <section class="footer-section mt-3">
+            <div class="copyright-content">©2018 Helperland. All rights reserved.</div>
+        </section>
 
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Service Provider</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td>10</td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Call Center</td>
-                                        <td>Inquiry Manager</td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Customer</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Call Center</td>
-                                        <td>Content Manager</td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Customer</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-inactive">Inactive</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Service Provider</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td>20</td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Call Center</td>
-                                        <td>Finance Manager</td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Customer</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Customer</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td></td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>John Smith</td>
-                                        <td>Service Provider</td>
-                                        <td></td>
-                                        <td>123456</td>
-                                        <td>Berlin</td>
-                                        <td>50</td>
-                                        <td>
-                                            <div class="badge status-active">Active</div>
-                                        </td>
-                                        <td class="actions-btn text-center align-middle">
-                                            <div class="dropdown">
-                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                                    id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-
-                                                <div class="dropdown-menu dropdown-menu-right"
-                                                    aria-labelledby="dropdownMenuLink">
-                                                    <a class="dropdown-item" href="#">Edit</a>
-                                                    <a class="dropdown-item" href="#">Deactivate</a>
-                                                    <a class="dropdown-item" href="#">Service History</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="footer-section mt-3">
-        <div class="copyright-content">©2018 Helperland. All rights reserved.</div>
-    </section>
-
+    </div>
 
     <!-- -----Scripts----- -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -554,8 +568,48 @@
                     $('#dd-dash').removeClass('active');
                 }
             });
-        }); 
+        });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#navbar2-btn").click(function () {
+                var display1 = $("#navbar2-btn").attr("aria-expanded");
+                if (display1) {
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                    $('#content-area').css("transition-delay",'.3s')
+                }
+                if (display1 == 'true') {
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                }
+
+            });
+        });
+
+        jQuery(document).ready(function ($) {
+            var alterClass = function () {
+                var ww = document.body.clientWidth;
+                var display2 = $("#navbar2-btn").attr("aria-expanded");
+                if (ww <= 1024) {
+                    $('#navbar2').removeClass('show');
+                    $('#navbar2-btn').addClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "false");
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                } else if (ww > 1024) {
+                    $('#navbar2').addClass('show');
+                    $('#navbar2-btn').removeClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "true");
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                };
+            };
+            $(window).resize(function () {
+                alterClass();
+            });
+            //Fire it when the page first loads:
+            alterClass();
+        });
+    </script>
+
 </body>
 
 </html>
