@@ -275,6 +275,104 @@ bottom: 13.5px !important;
     border-color: #1D7A8C;
 }
 
+/* -----ratings----- */
+#ratings .card:not(:last-child){
+    margin-bottom: 10px;
+}
+
+#ratings .card-body{
+    padding-bottom: 0;
+}
+
+#ratings .ratings-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#ratings .ratings-content .cust-details{
+    margin-right: 20px;
+}
+
+#ratings .cust-comments p{
+    font-size: 14px;
+}
+
+/* -----block-customer----- */
+#blockcustomer .block-cust-content{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#blockcustomer .card{
+    width: calc(33% - 20px);
+    margin: 10px;
+    min-width: 245px;
+}
+
+#blockcustomer .profile-pic{
+    width: 88px;
+    height: 88px;
+    border: 1px solid #AAAAAA;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#blockcustomer .profile-pic img{
+    width: 50px;
+}
+
+#blockcustomer .profile-pic,
+#blockcustomer .cust-name{
+    margin-bottom: 20px;
+}
+
+#blockcustomer .cust-name b{
+    font-size: 20px;
+}
+
+#blockcustomer .block-btn button{
+    width: 80px;
+    border: none;
+    border-radius: 17px;
+    height: 34px;
+    color: #FFFFFF;
+    background-color: #FF6B6B;
+}
+
+#blockcustomer .block-btn button:hover{
+    background-color: #fa5151;
+}
+
+/* -----my-settings----- */
+#mysettings .nav-tabs{
+    border-bottom: 1px solid #808080;
+}
+
+#mysettings .nav-item .nav-link{
+    background-color: #FFFFFF;
+    color: #646464;
+    font-weight: bold;
+    padding: 0 20px;
+    border-bottom:1px solid #808080;
+}
+
+#mysettings .nav-item .nav-link.active{
+    color: #1D7A8C;
+    border-bottom: 3px solid #1D7A8C;
+}
+
+#mysettings #change-password-st .save-pass-btn{
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+    border: none;
+    border-radius: 17px;
+    height: 34px;
+    width: 80px;
+}
 /***************************************
               FOOTER
 ***************************************/
@@ -410,11 +508,26 @@ bottom: 13.5px !important;
         border: none;
     }
 
-    .table-content table thead{
+    .table-content #newreq table thead,
+    .table-content #upcomingreq table thead,
+    .table-content #servicehistory table thead{
         display: none;
     }
 
-    .table-content table tbody > tr{
+    .table-content #newreq table tbody > tr{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-height: 330px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .table-content #upcomingreq table tbody > tr{
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
@@ -427,7 +540,21 @@ bottom: 13.5px !important;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     }
 
-    .table-content table tbody tr td:nth-child(4){
+    .table-content #servicehistory table tbody > tr{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        min-height: 200px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 4px;
+        margin-bottom: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    }
+
+    .table-content #newreq table tbody tr td:nth-child(4),
+    .table-content #upcomingreq table tbody tr td:nth-child(4){
         text-align: left;
     }
 
@@ -446,6 +573,20 @@ bottom: 13.5px !important;
     .table-content .servicehistory-head{
         justify-content: center;
         margin-bottom: 10px;
+    }
+}
+
+@media screen and (max-width:560px) {
+    #ratings .ratings-content{
+        flex-direction: column;
+    }
+
+    #ratings .group1{
+        justify-content: space-between;
+    }
+
+    #ratings .group2{
+        margin-top: 10px;
     }
 }
 
@@ -473,5 +614,23 @@ bottom: 13.5px !important;
         font-size: 12px;
         height: 28px;
         width: 60px;
+    }
+
+    #ratings .cust-name b,
+    #ratings .service-details b{
+        font-size: 14px;
+    }
+
+    #ratings .service-details > div{
+        font-size: 13px;
+    }
+
+    #mysettings .nav-tabs{
+        border-bottom: none;
+        flex-direction: column;
+    }
+
+    #mysettings .nav-item .nav-link{
+        border-bottom: none;
     }
 }

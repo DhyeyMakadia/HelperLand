@@ -163,6 +163,136 @@
             </div>
         </div>
     </div>
+    <div class="modal fade" id="EditAddressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Edit Address</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row mx-auto">
+                            <div class="form-group col-md-6">
+                                <label for="inputStreet">Street Name</label>
+                                <input type="text" class="form-control" id="inputStreetName" placeholder="Street Name"
+                                    value="Koenigstrasse">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputHouse">House Name</label>
+                                <input type="text" class="form-control" id="inputHouseName" placeholder="House Name"
+                                    value="112">
+                            </div>
+                        </div>
+                        <div class="form-row mx-auto">
+                            <div class="form-group col-md-6">
+                                <label for="inputPostal">Postal Code</label>
+                                <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code"
+                                    value="99897">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputCity">Postal Code</label>
+                                <input type="text" class="form-control" id="inputCity" placeholder="City"
+                                    value="Tambach-Dietharz">
+                            </div>
+                        </div>
+                        <div class="form-row mx-auto">
+                            <div class="col-md-6">
+                                <label for="inputMobileNum">Mobile Number</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">+49</div>
+                                    </div>
+                                    <input type="tel" class="form-control MobileNumber"
+                                        id="inlineFormInputGroupUsername" placeholder="Mobile Number"
+                                        value="9955648797">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-auto">
+                            <div class="form-group w-100">
+                                <button type="submit" class="btn btn-primary submit-btn mx-auto">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="RateSPModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form>
+                        <div class="d-flex flex-row mb-3">
+                            <div class="profile-img">
+                                <img src="assets/cap.png" alt="">
+                            </div>
+                            <div class="details">
+                                <b>Sandip Patel</b>
+                                <div class="rate">
+                                    <img src="assets/star1.png" alt="">
+                                    <img src="assets/star1.png" alt="">
+                                    <img src="assets/star1.png" alt="">
+                                    <img src="assets/star1.png" alt="">
+                                    <img src="assets/star2.png" alt="">
+                                    <span>4.0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h5><b>Rate your service provider</b></h5>
+                        </div>
+                        <hr>
+                        <div>
+                            <span>On time arrival</span>
+                            &nbsp;&nbsp;&nbsp;
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star2.png" alt=""></span>
+                        </div>
+                        <div>
+                            <span>Friendly</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                        </div>
+                        <div>
+                            <span>Quality of service</span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star1.png" alt=""></span>
+                            <span><img src="assets/star2.png" alt=""></span>
+                            <span><img src="assets/star2.png" alt=""></span>
+                        </div>
+                        <div class="form-row mt-3">
+                            <div class="form-group col-md-12">
+                                <label for="fbofsp" class="cm-dez">Feedback on service provider</label>
+                                <textarea class="form-control" id="fbofsp" rows="3" placeholder=""></textarea>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <button class="submit-btn">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <header>
         <!-- NAVBAR -->
         <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
@@ -188,7 +318,8 @@
                         <button class="btn my-sm-0 text-white book-now-nav">Book Now</button>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white prices-nav" href="#" onclick="window.location.href='prices.html'">Prices & services</a>
+                        <a class="nav-link text-white prices-nav" href="#"
+                            onclick="window.location.href='prices.html'">Prices & services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Warranty</a>
@@ -214,7 +345,8 @@
                             <a class="dropdown-item" href="#">Welcome,<div>Sandip Patel</div></a>
                             <div class="dropdown-divider"></div>
                             <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
-                            <a class="dropdown-item" href="#">My Settings</a>
+                            <a id="dd-settings" class="dropdown-item" href="#mysettings" data-toggle="tab">My
+                                Settings</a>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
@@ -246,7 +378,8 @@
                         <a href="#notifications" class="nav-item nav-link navlink-notifications" data-toggle="tab"
                             data-dismiss="modal">Notifications</a>
 
-                        <a href="#" class="nav-item nav-link">My Settings</a>
+                        <a href="#mysettings" data-dismiss="modal" data-toggle="tab" class="nav-item nav-link">My
+                            Settings</a>
                         <a href="#" class="nav-item nav-link">Logout</a>
                         <div class="dropdown-divider"></div>
                         <a href="prices.html" class="nav-item nav-link">Prices & Services</a>
@@ -476,7 +609,7 @@
                                     <div class="badge status-complete">Completed</div>
                                 </td>
                                 <td class="rate-btn text-center align-middle">
-                                    <button>Rate SP</button>
+                                    <button data-target="#RateSPModal" data-toggle="modal">Rate SP</button>
                                 </td>
                             </tr>
                             <tr>
@@ -938,6 +1071,218 @@
                 <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
                     Notifications
                 </div>
+                <div class="tab-pane fade" id="mysettings" role="tabpanel" aria-labelledby="mysettings-tab">
+                    <div class="tab-heading">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#my-details-st">My Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#my-addresses-st">My Addresses</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#change-password-st">Change Password</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="my-details-st" class="container tab-pane active p-0"><br>
+                            <form>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputLang">First Name</label>
+                                        <input type="text" class="form-control" id="inputFirstName"
+                                            placeholder="First Name" value="Gaurang">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputLang">Last Name</label>
+                                        <input type="text" class="form-control" id="inputLastName"
+                                            placeholder="Last Name" value="Patel">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputLang">E-mail Address</label>
+                                        <input type="email" class="form-control email" id="inputEmail"
+                                            placeholder="Email address" value="patel2128@gmail.com" readonly>
+                                    </div>
+                                </div>
+                                <div class="form-row mx-auto">
+                                    <div class="col-md-4">
+                                        <label for="inputLang">Mobile Number</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">+49</div>
+                                            </div>
+                                            <input type="tel" class="form-control MobileNumber"
+                                                id="inlineFormInputGroupUsername" placeholder="Mobile Number"
+                                                value="9955648797">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputLang">Date of Birth</label>
+                                        <select id="inputState" class="form-control">
+                                            <option>01</option>
+                                            <option>02</option>
+                                            <option selected>03</option>
+                                            <option>04</option>
+                                            <option>___</option>
+                                            <option>31</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="inputLang">.</label>
+                                        <select id="inputState" class="form-control">
+                                            <option>January</option>
+                                            <option>February</option>
+                                            <option selected>March</option>
+                                            <option>April</option>
+                                            <option>May</option>
+                                            <option>June</option>
+                                            <option>July</option>
+                                            <option>August</option>
+                                            <option>September</option>
+                                            <option>October</option>
+                                            <option>November</option>
+                                            <option>December</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="inputLang">.</label>
+                                        <select id="inputState" class="form-control">
+                                            <option>1980</option>
+                                            <option>1981</option>
+                                            <option selected>1982</option>
+                                            <option>1983</option>
+                                            <option>___</option>
+                                            <option>2010</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-3">
+                                        <label for="inputLang">My Preferred Language</label>
+                                        <select id="inputLang" class="form-control">
+                                            <option>French</option>
+                                            <option>German</option>
+                                            <option selected>Engilsh</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row mx-auto">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary submit-btn mx-auto">Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div id="my-addresses-st" class="container tab-pane fade mx-0 px-0"><br>
+                            <table class="table mb-0" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th class="th-sm">Addresses</th>
+                                        <th class="th-sm">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <b>Address</b>
+                                                <span>Koenigstrasse 112,99897 Tambach-Dietharz</span>
+                                            </div>
+                                            <div>
+                                                <b>Phone Number</b>
+                                                <span>9955648797</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" data-target="#EditAddressModal" data-toggle="modal"><img
+                                                    src="assets/edit-icon.png" alt=""></a>
+                                            <a href="#"><img src="assets/delete-icon.png" alt=""></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <b>Address</b>
+                                                <span>Koenigstrasse 112,99897 Tambach-Dietharz</span>
+                                            </div>
+                                            <div>
+                                                <b>Phone Number</b>
+                                                <span>9955648797</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#"><img src="assets/edit-icon.png" alt=""></a>
+                                            <a href="#"><img src="assets/delete-icon.png" alt=""></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <b>Address</b>
+                                                <span>Koenigstrasse 112,99897 Tambach-Dietharz</span>
+                                            </div>
+                                            <div>
+                                                <b>Phone Number</b>
+                                                <span>9955648797</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#"><img src="assets/edit-icon.png" alt=""></a>
+                                            <a href="#"><img src="assets/delete-icon.png" alt=""></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div>
+                                                <b>Address</b>
+                                                <span>Koenigstrasse 112,99897 Tambach-Dietharz</span>
+                                            </div>
+                                            <div>
+                                                <b>Phone Number</b>
+                                                <span>9955648797</span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#"><img src="assets/edit-icon.png" alt=""></a>
+                                            <a href="#"><img src="assets/delete-icon.png" alt=""></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button class="btn new-address-btn">Add New Address</button>
+                        </div>
+                        <div id="change-password-st" class="container tab-pane fade mx-0 px-0"><br>
+                            <form>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass0"><b>Old Password</b></label>
+                                        <input type="password" class="form-control" id="inputpass0"
+                                            placeholder="Current Password">
+                                    </div>
+                                </div>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass1"><b>Password</b></label>
+                                        <input type="password" class="form-control" id="inputpass1"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass2"><b>Confirm Password</b></label>
+                                        <input type="text" class="form-control email" id="inputpass2"
+                                            placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <button class="btn save-pass-btn" type="submit">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -1061,10 +1406,17 @@
         $(document).ready(function () {
             $('#dd-dash').click(function () {
                 $('.sidebar-only').removeClass('active');
+                $('#dd-settings').removeClass('active');
                 $('#dashboard-tab').addClass('active');
             });
 
+            $('#dd-settings').click(function () {
+                $('.sidebar-only').removeClass('active');
+                $('#dd-dash').removeClass('active');
+            });
+
             $('.sidebar-only').click(function () {
+                $('#dd-settings').removeClass('active');
                 if (this.id == 'dashboard-tab') {
                     $('#dd-dash').addClass('active');
                 }

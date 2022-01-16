@@ -175,7 +175,8 @@
             <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-white prices-nav" href="#" onclick="window.location.href='prices.html'">Prices & services</a>
+                        <a class="nav-link text-white prices-nav" href="#"
+                            onclick="window.location.href='prices.html'">Prices & services</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="#">Warranty</a>
@@ -201,7 +202,8 @@
                             <a class="dropdown-item" href="#">Welcome,<div>Sandip Patel</div></a>
                             <div class="dropdown-divider"></div>
                             <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
-                            <a class="dropdown-item" href="#">My Settings</a>
+                            <a id="dd-settings" class="dropdown-item" href="#mysettings" data-toggle="tab">My
+                                Settings</a>
                             <a class="dropdown-item" href="#">Logout</a>
                         </div>
                     </li>
@@ -297,8 +299,8 @@
         <div class="table-content">
 
             <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="home-tab">Dashboard</div>
-                <div class="tab-pane fade" id="newreq" role="tabpanel" aria-labelledby="profile-tab">
+                <div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dash-tab">Dashboard</div>
+                <div class="tab-pane fade" id="newreq" role="tabpanel" aria-labelledby="newreq-tab">
                     <table id="mysorttable2" class="table mb-0" cellspacing="0" width="100%">
                         <thead>
                             <tr>
@@ -338,7 +340,8 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade show active" id="upcomingreq" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade show active" id="upcomingreq" role="tabpanel"
+                    aria-labelledby="upcomingreq-tab">
                     <table id="mysorttable" class="table mb-0" cellspacing="0" width="100%">
                         <thead>
                             <tr>
@@ -597,9 +600,10 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="serviceschedule" role="tabpanel" aria-labelledby="contact-tab">Service
+                <div class="tab-pane fade" id="serviceschedule" role="tabpanel" aria-labelledby="serviceschedule-tab">
+                    Service
                     Schedule</div>
-                <div class="tab-pane fade" id="servicehistory" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="tab-pane fade" id="servicehistory" role="tabpanel" aria-labelledby="servicehistory-tab">
                     <div class="d-flex servicehistory-head">
                         <Button>Export</Button>
                     </div>
@@ -813,9 +817,163 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="contact-tab">My Ratings</div>
-                <div class="tab-pane fade" id="blockcustomer" role="tabpanel" aria-labelledby="contact-tab">Block
-                    Customer</div>
+                <div class="tab-pane fade" id="ratings" role="tabpanel" aria-labelledby="ratings-tab">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="ratings-content">
+                                <div class="group1 d-flex flex-row">
+                                    <div class="cust-details">
+                                        <div class="id">8318</div>
+                                        <div class="cust-name"><b>Gaurang Patel</b></div>
+                                    </div>
+                                    <div class="service-details">
+                                        <img src="assets/calendar2.png" alt="">
+                                        <b>27/06/2019</b>
+                                        <div>
+                                            <img src="assets/layer-712.png" alt="">
+                                            08:00 - 11:00
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group2">
+                                    <div class="cust-ratings">
+                                        <b>ratings</b>
+                                        <div class="stars">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star2.png" alt="">
+                                            <span>Very Good</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="cust-comments">
+                                <b>Customer Comment</b>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="ratings-content">
+                                <div class="group1 d-flex flex-row">
+                                    <div class="cust-details">
+                                        <div class="id">7216</div>
+                                        <div class="cust-name"><b>Gaurang Patel</b></div>
+                                    </div>
+                                    <div class="service-details">
+                                        <img src="assets/calendar2.png" alt="">
+                                        <b>29/05/2019</b>
+                                        <div>
+                                            <img src="assets/layer-712.png" alt="">
+                                            08:00 - 11:00
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group2">
+                                    <div class="cust-ratings">
+                                        <b>ratings</b>
+                                        <div class="stars">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star1.png" alt="">
+                                            <img src="assets/star2.png" alt="">
+                                            <span>Very Good</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="cust-comments">
+                                <b>Customer Comment</b>
+                                <p>Excellent Work done by provider. I am very happy and would like to receive the
+                                    services of the same provider.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="blockcustomer" role="tabpanel" aria-labelledby="blockcustomer-tab">
+                    <div class="block-cust-content">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center flex-column">
+                                    <div class="profile-pic">
+                                        <img src="assets/cap.png" alt="">
+                                    </div>
+                                    <div class="cust-name">
+                                        <b>Gaurang Patel</b>
+                                    </div>
+                                    <div class="block-btn">
+                                        <button class="btn">Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center flex-column">
+                                    <div class="profile-pic">
+                                        <img src="assets/cap.png" alt="">
+                                    </div>
+                                    <div class="cust-name">
+                                        <b>Keyur Nakrani</b>
+                                    </div>
+                                    <div class="block-btn">
+                                        <button class="btn">Block</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="mysettings" role="tabpanel" aria-labelledby="mysettings-tab">
+                    <div class="tab-heading">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#my-details-st">My Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#change-password-st">Change Password</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <div id="my-details-st" class="container tab-pane active p-0"><br>
+                            
+                        </div>
+                        <div id="change-password-st" class="container tab-pane fade mx-0 px-0"><br>
+                            <form>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass0"><b>Old Password</b></label>
+                                        <input type="password" class="form-control" id="inputpass0"
+                                            placeholder="Current Password">
+                                    </div>
+                                </div>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass1"><b>Password</b></label>
+                                        <input type="password" class="form-control" id="inputpass1"
+                                            placeholder="Password">
+                                    </div>
+                                </div>
+                                <div class="form-row mx-auto">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputPass2"><b>Confirm Password</b></label>
+                                        <input type="text" class="form-control email" id="inputpass2"
+                                            placeholder="Confirm Password">
+                                    </div>
+                                </div>
+                                <button class="btn save-pass-btn" type="submit">Save</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -931,10 +1089,17 @@
         $(document).ready(function () {
             $('#dd-dash').click(function () {
                 $('.sidebar-only').removeClass('active');
+                $('#dd-settings').removeClass('active');
                 $('#dashboard-tab').addClass('active');
             });
 
+            $('#dd-settings').click(function () {
+                $('.sidebar-only').removeClass('active');
+                $('#dd-dash').removeClass('active');
+            });
+
             $('.sidebar-only').click(function () {
+                $('#dd-settings').removeClass('active');
                 if (this.id == 'dashboard-tab') {
                     $('#dd-dash').addClass('active');
                 }
