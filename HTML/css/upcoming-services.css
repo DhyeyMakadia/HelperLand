@@ -365,6 +365,45 @@ bottom: 13.5px !important;
     border-bottom: 3px solid #1D7A8C;
 }
 
+#mysettings #my-details-st .active-clr{
+    color: #5dbb00;
+}
+
+#mysettings #my-details-st .inactive-clr{
+    color: #bb2c00;
+}
+
+#mysettings #my-details-st .l-head{
+    color: #646464;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#mysettings #my-details-st .l-label{
+    color: #646464;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+#mysettings #my-details-st hr{
+    margin-top: 10px;
+}
+
+#mysettings #my-details-st form input[name='Avatar']{
+    display: none;
+}
+
+#mysettings #my-details-st form input[name='Avatar'] ~ img{
+    border: 2px solid transparent;
+    border-radius: 50%;
+}
+
+#mysettings #my-details-st form input[name='Avatar']:checked ~ img{
+    border: 2px solid #1D7A8C;
+    border-radius: 50%;
+}
+
+#mysettings #my-details-st .save-btn,
 #mysettings #change-password-st .save-pass-btn{
     color: #FFFFFF;
     background-color: #1D7A8C;
@@ -632,5 +671,9 @@ bottom: 13.5px !important;
 
     #mysettings .nav-item .nav-link{
         border-bottom: none;
+    }
+
+    #mysettings #my-details-st .l-dob{
+        font-size: 13px;
     }
 }
