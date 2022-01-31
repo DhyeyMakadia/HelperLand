@@ -1,0 +1,687 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+section{
+    width: 100vw;
+    min-height: 100vh;
+    max-width: 100%;
+}
+
+.btn-height{
+    height: 40px;
+}
+
+.text-grey{
+    color: #A3A3A3 !important;
+}
+
+.text-grey-1{
+    color: #4f4f4f !important;
+}
+
+.text-40{
+    font-size: 40px !important;
+}
+
+.row{
+    margin: 0 !important;
+}
+
+/***************************************
+               Modal
+***************************************/
+.modal{
+    z-index: 10000;
+}
+
+#LoginModal .modal-header .modal-title{
+    color: #565656;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#ForgotModal .modal-body .send-btn,
+#LoginModal .modal-body .login-btn{
+    background-color: #0088a0;
+    width: 100%;
+    height: 40px;
+    border-radius: 24px;
+    color: white;
+    border: none;
+}
+
+#ForgotModal .modal-body .link-clr,
+#LoginModal .modal-body .link-clr{
+    color: #0088a0;
+}
+
+#LoginModal .modal-sm{
+    max-width: 350px !important;
+}
+
+#ForgotModal .modal-sm{
+    max-width: 300px !important;
+}
+
+/***************************************
+                Header
+***************************************/
+header{
+    z-index: 9998;
+}
+
+#navbar{
+    transition: all 1000ms ease;
+}
+
+.navbar .navbar-nav .nav-item:not(:last-child){
+    margin-left:11px;
+}
+
+.navbar .nav-link{
+    font-size: 17px;
+}
+
+.navbar .navbar-nav>.nav-item>button{
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.navbar .btn-book-cleaner{
+    font-size: 17px;
+    width: 191px;
+}
+
+.navbar .btn-login{
+    width: 97px;
+    font-size: 16px;
+    margin-left: 9px;
+}
+
+.navbar .btn-become-helper{
+    font-size: 16px;
+    width: 191px;
+    margin-right: 11px;
+}
+
+.navbar .lang-select .nav-link::after{
+    content: url("../assets/sp-arrow-down.png");
+    background-size: cover;
+    object-fit: contain;
+    width: 12px;
+    height: 7px;
+}
+
+#navbar.active{
+    background-color: #525252 !important;
+    opacity: 90%;
+    transition: all .5s ease;
+}
+
+button[aria-expanded='true']{
+    background-color: #4F4F4F !important;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#home{
+    background: url("../assets/bg1.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    max-width: 100%;
+
+    padding-top: 156px;
+    display: flex !important;
+    justify-content: end;
+}
+
+#home .home-head{
+    font-size: 50px ;
+}
+
+#home .custom-list-item{
+    padding-left: 30px;
+}
+
+#home .custom-list-item::before{
+    content: url("../assets/bullet-list.svg");
+    position: absolute;
+    left: 0;
+}
+
+#home .book-cleaner button{
+    background-color: #006072;
+    width: 225px;
+    height: 54px;
+    font-size: 18px;
+    border-radius: 27px;
+    color: #fff;
+    padding: 10px 25px;
+    border: solid 1px #fff;
+}
+
+#home .homepage-steps{
+    margin-top: 100px;
+}
+
+#home .steps .col-md-2{
+    max-width: 10.666667%;
+}
+
+#home .step-img{
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+#home .homepage-down-arrow{
+    padding-top: 42px;
+    padding-bottom: 33px;
+}
+
+
+/***************************************
+              Section-2
+***************************************/
+#why-helperland{
+    min-height: 886px;
+}
+
+#why-helperland .whyhl-head{
+    padding: 79px 0 82.5px 0;
+}
+
+#why-helperland .why-helperland-content > div{
+    max-width: 334px;
+}
+
+#why-helperland .why-helperland-content-mid{
+    margin: 0 71px;
+    padding: 0;
+}
+
+#why-helperland .why-helperland-content img:hover{
+    transform: scale(1.1);
+    transition: transform .3s ease-out;
+}
+
+#why-helperland .why-helperland-content img{
+    margin-bottom: 32.5px;
+    transition: transform .3s ease-in;
+}
+
+#why-helperland .why-helperland-content h3{
+    font-size: 30px;
+    font-weight: 700;
+}
+
+#why-helperland .why-helperland-content p{
+    font-size: 17px;
+    line-height: 1.41;
+    margin: 30px 0;
+}
+
+/***************************************
+              Section-3
+***************************************/
+#blog{
+    min-height: 929px;
+}
+
+#blog .blog-head{
+    margin: 8px 0 64px 0;
+}
+
+#blog .card-deck{
+    max-width: 1162px;
+    padding-bottom: 44px;
+}
+
+#blog .card{
+    max-width: 357px;
+    min-width: 250px;
+    min-height: 366px;
+}
+
+#blog .card-title{
+    font-size: 20px;
+}
+
+#blog .card-text{
+    max-width: 288px;
+}
+
+#blog .card-img-top{
+    height: 164px;
+}
+
+#blog .card-subtitle{
+    font-size: 13px;
+}
+
+#review .card-deck .card-body .card-link img,
+#blog .card-deck .card-body .card-link img{
+    transition: transform .3s ease;
+}
+
+#review .card-deck .card-body .card-link:hover img,
+#blog .card-deck .card-body .card-link:hover img{
+    transform: translate(5px);
+    transition: transform .3s ease;
+}
+
+#blog .blog-bfr{
+    max-width: 1162px;
+}
+
+#blog .d-flex .blog-txt-bfr{
+    max-width: 642px;
+    margin-top: 99px;
+}
+
+#blog .d-flex .blog-txt-bfr h2{
+    font-size: 30px;
+    max-width: 378px;
+    min-height: 72px;
+}
+#blog .blog-txt-bfr-details{
+    min-height: 241px;
+}
+
+#blog .d-flex .blog-txt-bfr p{
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+#blog .blog-img-bfr{
+    margin: 63px 0 0 85px;
+}
+
+#blog .blog-img-bfr img{
+    transition: transform .7s ease;
+}
+
+#blog .blog-img-bfr img:hover{
+    transform: perspective(700px) rotateX(30deg) rotateY(-15deg);
+    transition: transform .7s ease;
+}
+
+#blog .blog-left-bg{
+    left: 0;
+    z-index: -1;
+    height: -webkit-fill-available;
+}
+
+#blog .blog-right-bg{
+    right: 0;
+    z-index: -1;
+    height: -webkit-fill-available;
+}
+/***************************************
+              Section-4
+***************************************/
+#review{
+    background-color: #F4F5F8;
+    min-height: 713px;
+}
+
+#review .review-content{
+    max-width: 1162px;
+}
+
+#review .review-head{
+    padding: 57px 0;
+}
+
+#review .card{
+    max-width: 357px;
+    min-width: 250px;
+    min-height: 370px;
+}
+
+#review .card-title{
+    font-size: 20px;
+}
+
+#review .card-subtitle{
+    font-size: 14px;
+}
+
+#review .card-body{
+    border-left: 2px solid #006072;
+}
+
+#review .card-link{
+    font-size: 18px;
+    color: #565656;
+}
+
+#review .profile-pic{
+    width: 70px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-right:10px;
+}
+
+#review .message{
+    width: 33px;
+    height: 36;
+    right: 20px;
+    top: 20px;
+}
+
+#review .review-feedback{
+    max-width: 1420px;
+    min-height: 139px;
+    margin-top: 40px;
+}
+
+#review .review-feedback>div{
+    max-width: 1420px;
+    margin: auto;
+}
+
+#review .back-to-top-arrow{
+    margin-top: 17px;
+    margin-left: -1px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+              Section-5
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content    {
+    max-width: 1323px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt{
+    color: #F1F1F1;
+}
+
+.page-footer .button-ok{
+    right: 0;
+    top: 10px;
+}
+
+.page-footer .footer-copyright button{
+    background-color: #EED507 !important;
+    width: 99px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+@media  screen and (max-width:1200px) {
+    /* ----Section-1------ */
+    .navbar .navbar-nav .nav-item:not(:last-child){
+        margin-left:0px;
+        margin-bottom: 10px;
+    }
+
+    .navbar .btn-login{
+        margin-left: 0px;
+    }
+    
+    .navbar .btn-become-helper{
+        margin-right: 0px;
+    }
+
+    #home .steps-arrow{
+        visibility: hidden;
+    }
+
+    /* ----Section-3------ */
+    #blog .blog-card-1,
+    #blog .blog-card-2,
+    #blog .blog-card-3 {
+        margin: 25px 25px ;
+    }
+
+    #blog .blog-content-bfr{
+        flex-direction: column !important;
+    }
+
+    #blog .blog-img-bfr{
+        margin: 10px 0;
+    }
+
+    #blog .blog-left-bg{
+        left: 0;
+        z-index: -1;
+        height: auto;
+    }
+    
+    #blog .blog-right-bg{
+        right: 0;
+        z-index: -1;
+        height: auto;
+    }
+
+    /* ----Section-4------ */
+    #review .review-card-1,
+    #review .review-card-2,
+    #review .review-card-3 {
+        margin: 25px 25px ;
+    }
+}
+
+@media screen and (max-width:1000px) {
+    /* ----Section-1------ */
+    #home .steps-arrow{
+        display: none;
+    }
+    #home .steps .step-img{
+        margin-bottom: 15px;
+    }
+    #home .steps .col-md-2{
+        max-width: 40%;
+    }
+
+    /* -----Section-2----- */
+    #why-helperland .why-helperland-content img{
+        margin-bottom: 35px;
+    }
+    
+    #why-helperland .why-helperland-content p{
+        font-size: 17px;
+        line-height: 1.41;
+        margin: 30px 0;
+    }
+    
+    /* -----Section-5----- */
+    .page-footer .button-ok{
+        position: relative !important;
+    }
+
+    .page-footer .footer-copyright-txt{
+        margin-bottom: 10px;
+    }
+
+    .page-footer .footer-copyright{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-footer .collapse:not(.show){
+        display: none !important;
+    }
+}
+
+@media screen and (max-width:768px) {
+    /* ----Section-1------ */
+    #home .homepage-steps{
+        margin-top: 10px;
+    }
+
+    #home .steps{
+        flex-wrap: wrap;
+        flex-basis: 50%;
+    }
+
+    /* ----Section-4------ */
+    #review .review-mail-div{
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    #review .review-mail{
+        margin: 0 0 10px 0;
+    }
+
+    /* ----Section-5------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:425px) {
+    /* ----Section-1------ */
+    #home .home-container-1{
+        padding-top: 50px;
+    }
+
+    #home .nav-logo img{
+        width: 100px;
+        height: 75px;
+    }
+
+    #home .home-head{
+        font-size: 30px !important;
+    }
+
+    #home .steps{
+        flex-direction: column;
+        flex-wrap: wrap;
+        flex-basis: 100%;
+    }
+
+    /* -----Section-2----- */
+    #why-helperland .whyhl-head{
+        padding: 40px 0;
+    }
+
+    #why-helperland .why-helperland-content img{
+        width: 200px !important;
+        margin-bottom: 10px;
+    }
+
+    #why-helperland .why-helperland-content h4{
+        font-size: 24px;
+    }
+
+    #why-helperland .why-helperland-content p{
+        font-size: 14px;
+        margin-top: 0;
+    }
+
+    #why-helperland .why-helperland-content-mid .d-flex{
+        display: block !important;
+        min-height: 0 !important;
+    }
+    
+    /* -----Section-3----- */
+    #blog .blog-txt-bfr h1{
+        font-size: 30px;
+        margin-top: 50px;
+    }
+
+    #blog .blog-txt-bfr p{
+        font-size: 15px;
+    }
+
+    #blog .blog-img-bfr img{
+        width: 275px;
+    }
+
+    #blog .blog-head{
+        margin: 50px 0 10px 0;
+    }
+    
+    /* -----Section-4----- */
+    #review .review-head{
+        padding: 50px 0 10px 0;
+    }
+
+    #review .review-head h1{
+        font-size: 30px !important;
+    }
+
+    #review .review-fb-content{
+        flex-direction: column-reverse !important;
+        justify-content: space-around !important;
+        min-height: 300px !important;
+    }
+
+    #review .review-news{
+        margin-bottom: 2px;
+    }
+}

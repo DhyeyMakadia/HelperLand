@@ -1,0 +1,386 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+a,a:hover{
+    text-decoration: none;
+}
+
+/***************************************
+               Modal
+***************************************/
+.modal{
+    z-index: 10000;
+}
+
+#LoginModal .modal-header .modal-title{
+    color: #565656;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+#ForgotModal .modal-body .send-btn,
+#LoginModal .modal-body .login-btn{
+    background-color: #0088a0;
+    width: 100%;
+    height: 40px;
+    border-radius: 24px;
+    color: white;
+    border: none;
+}
+
+#ForgotModal .modal-body .link-clr,
+#LoginModal .modal-body .link-clr{
+    color: #0088a0;
+}
+
+#LoginModal .modal-sm{
+    max-width: 350px !important;
+}
+
+#ForgotModal .modal-sm{
+    max-width: 300px !important;
+}
+
+/***************************************
+              HEADER
+***************************************/
+#navbar{
+    background-color: #525252 !important;
+}
+
+.navbar .nav-logo img{
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .nav-item button{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+.navbar .navbar-nav li button,.navbar .navbar-nav li a{
+    font-size: 17px;
+} 
+
+.navbar .book-now-faq{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+.navbar .prices-faq{
+    width: 161px;
+    margin-right: 27px;
+}
+
+.navbar .blog-faq{
+    margin: 0 20px;
+}
+
+.navbar .contact-faq{
+    margin-right: 35px;
+}
+
+.navbar .login-faq{
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.navbar .become-helper-faq{
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#navbar.active{
+    opacity: 90%;
+}
+
+/***************************************
+              Section-1
+***************************************/
+#banner .banner-img{
+    background-repeat: no-repeat;
+    background-size: cover;
+    object-fit: contain;
+    background-position: center;
+    width: 100%;
+}
+
+#banner .head h1{
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: 600;
+    margin: 32px 0 9px 0;
+}
+
+#banner .divide-img::before,#banner .divide-img::after{
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+#banner .divide-img{
+    margin-bottom: 34px;
+}
+
+#banner .divide-img img{
+    padding: 0 8px;
+}
+
+#banner .content{
+    max-width: 931px;
+    min-height: 847px;
+}
+
+#banner .content-msg{
+    color: #646464;
+    font-size: 18px;
+    max-width: 498px;
+    min-height: 48px;
+    margin-bottom: 35px;
+}
+
+#banner .qna .nav-tabs{
+    border-bottom :3px solid #1D7A8C;
+    max-width: 946px;
+    min-height: 66px;
+    margin-bottom: 45px;
+}
+
+#banner .qna .nav-tabs .nav-link{
+    font-size: 24px;
+    color: #646464;
+    min-height: 60px;
+    padding: 12px;
+    margin-top: 3px;
+}
+
+#banner .qna .nav-tabs .nav-link.active{
+    background-color: #1D7A8C !important;
+    color: #FFFFFF;
+}
+
+#banner .qna .nav-tabs li{
+    width: calc(100%/2);
+}
+
+#banner .card{
+    border: 0;
+}
+
+#banner .card:not(:last-child){
+    margin-bottom: 20px;
+}
+
+#banner .card-header:not(:last-child){
+    background-color: inherit;
+    border: 0;
+    padding: 0;
+    padding-bottom: 20px;
+}
+
+#banner .card .collapsed img{
+    transform: rotate(0deg);
+}
+
+#banner .card img{
+    transition: .3s transform ease-in-out;
+    transform: rotate(90deg);
+}
+
+#banner .card p{
+    margin: 0;
+}
+
+#banner .card-link{
+    font-size: 16px;
+    font-weight: bold;
+    color: #646464;
+    /* max-width: 889px; */
+    min-height: 19px;
+}
+
+#banner .card-body{
+    font-size: 14px;
+    margin-left: 40px;
+    padding: 0;
+}
+
+#banner .card-link img{
+    width: 22px;
+    height: 22px;
+    margin-right: 15px;
+}
+
+#review{
+    margin-top: 55px;
+    min-height: 130px;
+}
+
+#review .review-news{
+    color: #353548;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+#review .review-mail{
+    width: 233px;
+    height: 40px;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#review .review-submit{
+    background-color: #FF7B6D;
+    width: 88px;
+    height: 40px;
+    border-radius: 20px;
+}
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt{
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-txt a{
+    color: #9BA0A3;
+}
+
+
+@media screen and (max-width:1200px) {
+    /* -----Header----- */
+    .navbar .book-now-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .prices-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    .navbar .blog-faq{
+        margin: 10px 0;
+    }
+    
+    .navbar .contact-faq{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .navbar .login-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* ----Footer------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content{
+        padding: 30px 0;
+    }
+}
+
+@media screen and (max-width:768px){
+    #banner .qna .nav-tabs .nav-link{
+        font-size: 16px;
+        padding: 18px;
+    }
+
+    #banner .qna .for-sp{
+        padding: 18px 0 0 0;
+    }   
+}
+
+@media screen and (max-width:425px){
+    /* -----Banner----- */
+    #banner .card-link{
+        font-size: 14px;
+    }
+    
+    #banner .card-body{
+        font-size: 13px;
+    }
+
+    #banner .qna .nav-tabs .nav-link{
+        font-size: 18px;
+        padding: 18px 0 0 0;
+    }
+
+    #review{
+        margin-bottom: 53px;
+    }
+
+    #review .review-news{
+        margin-bottom: 8px;
+    }
+
+    #review .review-mail-div{
+        flex-direction: column !important;
+    }
+
+    #review .review-mail{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}

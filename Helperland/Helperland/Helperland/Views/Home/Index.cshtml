@@ -1,0 +1,344 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles{
+    <link href="~/css/home-page.css" rel="stylesheet" />
+}
+
+
+<partial name="~/Views/Shared/_LoginModal.cshtml" />
+
+<partial name="~/Views/Shared/_ForgotModal.cshtml" />
+
+<partial name="~/Views/Shared/_HomeHeader.cshtml" />
+
+
+<section id="home" class="text-white d-flex flex-column justify-content-between">
+
+    <div style="flex-grow: 1;"></div>
+
+    <div class="container-fluid bg-transparent home-container-1">
+        <div class="col-md-12 col-xl-6 homepage-info">
+            <div class="card bg-transparent border-0">
+                <div class="card-body">
+                    <h1 class="home-head">Lorem ipsum text</h1>
+                    <ul class="list-unstyled">
+                        <li class="position-relative custom-list-item">
+                            Lorem ipsum dolor sit amet
+                            consectetur
+                            adipisicing.
+                        </li>
+                        <li class="position-relative custom-list-item">
+                            Lorem ipsum dolor sit amet
+                            consectetur
+                            adipisicing.
+                        </li>
+                        <li class="position-relative custom-list-item">
+                            Lorem ipsum dolor sit amet
+                            consectetur
+                            adipisicing.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center book-cleaner">
+            <button class="btn align-items-center">
+                Let's Book a Cleaner
+            </button>
+        </div>
+        <div class="col-md-12 homepage-steps">
+            <div class="d-flex text-center align-items-center justify-content-center steps">
+                <div class="col-md-2">
+                    <img src="~/assets//step-icon1.svg" alt="" class="step-img">
+                    <div class="step-info">Enter your postcode</div>
+                </div>
+                <div class="col-md-1 steps-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="85"
+                         height="23">
+                        <image width="85" height="23"
+                               xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAXCAQAAADQbMu2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflCxILOBVxijllAAACk0lEQVRIx83Xy09UVxwH8M8dBpiKOCAvW2WgikpLXdg02LS0m8bYxJVJVyaYmqp7V279G4wb48Y0jTFx4YLWxEe7aG3ThERiq1NftRQfFAVBOiADw1wXZHgkVp0pMH6X55577+f8zu/k5gahglMuJqZalTeUKxMRygqljUkZlTJhQqbwFyxMtIB7Kq2zRoM6MREZkyZNSZtWIhAoF1OmVGBayrAh992Tkv1/1CCvqr6pRYtaoREPDRg0bNy0rKy5BwVKRJWo0KBWtVo1Sv2rzx19hpaaWq3Ne1Yb0eu2AaPyWWNcjWYJDQKDbrrtYf6N8SrUtT7UJu2Kax6YLrQqWGGdFm9bZVjSVY8Xk5rQYb1+3ZKLdkAi1nhHm5Xu6/bHq+7Pi6i1dtjolp/1LhJyfqKafaDVI5ckTRVOLfWxDo+dXRLmXOq122LUT35/WXWfT220S8xFPXkdnkIT95Ft+p11N1/qJ7ZL+lZqGZi51Nlhg24/mJg3WiXu7/+irvCFZl16lpGZS6udok67MztS4aAzkjN7W3J4/uR6X4o54c8iQBl0RZXPma1kxqdW5co2n9psnz7feFIUKIGM6x7ZKeGWKQSitrosDZHZiZvtddmpBb2yvAmFAtccFXdAPUK/SVg/czlH3WS3X3Qty4l/MTcw5LgRX1mLETe9K5ijNtnjknNFZuawobSv3XBAo4wffTZHXa3Try4U27iAm3VGj7026japXUBEhU73fFds3XNy3l86tUpqFxLRaNzpovdoLlEJBCqFxp301H6hhDhBGBMxXmzhbJpst833qo3p1S9wSNRKx5zP7y9g6fOWBjW2GFMn5X1XVdqKi468btSZlCJhyhMd/tGkzJiu15O6MOUzX6tnHaHKDvXA3/wAAAAASUVORK5CYII=" />
+                    </svg>
+                </div>
+                <div class="col-md-2">
+                    <img src="~/assets//step-icon2.png" alt="" class="step-img">
+                    <div class="step-info">Select your plan</div>
+                </div>
+                <div class="col-md-1 steps-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="85"
+                         height="23" style="transform: rotateX(180deg);">
+                        <image width="85" height="23"
+                               xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAXCAQAAADQbMu2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflCxILOBVxijllAAACk0lEQVRIx83Xy09UVxwH8M8dBpiKOCAvW2WgikpLXdg02LS0m8bYxJVJVyaYmqp7V279G4wb48Y0jTFx4YLWxEe7aG3ThERiq1NftRQfFAVBOiADw1wXZHgkVp0pMH6X55577+f8zu/k5gahglMuJqZalTeUKxMRygqljUkZlTJhQqbwFyxMtIB7Kq2zRoM6MREZkyZNSZtWIhAoF1OmVGBayrAh992Tkv1/1CCvqr6pRYtaoREPDRg0bNy0rKy5BwVKRJWo0KBWtVo1Sv2rzx19hpaaWq3Ne1Yb0eu2AaPyWWNcjWYJDQKDbrrtYf6N8SrUtT7UJu2Kax6YLrQqWGGdFm9bZVjSVY8Xk5rQYb1+3ZKLdkAi1nhHm5Xu6/bHq+7Pi6i1dtjolp/1LhJyfqKafaDVI5ckTRVOLfWxDo+dXRLmXOq122LUT35/WXWfT220S8xFPXkdnkIT95Ft+p11N1/qJ7ZL+lZqGZi51Nlhg24/mJg3WiXu7/+irvCFZl16lpGZS6udok67MztS4aAzkjN7W3J4/uR6X4o54c8iQBl0RZXPma1kxqdW5co2n9psnz7feFIUKIGM6x7ZKeGWKQSitrosDZHZiZvtddmpBb2yvAmFAtccFXdAPUK/SVg/czlH3WS3X3Qty4l/MTcw5LgRX1mLETe9K5ijNtnjknNFZuawobSv3XBAo4wffTZHXa3Try4U27iAm3VGj7026japXUBEhU73fFds3XNy3l86tUpqFxLRaNzpovdoLlEJBCqFxp301H6hhDhBGBMxXmzhbJpst833qo3p1S9wSNRKx5zP7y9g6fOWBjW2GFMn5X1XVdqKi468btSZlCJhyhMd/tGkzJiu15O6MOUzX6tnHaHKDvXA3/wAAAAASUVORK5CYII=" />
+                    </svg>
+                </div>
+                <div class="col-md-2">
+                    <img src="~/assets//step-icon3.svg" alt="" class="step-img">
+                    <div class="step-info">Pay securely online</div>
+                </div>
+                <div class="col-md-1 steps-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="85"
+                         height="23">
+                        <image width="85" height="23"
+                               xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFUAAAAXCAQAAADQbMu2AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QA/4ePzL8AAAAHdElNRQflCxILOBVxijllAAACk0lEQVRIx83Xy09UVxwH8M8dBpiKOCAvW2WgikpLXdg02LS0m8bYxJVJVyaYmqp7V279G4wb48Y0jTFx4YLWxEe7aG3ThERiq1NftRQfFAVBOiADw1wXZHgkVp0pMH6X55577+f8zu/k5gahglMuJqZalTeUKxMRygqljUkZlTJhQqbwFyxMtIB7Kq2zRoM6MREZkyZNSZtWIhAoF1OmVGBayrAh992Tkv1/1CCvqr6pRYtaoREPDRg0bNy0rKy5BwVKRJWo0KBWtVo1Sv2rzx19hpaaWq3Ne1Yb0eu2AaPyWWNcjWYJDQKDbrrtYf6N8SrUtT7UJu2Kax6YLrQqWGGdFm9bZVjSVY8Xk5rQYb1+3ZKLdkAi1nhHm5Xu6/bHq+7Pi6i1dtjolp/1LhJyfqKafaDVI5ckTRVOLfWxDo+dXRLmXOq122LUT35/WXWfT220S8xFPXkdnkIT95Ft+p11N1/qJ7ZL+lZqGZi51Nlhg24/mJg3WiXu7/+irvCFZl16lpGZS6udok67MztS4aAzkjN7W3J4/uR6X4o54c8iQBl0RZXPma1kxqdW5co2n9psnz7feFIUKIGM6x7ZKeGWKQSitrosDZHZiZvtddmpBb2yvAmFAtccFXdAPUK/SVg/czlH3WS3X3Qty4l/MTcw5LgRX1mLETe9K5ijNtnjknNFZuawobSv3XBAo4wffTZHXa3Try4U27iAm3VGj7026japXUBEhU73fFds3XNy3l86tUpqFxLRaNzpovdoLlEJBCqFxp301H6hhDhBGBMxXmzhbJpst833qo3p1S9wSNRKx5zP7y9g6fOWBjW2GFMn5X1XVdqKi468btSZlCJhyhMd/tGkzJiu15O6MOUzX6tnHaHKDvXA3/wAAAAASUVORK5CYII=" />
+                    </svg>
+                </div>
+                <div class="col-md-2">
+                    <img src="~/assets//step-icon4.svg" alt="" class="step-img">
+                    <div class="step-info">Enjoy amazing service</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center homepage-down-arrow">
+            <a href="#why-helperland">
+                <svg id="eiKb7D5CehI1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 0 47 47" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                     width=40px>
+                    <g id="eiKb7D5CehI2">
+                        <path id="eiKb7D5CehI3"
+                              d="M23.499,3.499C34.545,3.499,43.499,12.454,43.499,23.499C43.499,34.545,34.545,43.499,23.499,43.499C12.454,43.499,3.499,34.545,3.499,23.499C3.499,12.454,12.454,3.499,23.499,3.499Z"
+                              transform="matrix(1 0 0 1 0.001 0.001)" fill="none" stroke="rgb(255,255,255)"
+                              stroke-width="1" />
+                        <path id="eiKb7D5CehI4"
+                              d="M15.84,12.22C14.755,11.691,14.226,11.691,13.896,12.22L8.841,17.105L8.841,0.848C8.841,0.378,8.463,0.1,7.996,0.1C7.529,0.1,7.151,0.378,7.151,0.848L7.151,17.105L2.102,12.22C1.773,11.691,1.244,11.691,0.914,12.22C0.584,12.354,0.584,12.886,0.914,13.217L7.405,19.744C7.57,19.909,7.783,19.992,8.3,19.992C8.222,19.992,8.435,19.909,8.6,19.744L15.91,13.217C15.407,12.892,15.407,12.354,15.84,12.22Z"
+                              transform="matrix(1 0 0 1 15.210504 13.453001)" fill="rgb(255,255,255)"
+                              fill-rule="evenodd" stroke="none" stroke-width="1" />
+                    </g>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="why-helperland">
+    <div class="container-fluid home-container-2">
+        <div class="col-md-12 text-center">
+            <h2 class="text-40 font-weight-bold whyhl-head">Why helperland</h2>
+        </div>
+        <div class="row justify-content-center align-items-start why-helperland-content">
+            <div class="col-md-4 text-center p-0">
+                <img src="~/assets//group-21.png" alt="">
+                <div class="d-flex flex-column justify-content-between align-items-center">
+                    <h3>Experience & Vetted Professionals</h3>
+                    <p>
+                        dominate the industry in scale and scope with an adaptable, extensive network that
+                        consistently delivers exceptional results.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center why-helperland-content-mid">
+                <img src="~/assets//group-23.png" alt="">
+                <div class="d-flex flex-column justify-content-between align-items-center"
+                     style="min-height: 212px;">
+                    <h3>Secure Online Payment</h3>
+                    <p>
+                        Payment is processed securely online. Customers can safely pay online and manage the booking.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center p-0">
+                <img src="~/assets//group-24.png" alt="">
+                <div class="d-flex flex-column justify-content-between align-items-center">
+                    <h3>Dedicated Customer Service</h3>
+                    <p>
+                        to our customers and are guided in all we do by their needs. The team is always happy to
+                        support you and offer all the information.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="blog" class="position-relative">
+
+    <img src="~/assets//blog-left-bg.png" alt="" class="position-absolute blog-left-bg">
+    <img src="~/assets//blog-right-bg.png" alt="" class="position-absolute blog-right-bg">
+
+    <div class="container blog-bfr">
+        <div class="d-flex flex-row align-items-center justify-content-start blog-content-bfr">
+            <div class="col-7 blog-txt-bfr">
+                <h2 class="font-weight-bold">Lorem ipsum dolor sit amet consectetur.</h2>
+                <div class="blog-txt-bfr-details">
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora error veritatis at aliquid
+                        consequatur vel dolores quas blanditiis.
+                    </p>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam officiis necessitatibus
+                        molestias ipsam quam incidunt consequatur maxime commodi. Dolor eius tempore optio excepturi
+                        dolore hic vero magni aliquid rerum voluptatum?
+                    </p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis.</p>
+                </div>
+            </div>
+            <div class="blog-img-bfr">
+                <img src="~/assets//group-36.png" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="col text-center blog-head">
+        <h2 class="font-weight-bold text-40">Our Blog</h2>
+    </div>
+
+    <div class="card-deck container-fluid m-auto align-items-center justify-content-center">
+        <div class="card blog-card-1">
+            <img class="card-img-top" src="~/assets//group-28.png" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title ">Lorem ipsum dolor sit amet</h3>
+                <h4 class="card-subtitle mb-2 text-muted text-grey">January 28, 2019</h4>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quos rerum sit
+                    ullam.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read the Post
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="card blog-card-2">
+            <img class="card-img-top" src="~/assets//group-29.png" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title ">Lorem ipsum dolor sit amet</h3>
+                <h4 class="card-subtitle mb-2 text-muted text-grey">January 28, 2019</h4>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quos rerum sit
+                    ullam.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read the Post
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="card blog-card-3">
+            <img class="card-img-top" src="~/assets//group-30.png" alt="Card image cap">
+            <div class="card-body">
+                <h3 class="card-title ">Lorem ipsum dolor sit amet</h3>
+                <h4 class="card-subtitle mb-2 text-muted text-grey">January 28, 2019</h4>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores quos rerum sit
+                    ullam.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read the Post
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="review">
+    <div class="col text-center review-head">
+        <h2 class="font-weight-bold text-40 text-grey-1">What Our Customers Say</h2>
+    </div>
+
+    <div class="card-deck container m-auto review-content justify-content-center align-items-center">
+        <div class="card review-card-1">
+            <div class="card-body d-flex flex-column justify-content-center  d-flex justify-content-center align-items-start position-relative">
+                <img src="~/assets//message.png" alt="" class="card-img position-absolute message">
+                <div class="row flex-row justify-content-start align-items-center"
+                     style="margin-bottom:25px !important ;">
+                    <img class="card-img-top profile-pic" src="~/assets//group-31.png" alt="Card image cap">
+                    <div class="col">
+                        <h3 class="card-title text-grey-1 font-weight-bold">Lary Watson</h3>
+                        <h4 class="card-subtitle mb-2 text-muted text-grey text-16">January 28, 2019</h4>
+                    </div>
+                </div>
+                <p class="card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, quis laboriosam
+                    assumenda harum error dignissimos iure neque alias.
+                </p>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, possimus.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read More
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="card review-card-2">
+            <div class="card-body d-flex flex-column justify-content-center  d-flex justify-content-center align-items-start position-relative">
+                <img src="~/assets//message.png" alt="" class="card-img position-absolute message">
+                <div class="row flex-row justify-content-start align-items-center"
+                     style="margin-bottom:25px !important ;">
+                    <img class="card-img-top profile-pic" src="~/assets//group-32.png" alt="Card image cap">
+                    <div class="col review-name">
+                        <h3 class="card-title text-grey-1 font-weight-bold">John Smith</h3>
+                        <h4 class="card-subtitle mb-2 text-muted text-grey text-16">January 28, 2019</h4>
+                    </div>
+                </div>
+                <p class="card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, quis laboriosam
+                    assumenda harum error dignissimos iure neque alias.
+                </p>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, possimus.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read More
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+        <div class="card review-card-3">
+            <div class="card-body d-flex flex-column justify-content-center  d-flex justify-content-center align-items-start position-relative">
+                <img src="~/assets//message.png" alt="" class="card-img position-absolute message">
+                <div class="row flex-row justify-content-start align-items-center"
+                     style="margin-bottom:25px !important ;">
+                    <img class="card-img-top profile-pic" src="~/assets//group-33.png" alt="Card image cap">
+                    <div class="col">
+                        <h3 class="card-title text-grey-1 font-weight-bold">Lars Johnson</h3>
+                        <h4 class="card-subtitle mb-2 text-muted text-grey text-16">January 28, 2019</h4>
+                    </div>
+                </div>
+                <p class="card-text">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Enim, quis laboriosam
+                    assumenda harum error dignissimos iure neque alias.
+                </p>
+                <p class="card-text">
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Excepturi, possimus.
+                </p>
+                <a href="#" class="card-link text-dark font-weight-bold">
+                    Read More
+                    <img src="~/assets//shape-2.png" alt="">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="review-feedback mx-auto">
+        <div class="d-flex align-items-center justify-content-between flex-row review-fb-content">
+            <div class="back-to-top">
+                <a href="#home">
+                    <div class="text-center rounded-circle"
+                         style="background-color: #525252; width: 48px; height: 48px;">
+                        <img src="~/assets//up-arrow.svg" alt="" class="back-to-top-arrow img-fluid">
+                    </div>
+                </a>
+            </div>
+            <div>
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="review-news">
+                        GET OUR NEWSLETTER
+                    </div>
+                    <div>
+                        <div class="d-flex flex-row review-mail-div justify-content-center align-items-center">
+                            <input type="text" class="input-group-text review-mail bg-transparent text-left"
+                                   placeholder="YOUR EMAIL">
+                            <button type="submit" class="btn review-submit text-white">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-tm">
+                <a href="#"><img src="~/assets//layer-598.png" alt=""></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+@*<partial name="~/Views/Shared/_Footer.cshtml"/>*@

@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+}
+
+@section Styles{
+    <link href="~/css/about.css" rel="stylesheet" /> 
+}
+
+<partial name="~/Views/Shared/_LoginModal.cshtml" />
+
+<partial name="~/Views/Shared/_ForgotModal.cshtml" />
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+
+<Section id="banner" class="banner">
+    <img src="~/assets/hero-banner-img.png" class="banner-img" alt="">
+    <div class="container-fluid">
+
+        <div class="about-us mx-auto">
+            <div class="head text-center">
+                <h1>A Few words about us</h1>
+            </div>
+
+            <div class="divide-img about-us-divide d-flex align-items-center justify-content-center">
+                <img src="~/assets/forma-1-copy-5.png" alt="">
+            </div>
+
+            <div class="about-us-content text-center">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie convallis tempor. Duis
+                    vestibulum vel risus condimentum dictum. Orci varius natoque penatibus et magnis dis parturient
+                    montes, nascetur ridiculus mus. Vivamus quis enim orci. Fusce risus lacus, sollicitudin eu magna
+                    sed, pharetra sodales libero. Proin tincidunt vel erat id porttitor. Donec tristique est arcu,
+                    sed
+                    dignissim velit vulputate ultricies.
+                </p>
+                <p>
+                    Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.
+                    Vivamus eget mauris eget nisl euismod volutpat sed sed libero. Quisque sit amet lectus ex. Ut
+                    semper
+                    ligula et mauris tincidunt hendrerit. Aenean ut rhoncus orci, vel elementum turpis. Donec tempor
+                    aliquet magna eu fringilla. Nam lobortis libero ut odio finibus lobortis. In hac habitasse
+                    platea
+                    dictumst. Mauris a hendrerit felis. Praesent ac vehicula ipsum, at porta tellus. Sed dolor
+                    augue,
+                    posuere sed neque eget, aliquam ultricies velit. Sed lacus elit, tincidunt et massa ac, vehicula
+                    placerat lorem.
+                </p>
+            </div>
+        </div>
+
+        <div class="our-story mx-auto">
+            <div class="head text-center">
+                <h2>Our Story</h2>
+            </div>
+
+            <div class="divide-img our-story-divide d-flex align-items-center justify-content-center">
+                <img src="~/assets/forma-1-copy-5.png" alt="">
+            </div>
+
+            <div class="our-story-conten text-center">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie convallis tempor. Duis
+                    vestibulum vel risus condimentum dictum. Orci varius natoque penatibus et magnis dis parturient
+                    montes, nascetur ridiculus mus. Vivamus quis enim orci. Fusce risus lacus, sollicitudin eu magna
+                    sed, pharetra sodales libero. Proin tincidunt vel erat id porttitor. Donec tristique est arcu,
+                    sed dignissim velit vulputate ultricies.
+                </p>
+                <p>
+                    Interdum et malesuada fames ac ante ipsum primis in faucibus. In hac habitasse platea dictumst.
+                    Vivamus eget mauris eget nisl euismod volutpat sed sed libero. Quisque sit amet lectus ex. Ut
+                    semper ligula et mauris tincidunt hendrerit.
+                </p>
+                <p>
+                    Aenean ut rhoncus orci, vel elementum turpis. Donec tempor
+                    aliquet magna eu fringilla. Nam lobortis libero ut odio finibus lobortis. In hac habitasse
+                    platea dictumst. Mauris a hendrerit felis. Praesent ac vehicula ipsum, at porta tellus. Sed
+                    dolor
+                    augue, posuere sed neque eget, aliquam ultricies velit. Sed lacus elit, tincidunt et massa ac,
+                    vehicula
+                    placerat lorem.
+                </p>
+            </div>
+        </div>
+    </div>
+</Section>
+
+<div id="review">
+    <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="review-news">
+            GET OUR NEWSLETTER
+        </div>
+        <div>
+            <div class="d-flex flex-row review-mail-div justify-content-center align-items-center">
+                <input type="text" class="input-group-text review-mail bg-transparent text-left"
+                       placeholder="YOUR EMAIL">
+                <button type="submit" class="btn review-submit text-white">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
