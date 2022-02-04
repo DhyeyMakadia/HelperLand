@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -21,8 +23,17 @@ namespace Helperland.Models
         public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        [EmailAddress]
         public string Email { get; set; }
+
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        [NotMapped]
+        [Compare("Password",ErrorMessage ="Password not matched!")]
+        public  string ConfirmPassword { get; set; }
+
         public string Mobile { get; set; }
         public int UserTypeId { get; set; }
         public int? Gender { get; set; }

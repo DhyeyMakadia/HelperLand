@@ -8,7 +8,6 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\Helperland.pdb
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\Helperland.Views.dll
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\Helperland.Views.pdb
-E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.AssemblyReference.cache
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.GeneratedMSBuildEditorConfig.editorconfig
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.AssemblyInfoInputs.cache
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.AssemblyInfo.cs
@@ -156,3 +155,8 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerSignup.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\BecomeAPro.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\MailKit.dll
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\MimeKit.dll
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

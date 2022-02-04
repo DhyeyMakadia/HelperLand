@@ -1,5 +1,4 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <div class="modal fade" id="ForgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -13,7 +12,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="post" asp-controller="Home" asp-action="ForgotPassword"> 
                     <div class="input-group mb-3">
                         <input type="email" class="form-control border-right-0" placeholder="Email Address">
                         <span class="input-group-append bg-white border-left-0">

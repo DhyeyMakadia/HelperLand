@@ -113,6 +113,41 @@ a,a:hover{
     font-size: 16px;
 }
 
+#navbar .notify-nav {
+    position: relative;
+    width: 71px;
+    border-left: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+    text-align: center;
+    position: relative;
+}
+
+#navbar .notify-nav::after {
+    content: '2';
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+
+#navbar .notify-out {
+    display: none;
+}
+
+#navbar .profile-nav {
+    padding-left: 18px;
+}
+
+#navbar .profile-nav .nav-link {
+    padding-left: 0 !important;
+}
+
 #navbar.active{
     opacity: 90%;
 }

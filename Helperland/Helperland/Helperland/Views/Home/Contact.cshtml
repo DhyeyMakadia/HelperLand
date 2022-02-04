@@ -1,4 +1,4 @@
-﻿
+﻿@model Helperland.Models.ContactU
 @{
     ViewData["Title"] = "Contact";
 }
@@ -65,14 +65,14 @@
             <div class="head text-center">
                 <h2>Get in touch with us</h2>
             </div>
-            <form>
+            <form method="post" asp-action="Contact">
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control first-name" id="inputFirstName"
+                        <input type="text" class="form-control first-name" name="FName" asp-for="Name" id="inputFirstName"
                                placeholder="First Name">
                     </div>
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control last-name" id="inputLastName"
+                        <input type="text" class="form-control last-name" name="LName" asp-for="Name" id="inputLastName"
                                placeholder="Last Name">
                     </div>
                 </div>
@@ -82,20 +82,17 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+49</div>
                             </div>
-                            <input type="tel" class="form-control MobileNumber" id="inlineFormInputGroupUsername"
+                            <input type="tel" class="form-control MobileNumber" asp-for="PhoneNumber" id="inlineFormInputGroupUsername"
                                    placeholder="Mobile Number">
                         </div>
                     </div>
                     <div class="form-group col-md-6 email-m">
-                        <input type="email" class="form-control email" id="inputEmail" placeholder="Email address">
+                        <input type="email" class="form-control email" asp-for="Email" id="inputEmail" placeholder="Email address">
                     </div>
                 </div>
-
-
-
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-12">
-                        <select id="inputState" class="form-control subject">
+                        <select id="inputState" asp-for="Subject" class="form-control subject">
                             <option selected>Subject</option>
                             <option>Inquiry</option>
                             <option>Complaint</option>
@@ -106,8 +103,17 @@
 
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-12">
-                        <textarea name="InputMessage" class="form-control message mx-auto" id="InputMessage"
+                        <textarea name="Message" class="form-control message mx-auto" asp-for="Message" id="InputMessage"
                                   cols="30" rows="5" placeholder="Message"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-row mx-auto">
+                    <div class="form-group col-md-6 col-sm-12">
+                        <div class="file-wrapper">
+                            <button type="button"class="file-upload">Upload</button>
+                            <input type="file" class="file-input"/>
+                        </div>
                     </div>
                 </div>
 

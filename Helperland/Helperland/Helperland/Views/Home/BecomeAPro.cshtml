@@ -1,0 +1,186 @@
+﻿@model Helperland.Models.User
+@{
+    ViewData["Title"] = "Become a Pro";
+}
+
+@section Styles{
+    <link href="~/css/become-a-pro.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_LoginModal.cshtml" />
+
+<partial name="~/Views/Shared/_ForgotModal.cshtml" />
+
+<partial name="~/Views/Shared/_HomeHeader.cshtml" />
+
+<section id="hero" class="text-white">
+    <div class="container-fluid bg-transparent hero-container">
+        <div class="row">
+            <div class="col mx-auto">
+                <div class="card mx-auto">
+                    <div class="card-body">
+                        <form class="text-dark" asp-controller="Home" asp-action="BecomeAPro" method="post">
+                            <h2 class="text-center font-weight-bold">Register Now</h2>
+                            <div class="form-group">
+                                <input type="text" asp-for="FirstName" class="form-control custom-h" id="InputFirstName"
+                                       placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="LastName" class="form-control custom-h" id="InputLastName"
+                                       placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" asp-for="Email" class="form-control custom-h" id="InputEmail"
+                                       placeholder="Email Address">
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">+46</div>
+                                    </div>
+                                    <input type="tel" asp-for="Mobile" class="form-control custom-h" id="inlineFormInputGroup"
+                                           placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" asp-for="Password" name="Password" class="form-control custom-h" id="InputPassword1"
+                                       placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" asp-for="ConfirmPassword" class="form-control custom-h" id="InputPassword2"
+                                       placeholder="Confirm Password">
+                                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="Check1">
+                                <label class="form-check-label" for="Check1">
+                                    Send me newsletters from
+                                    Helperland
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="Check1">
+                                <label class="form-check-label" for="Check1">
+                                    I accept <a href="#">
+                                        terms and
+                                        conditions
+                                    </a> & <a href="#">privacy policy</a>
+                                </label>
+                            </div>
+                            <div class="form-group mt-3 captcha-img">
+                                <img src="~/assets/layer-20.png" alt="">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn submit-btn">
+                                    Get Started
+                                    <img src="~/assets/shape-2-white.png" alt="">
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 text-center homepage-down-arrow">
+            <a href="#how-it-works">
+                <svg id="eiKb7D5CehI1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                     viewBox="0 0 47 47" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                     width=40px>
+                    <g id="eiKb7D5CehI2">
+                        <path id="eiKb7D5CehI3"
+                              d="M23.499,3.499C34.545,3.499,43.499,12.454,43.499,23.499C43.499,34.545,34.545,43.499,23.499,43.499C12.454,43.499,3.499,34.545,3.499,23.499C3.499,12.454,12.454,3.499,23.499,3.499Z"
+                              transform="matrix(1 0 0 1 0.001 0.001)" fill="none" stroke="rgb(255,255,255)"
+                              stroke-width="1" />
+                        <path id="eiKb7D5CehI4"
+                              d="M15.84,12.22C14.755,11.691,14.226,11.691,13.896,12.22L8.841,17.105L8.841,0.848C8.841,0.378,8.463,0.1,7.996,0.1C7.529,0.1,7.151,0.378,7.151,0.848L7.151,17.105L2.102,12.22C1.773,11.691,1.244,11.691,0.914,12.22C0.584,12.354,0.584,12.886,0.914,13.217L7.405,19.744C7.57,19.909,7.783,19.992,8.3,19.992C8.222,19.992,8.435,19.909,8.6,19.744L15.91,13.217C15.407,12.892,15.407,12.354,15.84,12.22Z"
+                              transform="matrix(1 0 0 1 15.210504 13.453001)" fill="rgb(255,255,255)"
+                              fill-rule="evenodd" stroke="none" stroke-width="1" />
+                    </g>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="how-it-works">
+    <div class="container-fluid p-0">
+        <div class="bg-sides position-relative">
+            <div class="bg-left-o">
+                <img src="~/assets/forma-1.svg" class="d-block position-relative bg-left-one mr-auto" alt="">
+                <img src="~/assets/forma-1 (1).svg" class="d-block position-relative bg-left-two mr-auto" alt="">
+                <img src="~/assets/forma-1 (2).svg" class="d-block position-relative bg-left-three mr-auto" alt="">
+            </div>
+            <div class="bg-right-o">
+                <img src="~/assets/forma-1 (5).svg" class="d-block position-relative bg-right-one ml-auto" alt="">
+                <img src="~/assets/forma-1 (4).svg" class="d-block position-relative bg-right-two ml-auto" alt="">
+                <img src="~/assets/forma-1 (3).svg" class="d-block position-relative bg-right-three ml-auto" alt="">
+            </div>
+        </div>
+
+        <div class="content-main mx-auto">
+            <div class="text-center">
+                <h1>How it works</h1>
+            </div>
+            <div class="content">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="text col-sm-6 p-0">
+                        <h2>Register yourself</h2>
+                        <p>Provide your basic information to register yourself as a service provider.</p>
+                        <a href="#" class="text-dark">
+                            Read more
+                            <img src="~/assets/shape-2.png" alt="">
+                        </a>
+                    </div>
+                    <div class="img col-sm-6 text-right p-0">
+                        <img src="~/assets/group-18(0).png" alt="">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="img col-sm-6 p-0">
+                        <img src="~/assets/group-18(1).png" alt="">
+                    </div>
+                    <div class="text col-sm-6 p-0">
+                        <h2>Get service requests</h2>
+                        <p>You will get service requests from customes depend on service area and profile.</p>
+                        <a href="#" class="text-dark">
+                            Read more
+                            <img src="~/assets/shape-2.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="text col-sm-6 p-0">
+                        <h2>Complete service</h2>
+                        <p>Accept service requests from your customers and complete your work.</p>
+                        <a href="#" class="text-dark">
+                            Read more
+                            <img src="~/assets/shape-2.png" alt="">
+                        </a>
+                    </div>
+                    <div class="img col-sm-6 p-0 text-right">
+                        <img src="~/assets/group-18(2).png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div id="review">
+                <div class="d-flex flex-column align-items-center justify-content-center">
+                    <div class="review-news">
+                        GET OUR NEWSLETTER
+                    </div>
+                    <div>
+                        <div class="d-flex flex-row review-mail-div justify-content-center align-items-center">
+                            <input type="text" class="input-group-text review-mail bg-transparent text-left"
+                                   placeholder="YOUR EMAIL">
+                            <button type="submit" class="btn review-submit text-white">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section scripts {
+    <script src="~/js/become-a-pro.js"></script>
+}
