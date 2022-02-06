@@ -1,4 +1,5 @@
-﻿@*
+﻿@model Helperland.Models.User
+@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 <div class="modal fade" id="ForgotModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -14,12 +15,14 @@
             <div class="modal-body">
                 <form method="post" asp-controller="Home" asp-action="ForgotPassword"> 
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control border-right-0" placeholder="Email Address">
+                        <input type="email" asp-for="Email" class="form-control border-right-0" placeholder="Email Address">
                         <span class="input-group-append bg-white border-left-0">
                             <span class="input-group-text bg-transparent">
                                 <i class="fas fa-user"></i>
                             </span>
                         </span>
+                        <div class="text-success">@ViewData["MessageSuccess"]</div>
+                        <div class="text-danger">@ViewData["MessageFail"]</div>
                     </div>
                     <div class="input-group justify-content-center mb-4">
                         <button class="send-btn">Send</button>

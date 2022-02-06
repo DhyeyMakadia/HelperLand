@@ -8,8 +8,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using MailKit.Net.Smtp;
-using MimeKit;
+using System.Net.Mail;
+using System.Net;
+using Microsoft.AspNetCore.Identity;
 
 namespace Helperland.Controllers
 {
@@ -47,44 +48,48 @@ namespace Helperland.Controllers
                 return RedirectToAction("Index");
             }
         }
-        //ForgotPassword
-       
 
+
+        //ForgotPassword
         [HttpPost]
-        public ActionResult ForgotPassword(string email)
+        public IActionResult ForgotPassword(User e)
         {
-            var _objuserdetail = (from i in _db.Users where i.Email == email select i).FirstOrDefault();
+            var _objuserdetail = (from i in _db.Users where i.Email == e.Email select i).SingleOrDefault();
+
+            string BaseUrl = string.Format("{0}://{1}", HttpContext.Request.Scheme, HttpContext.Request.Host);
+            var ResetUrl = $"{BaseUrl}/Home/ResetPassword";
+
             if (_objuserdetail != null)
             {
-                MimeMessage message = new MimeMessage();
+                MailMessage msg = new MailMessage();
+                msg.To.Add(_objuserdetail.Email);
+                msg.From = new MailAddress("getpaswordback@gmail.com");
+                msg.Subject = "Reset Password - Helperland";
+                msg.Body =  "Hello "+ _objuserdetail.FirstName + ",\n\nYour can reset your password by clicking the link below \n" + ResetUrl + "\nThank you for visiting Helperland \n\nRegards,\nHelperland Team";
 
-                MailboxAddress from = new MailboxAddress("Admin",
-                "getpaswordback@gmail.com");
-                message.From.Add(from);
+                SmtpClient smtp = new SmtpClient();
+                smtp.Host = "smtp.gmail.com";
+                smtp.EnableSsl = true;
+                smtp.Port = 587;
+                
 
-                MailboxAddress to = new MailboxAddress("User",_objuserdetail.Email);
-                message.To.Add(to);
-
-                message.Subject = "Reset Password";
-
-                BodyBuilder bodyBuilder = new BodyBuilder();
-                bodyBuilder.HtmlBody = "<h1>Hello World!</h1>";
-                bodyBuilder.TextBody = "Hello World!";
-
-                SmtpClient client = new SmtpClient();
-                client.Connect("smtp.gmail.com", 587, true);
-                client.Authenticate("getpaswordback@gmail.com", "Demo@123");
-
-                client.Send(message);
-                client.Disconnect(true);
-                client.Dispose();
+                NetworkCredential NC = new NetworkCredential("getpaswordback@gmail.com", "Demo@123");
+                smtp.UseDefaultCredentials = true;
+                smtp.Credentials = NC;
+                smtp.Send(msg);
+                ViewData["MessageSuccess"] = "Mail sent successfully";
                 return RedirectToAction("Index");
             }
             else
             {
-                return RedirectToAction("Contact");
-                //ViewBag.Message = 0;
+                ViewData["MessageFail"] = "Mail not sent";
+                return RedirectToAction("Index");
             }
+        }
+
+        public IActionResult ResetPassword()
+        {
+            return View();
         }
 
         public IActionResult About()
