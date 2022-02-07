@@ -28,9 +28,11 @@ namespace Helperland.Models
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
+        [Required(ErrorMessage ="Required Field!")]
         public string Password { get; set; }
 
-        [NotMapped]
+        [Required(ErrorMessage = "Required Field!")]
+        [NotMapped,DataType(DataType.Password)]
         [Compare("Password",ErrorMessage ="Password not matched!")]
         public  string ConfirmPassword { get; set; }
 

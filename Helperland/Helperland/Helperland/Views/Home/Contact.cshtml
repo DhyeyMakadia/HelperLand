@@ -65,7 +65,7 @@
             <div class="head text-center">
                 <h2>Get in touch with us</h2>
             </div>
-            <form method="post" asp-action="Contact">
+            <form method="post" asp-action="Contact" enctype="multipart/form-data">
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-6">
                         <input type="text" class="form-control first-name" name="FName" asp-for="Name" id="inputFirstName"
@@ -116,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="text-success">@ViewBag.Msg</div>
                 <div class="form-row mx-auto justify-content-center">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary submit-btn mx-auto">Submit</button>

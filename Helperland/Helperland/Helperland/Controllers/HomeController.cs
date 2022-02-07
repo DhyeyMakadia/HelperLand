@@ -55,9 +55,8 @@ namespace Helperland.Controllers
         public IActionResult ForgotPassword(User e)
         {
             var _objuserdetail = (from i in _db.Users where i.Email == e.Email select i).SingleOrDefault();
-
             string BaseUrl = string.Format("{0}://{1}", HttpContext.Request.Scheme, HttpContext.Request.Host);
-            var ResetUrl = $"{BaseUrl}/Home/ResetPassword";
+            var ResetUrl = $"{BaseUrl}/Home/ResetPassword/" + _objuserdetail.UserId;
 
             if (_objuserdetail != null)
             {
@@ -65,13 +64,13 @@ namespace Helperland.Controllers
                 msg.To.Add(_objuserdetail.Email);
                 msg.From = new MailAddress("getpaswordback@gmail.com");
                 msg.Subject = "Reset Password - Helperland";
-                msg.Body =  "Hello "+ _objuserdetail.FirstName + ",\n\nYour can reset your password by clicking the link below \n" + ResetUrl + "\nThank you for visiting Helperland \n\nRegards,\nHelperland Team";
+                msg.Body = "Hello " + _objuserdetail.FirstName + ",\n\nYour can reset your password by clicking the link below \n" + ResetUrl + "\nThank you for visiting Helperland \n\nRegards,\nHelperland Team";
 
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = "smtp.gmail.com";
                 smtp.EnableSsl = true;
                 smtp.Port = 587;
-                
+
 
                 NetworkCredential NC = new NetworkCredential("getpaswordback@gmail.com", "Demo@123");
                 smtp.UseDefaultCredentials = true;
@@ -87,8 +86,28 @@ namespace Helperland.Controllers
             }
         }
 
-        public IActionResult ResetPassword()
+        [HttpGet]
+        public IActionResult ResetPassword(int? id)
+        
         {
+            ViewData["ResetUser"] = id;
+            User user = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+            return View(user);
+        }
+
+        [HttpPost]
+        public IActionResult ResetPassword(User obj)
+        {
+            if (ModelState.IsValid)
+            {
+                User user = _db.Users.Where(x => x == obj).FirstOrDefault();
+                user.Password = obj.Password;
+                user.ModifiedBy = obj.UserId;
+                user.ModifiedDate = DateTime.Now; 
+                _db.Users.Update(user);
+                _db.SaveChanges();
+                ViewBag.Msg = "Password has been changed successfully";
+            }
             return View();
         }
 
@@ -110,7 +129,8 @@ namespace Helperland.Controllers
             obj.CreatedOn = DateTime.Now;
             _db.ContactUs.Add(obj);
             _db.SaveChanges();
-            return RedirectToAction("Contact");
+            ViewBag.Msg = "Response has been recorded";
+            return View();
         }
 
         public IActionResult Faq()
@@ -145,7 +165,8 @@ namespace Helperland.Controllers
                 obj.IsDeleted = false;
                 _db.Users.Add(obj);
                 _db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.Msg = "Account created";
+                return View();
             }
             return View();
         }
