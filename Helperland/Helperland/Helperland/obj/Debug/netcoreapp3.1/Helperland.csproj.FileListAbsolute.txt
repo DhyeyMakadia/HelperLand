@@ -160,5 +160,7 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\MailKit.dll
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\MimeKit.dll
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
-E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.AssemblyReference.cache
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPassword.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\BookService.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\BookServiceAddress.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BookingSuccessModal.cshtml.g.cs

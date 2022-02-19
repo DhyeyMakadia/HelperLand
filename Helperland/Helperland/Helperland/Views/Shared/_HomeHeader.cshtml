@@ -1,7 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http
-@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
-
-
+﻿
 <header class="position-fixed w-100">
     <nav id="navbar" class="navbar navbar-expand-xl navbar-dark bg-transparent">
         <a class="navbar-brand nav-logo" asp-controller="Home" asp-action="Index">
@@ -16,7 +13,7 @@
         <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto align-items-center">
                 <li class="nav-item active">
-                    <button class="btn my-sm-0 btn-height btn-book-cleaner">Book a Cleaner</button>
+                    <button class="btn my-sm-0 btn-height btn-book-cleaner" onclick="location.href='@Url.Action("BookService", "Home")'">Book a Cleaner</button>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Prices">Prices</a>
@@ -32,7 +29,7 @@
                 </li>
 
                 @{
-                    var user = HttpContextAccessor.HttpContext.Session.GetInt32("User_Session");
+                    var user = HttpContextAccessor.HttpContext.Session.GetInt32("UserID_Session");
                     if (user != null)
                     {
                         <li class="nav-item notify-nav">
@@ -47,7 +44,7 @@
                                 <img src="~/assets/sp-arrow-down.png" alt="">
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Welcome,<div>Sandip Patel</div></a>
+                                <a class="dropdown-item" href="#">Welcome,<div>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")</div></a>
                                 <div class="dropdown-divider"></div>
                                 <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
                                 <a id="dd-settings" class="dropdown-item" href="#mysettings" data-toggle="tab">

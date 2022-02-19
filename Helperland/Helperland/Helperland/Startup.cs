@@ -25,6 +25,7 @@ namespace Helperland
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSession();
+            services.AddMemoryCache();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddControllersWithViews();
             services.AddDbContext<HelperlandContext>();

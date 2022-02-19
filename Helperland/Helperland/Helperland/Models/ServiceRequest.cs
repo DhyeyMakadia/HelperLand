@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -40,6 +41,9 @@ namespace Helperland.Models
         public bool? HasIssue { get; set; }
         public bool? PaymentDone { get; set; }
         public Guid? RecordVersion { get; set; }
+
+        [NotMapped]
+        public int AddressId { get; set; }
 
         public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }

@@ -1,0 +1,148 @@
+﻿@using Helperland.Models;
+@model IEnumerable<UserAddress>
+@{
+    ViewData["Title"] = "BookServiceAddress";
+    Layout = null;
+}
+
+    <!-- Address -->
+    @{ 
+        foreach (var item in Model)
+        {
+            <div class="card mt-3">
+                <div class="card-body">
+                    <div class="d-flex flex-row justify-content-start align-items-center">
+                        <div class="pr-3">
+                            <input type="radio" value="@item.AddressId" class="select-service-address" name="select-service-address" checked>
+                        </div>
+                        <div>
+                            <div>
+                                <b>Address: </b><span>@item.AddressLine1, </span><span>@item.AddressLine2, </span><span>@item.City </span><span>@item.State. </span><span>@item.PostalCode</span>
+                            </div>
+                            <div>
+                                <b>Phone Number: </b><span>@item.Mobile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+
+
+    <div class="card mt-3" aria-hidden="true" id="add-new-address-block-tab4">
+        <div class="card-body">
+            <form id="add-address-form">
+                <div class="form-row mx-auto">
+                    <div class="form-group col-md-6">
+                        <label for="inputStreet" class="l-label">Street Name</label>
+                        <input type="text" class="form-control" id="inputStreetName"
+                               placeholder="Street Name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputHouse" class="l-label">House Name</label>
+                        <input type="text" class="form-control" id="inputHouseName"
+                               placeholder="House Name" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputPostal" class="l-label">Postal Code</label>
+                        <input type="text" class="form-control" id="inputPostalCode"
+                               placeholder="Postal Code" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputCity" class="l-label">City</label>
+                        <input type="text" class="form-control" id="inputCity"
+                               placeholder="City" value="Tambach-Dietharz" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="inputNum" class="l-label">Mobile Number</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+49</div>
+                            </div>
+                            <input type="tel" class="form-control MobileNumber"
+                                   id="inputMobile"
+                                   placeholder="Mobile Number" value="9856452311" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mx-auto">
+                    <div class="form-group col-md-6">
+                        <button type="button" class="btn save-btn" id="save-address-btn">
+                            Save
+                        </button>
+                        <button type="button" class="btn cancel-btn" id="reset-add-address-form">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="pt-3 add-new-address-btn" id="add-new-address-btn-class-tab4">
+        <button type="button" id="add-new-address-btn-tab4">
+            <i class="fas fa-plus pr-1"></i>
+            Add New Address
+        </button>
+    </div>
+
+    <div class="pt-4">
+        <div>
+            <b>Your Favourite Service Providers</b>
+        </div>
+        <hr class="m-1">
+        <div>You can choose your favourite service provider from the below list</div>
+
+
+        <div class="row p-3">
+            <div class="col-md-3 col-sm-4">
+
+                <div class="d-flex flex-column justify-content-center align-items-center favpros">
+                    <div class="select-favpro">
+                        <img src="~/assets/cap.png" alt="">
+                    </div>
+                    <div class="p-2">
+                        <b>Sandip Patel</b>
+                    </div>
+                    <div class="">
+                        <div class="form-check p-0">
+                            <label class="form-check-label">
+                                <input class="form-check-input custom-check" type="radio"
+                                       name="select-pro" checked>
+                                <div class="custom-radio-select">select</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-sm-4">
+                <div class="d-flex flex-column justify-content-center align-items-center favpros">
+                    <div class="select-favpro">
+                        <img src="~/assets/cap.png" alt="">
+                    </div>
+                    <div class="p-2">
+                        <b>Hardik Patel</b>
+                    </div>
+                    <div>
+                        <div class="form-check p-0">
+                            <label class="form-check-label">
+                                <input class="form-check-input custom-check" type="radio"
+                                       name="select-pro">
+                                <div class="custom-radio-select">select</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="col-12">
+            <button type="button" class="btn tb2-continue-btn float-right mb-2"
+                    id="contopay">
+                Continue
+            </button>
+        </div>
+    </div>

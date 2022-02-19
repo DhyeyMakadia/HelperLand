@@ -6,11 +6,15 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.Net.Mail;
 using System.Net;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace Helperland.Controllers
 {
@@ -18,17 +22,24 @@ namespace Helperland.Controllers
     {
 
         private readonly HelperlandContext _db;
+        private readonly IWebHostEnvironment hostEnvironment;
         private readonly ILogger<HomeController> _logger;
 
         // Dependency Injection
-        public HomeController(ILogger<HomeController> logger, HelperlandContext db)
+        public HomeController(ILogger<HomeController> logger, HelperlandContext db, IWebHostEnvironment hostEnvironment)
         {
             _logger = logger;
             _db = db;
+            this.hostEnvironment = hostEnvironment;
         }
 
         public IActionResult Index()
         {
+
+            if (HttpContext.Session.GetInt32("UserID_Session") != null) 
+            {
+                return View();
+            }
             ViewBag.IsHomePage = true;
             return View();
         }
@@ -39,12 +50,14 @@ namespace Helperland.Controllers
             User user = _db.Users.Where(x => x.Email == obj.Email && x.Password == obj.Password).SingleOrDefault();
             if (user != null)
             {
-                HttpContext.Session.SetInt32("User_Session", user.UserId);
+                var username = user.FirstName + " " + user.LastName;
+                HttpContext.Session.SetInt32("UserID_Session", user.UserId);
+                HttpContext.Session.SetString("UserName_Session", username);
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.ErrorMsg = "Username or Password is Incorrect";
+                TempData["Msg4Popup"] = "Username or Password is Incorrect. Please try again";
                 return RedirectToAction("Index");
             }
         }
@@ -125,12 +138,23 @@ namespace Helperland.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Contact(ContactU obj)
         {
+
+            string uniqueFileName = null;
+            if (obj.UploadFile != null)
+            {
+                string folderPath = Path.Combine(hostEnvironment.WebRootPath, "Uploads/ContactUsAttachments");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + obj.UploadFile.FileName;
+                string filePath = Path.Combine(folderPath, uniqueFileName);
+                obj.UploadFile.CopyTo(new FileStream(filePath, FileMode.Create));
+            }
+
+            obj.UploadFileName = uniqueFileName;
             obj.Name = HttpContext.Request.Form["FName"] + " " + HttpContext.Request.Form["LName"];
             obj.CreatedOn = DateTime.Now;
             _db.ContactUs.Add(obj);
             _db.SaveChanges();
-            ViewBag.Msg = "Response has been recorded";
-            return View();
+            TempData["Msg"] = "Response has been recorded";
+            return RedirectToAction("Contact");
         }
 
         public IActionResult Faq()
@@ -199,9 +223,113 @@ namespace Helperland.Controllers
             return View();
         }
 
+        public IActionResult BookService()
+        {
+            var userID = HttpContext.Session.GetInt32("UserID_Session");
+            var userName = HttpContext.Session.GetInt32("UserName_Session");
+
+            if (userID != null)
+            {
+                return View();
+            }
+            TempData["Msg4Popup"] = "You have to login to Book a Service.";
+            return RedirectToAction("Index");
+        }
+        
+        [HttpPost]
+        public string BookServiceRequest([FromBody] ServiceRequest book)
+        {
+            int userID = (int)HttpContext.Session.GetInt32("UserID_Session");
+            UserAddress address = _db.UserAddresses.Where(x => x.AddressId == book.AddressId).SingleOrDefault();
+            book.UserId = userID;
+            book.ServiceId = 123455;
+            book.PaymentDue = true;
+            book.CreatedDate = DateTime.Now;
+            book.ModifiedDate = DateTime.Now;
+            book.ModifiedBy = userID;
+            book.Distance = 10;
+
+            _db.ServiceRequests.Add(book);
+            _db.SaveChanges();
+
+            ServiceRequestAddress requestAddress = new ServiceRequestAddress();
+            requestAddress.ServiceRequestId = book.ServiceRequestId;
+            requestAddress.AddressLine1 = address.AddressLine1;
+            requestAddress.City = address.City;
+            requestAddress.PostalCode = address.PostalCode;
+            if(address.AddressLine2 != null)
+            {
+                requestAddress.AddressLine2 = address.AddressLine2;
+            }
+            if (address.State != null)
+            {
+                requestAddress.State = address.State;
+            }
+            if (address.Email != null)
+            {
+                requestAddress.Email = address.Email;
+            }
+            if (address.Mobile != null)
+            {
+                requestAddress.Mobile = address.Mobile;
+            }
+            _db.ServiceRequestAddresses.Add(requestAddress);
+            _db.SaveChanges();
+
+            return "true";
+        }
+
+        public string ValidatePostalCode(string postalcode)
+        {
+
+            var PostalCode = _db.Users.Where(x => x.ZipCode == postalcode).SingleOrDefault();
+            string IsValidated;
+            if (PostalCode != null)
+            {
+                IsValidated = "true";
+            }
+            else
+            {
+                IsValidated = "false";
+            }
+            return IsValidated;
+
+        }
+
+        public IActionResult BookServiceAddress()
+        {
+            System.Threading.Thread.Sleep(2000);
+            var UserID = HttpContext.Session.GetInt32("UserID_Session");
+            List<UserAddress> allAddress = new List<UserAddress>();
+            allAddress = _db.UserAddresses.Where(x => x.UserId == UserID).ToList();
+
+            return View(allAddress);
+        }
+
+        public string AddAddress([FromBody] UserAddress address)
+        {
+            int UserID = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User user = _db.Users.Where(x => x.UserId == UserID).SingleOrDefault();
+            if(address == null)
+            {
+                return "false";
+            }
+            else
+            {
+                address.UserId = UserID;
+                address.Email = user.Email;
+                address.IsDefault = false;
+                address.IsDeleted = false;
+                _db.UserAddresses.Add(address);
+                _db.SaveChanges();
+                return "true";
+            }
+        }
+
         public IActionResult Logout()
         {
-            HttpContext.Session.Remove("User_Session");
+            HttpContext.Session.Remove("UserID_Session");
+            HttpContext.Session.Remove("UserName_Session");
             return RedirectToAction("Index");
         }
 

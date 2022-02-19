@@ -1,0 +1,561 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+a.disabled{
+    pointer-events: none;
+    cursor: default;
+}
+
+.divide-img::before,
+.divide-img::after {
+    content: '';
+    display: block;
+    background-color: #CCCCCC;
+    width: 62px;
+    height: 1px;
+}
+
+.divide-img img {
+    padding: 0 8px;
+}
+
+.mylink{
+    color: #1D7A8C;
+}
+
+/***************************************
+              Modals
+***************************************/
+#booking-success-modal .modal-body .success-symbol{
+    width: 50px;
+    height: 50px;
+    background-color: #00b800;
+    z-index: 5;
+    border-radius: 50%;
+}
+
+#booking-success-modal .modal-body .success-symbol img{
+    z-index: 6;
+}
+
+.modal-header{
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+/***************************************
+              HEADER
+***************************************/
+#navbar {
+    background-color: #525252 !important;
+}
+
+.navbar .nav-logo img {
+    width: 73px;
+    height: 54px;
+}
+
+.navbar .nav-item button {
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+.navbar .navbar-nav li button, .navbar .navbar-nav li a {
+    font-size: 17px;
+}
+
+.navbar .book-now-faq {
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+.navbar .prices-faq {
+    width: 161px;
+    margin-right: 27px;
+}
+
+.navbar .blog-faq {
+    margin: 0 20px;
+}
+
+.navbar .contact-faq {
+    margin-right: 35px;
+}
+
+.navbar .login-faq {
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.navbar .become-helper-faq {
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#navbar .notify-nav {
+    position: relative;
+    width: 71px;
+    border-left: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+    text-align: center;
+    position: relative;
+}
+
+    #navbar .notify-nav::after {
+        content: '2';
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        color: white;
+        font-size: 13px;
+    }
+
+#navbar .notify-out {
+    display: none;
+}
+
+#navbar .profile-nav {
+    padding-left: 18px;
+}
+
+    #navbar .profile-nav .nav-link {
+        padding-left: 0 !important;
+    }
+
+#navbar.active {
+    opacity: 90%;
+}
+/***************************************
+            Main-Content
+***************************************/
+#book-service{
+    margin-top: 80px;
+}
+
+#book-service .head h1 {
+    color: #4F4F4F;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 31px 0 9px 0;
+}
+
+#book-service .book-service-head .form-control {
+    /* max-width: 299px; */
+    min-height: 46px;
+}
+
+/* -----left-segment----- */
+#book-service .left-segment .nav-pills {
+    background-color: #F3F3F3;
+}
+
+#book-service .left-segment .nav-pills .nav-link {
+    color: #525252;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    height: 67px;
+}
+
+#book-service .left-segment .nav-pills .nav-link.active {
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+}
+
+/* setup-service */
+#book-service .left-segment .setup-service-tb::before {
+    content: '';
+    background: url('../assets/setup-service.png') 0 0px no-repeat;
+    display: block;
+    width: 34px;
+    height: 35px;
+}
+
+#book-service .left-segment .setup-service-tb.active::before {
+    content: '';
+    background: url('../assets/setup-service.png') 0 -30px no-repeat;
+    display: block;
+    width: 34px;
+    height: 40px;
+}
+
+/* schedule-n-plan */
+#book-service .left-segment .schedule-tb::before {
+    content: '';
+    background: url('../assets/schedule-plan.png') 0 0px no-repeat;
+    display: block;
+    width: 34px;
+    height: 35px;
+}
+
+#book-service .left-segment .schedule-tb.active::before {
+    content: '';
+    background: url('../assets/schedule-plan.png') 0 -30px no-repeat;
+    display: block;
+    width: 34px;
+    height: 40px;
+}
+
+/* your details */
+#book-service .left-segment .details-tb::before {
+    content: '';
+    background: url('../assets/user-details.png') 0 0px no-repeat;
+    display: block;
+    width: 34px;
+    height: 35px;
+}
+
+#book-service .left-segment .details-tb.active::before {
+    content: '';
+    background: url('../assets/user-details.png') 0 -30px no-repeat;
+    display: block;
+    width: 34px;
+    height: 40px;
+}
+
+/* payment */
+#book-service .left-segment .payment-tb::before {
+    content: '';
+    background: url('../assets/payment.png') 0 0px no-repeat;
+    display: block;
+    width: 34px;
+    height: 35px;
+}
+
+#book-service .left-segment .payment-tb.active::before {
+    content: '';
+    background: url('../assets/payment.png') 0 -30px no-repeat;
+    display: block;
+    width: 34px;
+    height: 40px;
+}
+
+/* -tab-2 */
+#book-service .left-segment .custom-check {
+    display: none;
+}
+
+#book-service .left-segment .custom-check ~ div .custom-check-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #525252;
+    border-radius: 50%;
+}
+
+#book-service .left-segment .custom-check:checked ~ div .custom-check-img {
+    border: 3px solid #1d7a8c;
+}
+
+#book-service .left-segment .custom-check ~ div .custom-check-img div {
+    display: block;
+    position: relative;
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+}
+
+#book-service .left-segment .custom-check ~ div .custom-check-img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#book-service .left-segment .custom-check:checked ~ div .custom-check-img img {
+    position: absolute;
+    top: 0;
+    left: -56px;
+}
+
+#book-service .left-segment #check-for-extra .form-check {
+    text-align: center;
+    max-width: 150px;
+}
+
+
+
+#book-service .submit-btn {
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    width: 200px;
+    height: 38px;
+    border-radius: 23px;
+    transition: all .3s ease;
+}
+
+#book-service .submit-btn:hover {
+    background-color: #FFFFFF;
+    color: #1D7A8C;
+    border-color: #1D7A8C;
+    transition: all .3s ease;
+}
+
+#book-service .tb2-continue-btn{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    width: 120px;
+    height: 44px;
+    border-radius: 23px;
+    transition: all .3s ease;
+}
+#book-service .tb2-continue-btn:hover{
+    background-color: #FFFFFF;
+    color: #1D7A8C;
+    border-color: #1D7A8C;
+    transition: all .3s ease;
+}
+
+/* -----right-segment----- */
+#book-service .link-clr {
+    color: #0088a0;
+}
+
+#book-service .payment-card .card-header {
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    font-size: 20px;
+}
+
+#book-service .payment-card .extra-item{
+    display:none;
+}
+
+#book-service .payment-card .total-payment {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+#book-service .accordion .que-link img {
+    transform: rotate(-90deg);
+    transition: all .3s ease;
+}
+
+#book-service .accordion .que-link[aria-expanded="true"] img {
+    transform: rotate(0deg);
+    transition: all .3s ease;
+}
+
+#book-service .accordion .que-link p {
+    color: #525252;
+}
+
+/* --Tab-3-- */
+
+#book-service #pills-details .add-new-address-btn button{
+    height: 40px;
+    border-radius: 21px;
+    padding: 5px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    outline: 2px solid #1D7A8C;
+    color: #1D7A8C;
+    background-color: white;
+}
+
+#book-service #pills-details .add-new-address-btn button:hover{
+    color: white;
+    background-color: #1D7A8C;
+}
+
+#book-service #pills-details .select-favpro{
+    background-color: #F3F3F3;
+    width: 100px;
+    aspect-ratio: 1;
+    border: 1px solid #525252;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#book-service #pills-details .select-favpro img{
+    width: 50px;
+}
+
+#book-service #pills-details .favpros .custom-radio-select{
+    height: 35px;
+    line-height: 32px;
+    background-color: #F3F3F3;
+    padding: 0 20px;
+    border: 1px solid #4F4F4F;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#book-service #pills-details .favpros input:checked ~ .custom-radio-select{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    border: 1px solid #1D7A8C;
+}
+
+#book-service #pills-details #add-new-address-block-tab4{
+    background-color: #F3F3F3;
+    display: none;
+}
+
+#book-service #pills-details #add-new-address-block-tab4 .save-btn{
+    background-color: #1D7A8C;
+    color: #FFFFFF;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 5px;
+    border-radius: 50em;
+    border: none;
+    outline: 1px solid #1D7A8C;
+}
+
+#book-service #pills-details #add-new-address-block-tab4 .cancel-btn{
+    background-color: transparent;
+    color: #4F4F4F;
+    border: none;
+    outline: 1px solid #4F4F4F;
+    border-radius: 50em;
+}
+
+/* --Tab-4-- */
+#book-service #pills-payment .apply-btn-4{
+    color: #1D7A8C;
+    background-color: white;
+    border: none;
+    outline: 1px solid #1D7A8C;
+    border-radius: 30px;
+    width: 90px;
+}
+
+#book-service #pills-payment .apply-btn-4:hover{
+    color: white;
+    background-color: #1D7A8C;
+}
+
+#book-service #pills-payment .complete-booking-btn{
+    border: none;
+    outline: 1px solid #1D7A8C;
+    color: White;
+    background-color: #1D7A8C;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50em;
+}
+
+#book-service #pills-payment .complete-booking-btn:hover{
+    color: #1D7A8C;
+    background-color: transparent;
+}
+
+/***************************************
+              FOOTER
+***************************************/
+.page-footer .footer-container {
+    min-height: 131px;
+}
+
+.page-footer .footer-content {
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img {
+    width: 120px;
+    height: 92px;
+    margin-top: 20px;
+}
+
+.page-footer .f-link {
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb {
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig {
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type {
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright {
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-txt {
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-txt a {
+    color: #9BA0A3;
+}
+
+@media screen and (max-width:1200px) {
+
+    /* -----Header----- */
+    #navbar .blog-nav {
+        margin: 10px 0;
+    }
+
+    #navbar .contact-nav {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    #navbar .notify-out {
+        display: block;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content {
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+
+    /* ----Footer------ */
+    .page-footer .footer-content {
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content {
+        padding: 30px 0;
+    }
+}

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata&family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/booknow.css">
+
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <!-- Modals -->
+    <div class="modal fade" id="booking-success-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h5 class="modal-title" id="exampleModalLongTitle">Success</h5> -->
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex align-items-center justify-content-center flex-column">
+                        <div class="success-symbol d-flex align-items-center justify-content-center">
+                            <img src="assets/ic-check.png" alt="">
+                        </div>
+                        <div class="text-center mt-3">
+                            <h5>Booking has been successfully submitted</h5>
+                        </div>
+                        <div class="mt-3 mb-2">Service Request id: <span>8848</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
+            <a class="navbar-brand nav-logo" href="#">
+                <img src="assets/logo.png" width="175px" height="130" alt="">
+            </a>
+
+            <div class="nav-item notify-out notify-nav">
+                <a class="nav-link" href="#">
+                    <img src="assets/icon-notification.png" alt="">
+                </a>
+            </div>
+
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto align-items-center">
+                    <li class="nav-item">
+                        <button class="btn my-sm-0 text-white book-now-nav">Book Now</button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white prices-nav" href="#">Prices & services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Warranty</a>
+                    </li>
+                    <li class="nav-item align-middle">
+                        <a class="nav-link text-white blog-nav" href="#">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white contact-nav" href="#">Contact</a>
+                    </li>
+                    <li class="nav-item notify-nav">
+                        <a class="nav-link" href="#">
+                            <img src="assets/icon-notification.png" alt="">
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown profile-nav">
+                        <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            <img src="assets/admin-user.png" alt="">
+                            <img src="assets/sp-arrow-down.png" alt="">
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Welcome,<div>Sandip Patel</div></a>
+                            <div class="dropdown-divider"></div>
+                            <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
+                            <a class="dropdown-item" href="#">My Settings</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <Section id="book-service" class="book-service">
+        <div class="container">
+            <div class="book-service-head col-lg-6 col-md-10 mx-auto">
+                <div class="head text-center">
+                    <h1>Set up your cleaning service</h1>
+                </div>
+
+                <div class="divide-img d-flex align-items-center justify-content-center mb-5">
+                    <img src="assets/forma-1-copy-5.png" alt="">
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Left Pills -->
+                <div class="col-md-8 col-12 left-segment">
+                    <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+
+                        <li class="nav-item">
+                            <a class="nav-link active setup-service-tb book-now-pills-tab" id="pills-setup-tab" data-toggle="pill"
+                                href="#pills-setup" role="tab" aria-controls="pills-setup" aria-selected="true">
+                                <!-- <img src="assets/add.png" width="100%" height="100%" alt=""> -->
+                                Setup Service
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link schedule-tb book-now-pills-tab" id="pills-schedule-tab" data-toggle="pill"
+                                href="#pills-schedule" role="tab" aria-controls="pills-schedule"
+                                aria-selected="false" >Schedule & Plan</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link details-tb book-now-pills-tab" id="pills-details-tab" data-toggle="pill"
+                                href="#pills-details" role="tab" aria-controls="pills-details"
+                                aria-selected="false">Your Details</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link payment-tb book-now-pills-tab" id="pills-payment-tab" data-toggle="pill"
+                                href="#pills-payment" role="tab" aria-controls="pills-payment"
+                                aria-selected="false">Make Payment</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="pills-tabContent">
+
+                        <!-- setup-tab -->
+                        <div class="tab-pane fade show active" id="pills-setup" role="tabpanel"
+                            aria-labelledby="pills-setup-tab">
+                            <form>
+                                <div class="form-row mx-auto align-items-end">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputpass1"><b>Enter your Postal Code</b></label>
+                                        <input type="text" class="form-control newpassword1" id="postalcode1"
+                                            placeholder="Postal Code">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <button type="submit" class="btn submit-btn">Check Availablity</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Schedule-tab -->
+                        <div class="tab-pane fade" id="pills-schedule" role="tabpanel"
+                            aria-labelledby="pills-schedule-tab">
+
+                            <div class="row mb-2">
+                                <form class="w-100">
+
+                                    <div class="col-12">
+                                        <div class="row">
+                                            <div class="form-group col-md-6">
+                                                <label for="input"><b>When do you need the cleaner?</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <input placeholder="Select date" type="text" id="example"
+                                                            class="form-control datepicker">
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <select class="form-control">
+                                                            <option selected>1:00 PM</option>
+                                                            <option>2:00 PM</option>
+                                                            <option>3:00 PM</option>
+                                                            <option>4:00 PM</option>
+                                                            <option>5:00 PM</option>
+                                                            <option>6:00 PM</option>
+                                                            <option>7:00 PM</option>
+                                                            <option>8:00 PM</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="input"><b>How long do you need your cleaner to
+                                                        stay?</b></label>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <select class="form-control">
+                                                            <option selected>1 Hr</option>
+                                                            <option>2 Hrs</option>
+                                                            <option>3 Hrs</option>
+                                                            <option>4 Hrs</option>
+                                                            <option>5 Hrs</option>
+                                                            <option>6 Hrs</option>
+                                                            <option>7 Hrs</option>
+                                                            <option>8 Hrs</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+                                    <div class="col-12" id="check-for-extra">
+                                        <label for="ExtraServices"><b>Extra Services</b></label>
+                                        <div class="form-row justify-content-around">
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-check" type="checkbox" value=""
+                                                    id="Check1">
+                                                <div
+                                                    class="d-flex justify-content-center flex-column align-items-center">
+                                                    <label class="form-check-label custom-check-img" for="Check1">
+                                                        <div class="custom-img">
+                                                            <img src="assets/cabinets.png"
+                                                                alt="">
+                                                        </div>
+                                                    </label>
+                                                    <label for="Check1" class="mt-2"><b>Inside Cabinets</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-check" type="checkbox" value=""
+                                                    id="Check2">
+                                                <div
+                                                    class="d-flex justify-content-center flex-column align-items-center">
+                                                    <label class="form-check-label custom-check-img" for="Check2">
+                                                        <div class="custom-img">
+                                                            <img src="assets/fridge.png"
+                                                                alt="">
+                                                        </div>
+                                                    </label>
+                                                    <label for="Check2" class="mt-2"><b>Inside Fridge</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-check" type="checkbox" value=""
+                                                    id="Check3">
+                                                <div
+                                                    class="d-flex justify-content-center flex-column align-items-center">
+                                                    <label class="form-check-label custom-check-img" for="Check3">
+                                                        <div class="custom-img">
+                                                            <img src="assets/oven.png"
+                                                                alt="">
+                                                        </div>
+                                                    </label><label for="Check3" class="mt-2"><b>Inside Oven</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-check" type="checkbox" value=""
+                                                    id="Check4">
+                                                <div
+                                                    class="d-flex justify-content-center flex-column align-items-center">
+                                                    <label class="form-check-label custom-check-img" for="Check4">
+                                                        <div class="custom-img">
+                                                            <img src="assets/laundry.png"
+                                                                alt="">
+                                                        </div>
+                                                    </label>
+                                                    <label for="Check4" class="mt-2"><b>Laundry Wash & Dry</b></label>
+                                                </div>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input custom-check" type="checkbox" value=""
+                                                    id="Check5">
+                                                <div
+                                                    class="d-flex justify-content-center flex-column align-items-center">
+                                                    <label class="form-check-label custom-check-img" for="Check5">
+                                                        <div class="custom-img">
+                                                            <img src="assets/windows.png"
+                                                                alt="">
+                                                        </div>
+                                                    </label>
+                                                    <label for="Check5" class="mt-2"><b>Interior Windows</b></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="Commentstb"><b>Comments</b></label>
+                                            <textarea class="form-control" id="Commentstb" rows="3"
+                                                placeholder="Comments"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="Check-for-pets">
+                                                <label class="form-check-label" for="Check-for-pets">I have pets at
+                                                    home</label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <button type="button" class="btn tb2-continue-btn float-right"
+                                            id="contodetail">Continue</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <!-- Details-tab -->
+                        <div class="tab-pane fade" id="pills-details" role="tabpanel"
+                            aria-labelledby="pills-details-tab">
+
+                            <form>
+                                <!-- Address -->
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-start align-items-center">
+                                            <div class="pr-3">
+                                                <input type="radio" name="address" checked>
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    <span>
+                                                        <b>Address: </b>Koenigstrasse 112, Tambach-Dietharz 99897
+                                                    </span><br>
+                                                    <span>
+                                                        <b>Phone Number: </b>9955648797
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3">
+                                    <div class="card-body">
+                                        <div class="d-flex flex-row justify-content-start align-items-center">
+                                            <div class="pr-3">
+                                                <input type="radio" name="address">
+                                            </div>
+                                            <div>
+                                                <span>
+                                                    <span>
+                                                        <b>Address: </b>Koenigstrasse 112, Tambach-Dietharz 99897
+                                                    </span><br>
+                                                    <span>
+                                                        <b>Phone Number: </b>9955648797
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card mt-3" aria-hidden="true" id="add-new-address-block-tab4">
+                                    <div class="card-body">
+                                        <form>
+                                            <div class="form-row mx-auto">
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputStreet" class="l-label">Street Name</label>
+                                                    <input type="text" class="form-control" id="inputStreetName"
+                                                        placeholder="Street Name">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputHouse" class="l-label">House Name</label>
+                                                    <input type="text" class="form-control" id="inputHouseName"
+                                                        placeholder="House Name">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputPostal" class="l-label">Postal Code</label>
+                                                    <input type="text" class="form-control" id="inputPostalCode"
+                                                        placeholder="Postal Code" value="99897" disabled>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputCity" class="l-label">City</label>
+                                                    <input type="text" class="form-control" id="inputCity"
+                                                        placeholder="City" value="Tambach-Dietharz">
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <label for="inputNum" class="l-label">Mobile Number</label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text">+49</div>
+                                                        </div>
+                                                        <input type="tel" class="form-control MobileNumber"
+                                                            id="inlineFormInputGroupUsername"
+                                                            placeholder="Mobile Number" value="9856452311">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row mx-auto">
+                                                <div class="form-group col-md-6">
+                                                    <button type="button" class="btn save-btn">
+                                                        Save
+                                                    </button>
+                                                    <button type="button" class="btn cancel-btn">
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="pt-3 add-new-address-btn" id="add-new-address-btn-class-tab4">
+                                    <button type="button" id="add-new-address-btn-tab4">
+                                        <i class="fas fa-plus pr-1"></i>
+                                        Add New Address
+                                    </button>
+                                </div>
+
+                                <div class="pt-4">
+                                    <div>
+                                        <b>Your Favourite Service Providers</b>
+                                    </div>
+                                    <hr class="m-1">
+                                    <div>You can choose your favourite service provider from the below list</div>
+
+
+                                    <div class="row p-3">
+                                        <div class="col-md-3 col-sm-4">
+
+                                            <div
+                                                class="d-flex flex-column justify-content-center align-items-center favpros">
+                                                <div class="select-favpro">
+                                                    <img src="assets/cap.png" alt="">
+                                                </div>
+                                                <div class="p-2">
+                                                    <b>Sandip Patel</b>
+                                                </div>
+                                                <div class="">
+                                                    <div class="form-check p-0">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input custom-check" type="radio"
+                                                                name="select-pro" checked>
+                                                            <div class="custom-radio-select">select</div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-3 col-sm-4">
+                                            <div
+                                                class="d-flex flex-column justify-content-center align-items-center favpros">
+                                                <div class="select-favpro">
+                                                    <img src="assets/cap.png" alt="">
+                                                </div>
+                                                <div class="p-2">
+                                                    <b>Hardik Patel</b>
+                                                </div>
+                                                <div>
+                                                    <div class="form-check p-0">
+                                                        <label class="form-check-label">
+                                                            <input class="form-check-input custom-check" type="radio"
+                                                                name="select-pro">
+                                                            <div class="custom-radio-select">select</div>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="col-12">
+                                        <button type="button" class="btn tb2-continue-btn float-right mb-2"
+                                            id="contopay">Continue
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Payment-tab -->
+                        <div class="tab-pane fade" id="pills-payment" role="tabpanel"
+                            aria-labelledby="pills-payment-tab">
+
+                            <form class="was-validated">
+                                <div class="row">
+
+                                    <div class="col-md-12">
+                                        <b>Pay securely with Helperland payment gateway!</b>
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-12">
+                                        <div class="form-row mx-auto align-items-end">
+                                            <div class="form-group col-md-9">
+                                                <label for="promo1">Promo code (optional)</label>
+                                                <input type="text" class="form-control" id="promo1"
+                                                    placeholder="Promo code (optional)">
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <button type="button" class="btn apply-btn-4">Apply</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <hr>
+                                        <div class="card">
+                                            <div class="card-body" id="card-details">
+                                                <div class="form-row mx-auto">
+
+                                                    <div class="form-group mb-0 col-md-6">
+                                                        <div class="input-group is-invalid">
+                                                            <input type="tel"
+                                                                class="card-number form-control is-invalid"
+                                                                maxlength="16" pattern="\d*" placeholder="Card Number"
+                                                                required>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group mb-0 col-md-2">
+                                                        <div class="input-group is-invalid">
+                                                            <input type="tel"
+                                                                class="card-expiry form-control is-invalid"
+                                                                maxlength="2" pattern="\d*" placeholder="MM" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-0 col-md-2">
+                                                        <div class="input-group is-invalid">
+                                                            <input type="tel"
+                                                                class="card-expiry form-control is-invalid"
+                                                                maxlength="2" pattern="\d*" placeholder="YY" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group mb-0 col-md-2">
+                                                        <div class="input-group is-invalid">
+                                                            <input type="tel" class="card-cvv form-control is-invalid"
+                                                                maxlength="4" pattern="\d*" placeholder="CVV" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-3">
+                                            <div class="float-right">
+                                                Accepted Cards:
+                                            </div><br>
+                                            <div class="float-right">
+                                                <img src="assets/visa.png" width="50" alt="">
+                                                <img src="assets/mastercard.png" width="50"
+                                                    alt="">
+                                                <img src="assets/americanxepress.png"
+                                                    width="50" alt="">
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-12">
+                                        <hr>
+                                        <div class="form-group mb-0">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="Check-for-terms"
+                                                    required>
+                                                <label class="form-check-label" for="Check-for-terms">
+                                                    I acccepted <a href="#" class="mylink">terms and conditions</a>,the
+                                                    <a href="#" class="mylink">cancellation policy</a>. I confirm that
+                                                    Helperland
+                                                    starts to execute the contract before
+                                                    the expiry of the withdrawal period and I lose my withdrawl as a
+                                                    consumer with full perfomance of
+                                                    the contract.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr>
+                                <div class="float-right">
+                                    <button type="submit" class="btn complete-booking-btn"
+                                        data-target="#booking-success-modal" data-toggle="modal">Complete
+                                        Booking</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Summary at right -->
+                <div class="col-md-4 col-12">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="card payment-card">
+                                <div class="card-header">
+                                    Payment Summary
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item pt-4 pb-4">
+                                        <h5 class="card-title">Duration</h5>
+                                        <h6 class="card-subtitle">
+                                            Basic
+                                            <span class="float-right">3 Hrs</span>
+                                        </h6>
+                                        <hr>
+                                        <h6 class="card-subtitle font-weight-bold">
+                                            Total Service Time
+                                            <span class="float-right">3 Hrs</span>
+                                        </h6>
+                                    </li>
+
+                                    <li class="list-group-item pt-4 pb-4">
+                                        <h6 class="card-subtitle">
+                                            Per cleaning
+                                            <span class="float-right">0.00 €</span>
+                                        </h6>
+                                    </li>
+                                    <li class="list-group-item pt-4 pb-4">
+                                        <h5 class="card-subtitle d-flex align-items-end justify-content-between">
+                                            <span class="link-clr font-weight-bold">Total Payment</span>
+                                            <span class="link-clr total-payment">0.00 €</span>
+                                        </h5>
+                                    </li>
+                                </ul>
+
+                                <div class="card-footer text-muted">
+                                    <i class="fal fa-smile"></i>
+                                    <a href="#" class="link-clr">See What is always included</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col">
+                            <div class="text-center font-weight-bold pb-2">Questions?</div>
+                            <div class="accordion" id="accordionExample">
+                                <div class="">
+                                    <div class="" id="headingOne">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link btn-block text-left d-flex collapsed flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="false" aria-controls="collapseOne">
+                                                <img src="assets/keyboard-right-arrow-button.png"
+                                                    alt="">
+                                                <p class="m-0 pl-2">What includes in a cleaning?</p>
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            Some placeholder content for the first accordion panel. This panel is shown
+                                            by default
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="">
+                                    <div class="" id="headingTwo">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link btn-block text-left collapsed d-flex flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                                <img src="assets/keyboard-right-arrow-button.png"
+                                                    alt="">
+                                                <p class="m-0 pl-2">Which Helperland professional will come to my place?
+                                                </p>
+
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            Some placeholder content for the second accordion panel. This panel is
+                                            hidden by default.
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                                <div class="">
+                                    <div class="" id="headingThree">
+                                        <h2 class="mb-0">
+                                            <button
+                                                class="btn btn-link btn-block text-left collapsed d-flex flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                                <img src="assets/keyboard-right-arrow-button.png"
+                                                    alt="">
+                                                <p class="m-0 pl-2">Can I skip or reschedule booking?</p>
+
+                                            </button>
+                                        </h2>
+                                    </div>
+                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                        data-parent="#accordionExample">
+                                        <div class="card-body">
+                                            And lastly, the placeholder content for the third and final accordion panel.
+                                            This panel is hidden by default.
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </Section>
+
+    <div style="flex-grow: 1;"></div>
+
+    <footer class="page-footer font-small">
+        <div class="container mw-100">
+            <div class=" d-flex justify-content-between align-items-center footer-content">
+
+                <div class="footer-logo">
+                    <a href="#"><img src="assets/logo.png" alt=""></a>
+                </div>
+
+                <div class="footer-links">
+                    <div class="row text-center justify-content-center pt-5 mb-3">
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">HOME</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">ABOUT</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">TESTIMONIALS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">FAQS</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">INSURANCE POLICY</a>
+                            </h6>
+                        </div>
+
+                        <div class="col-md-2 mb-3">
+                            <h6 class="text-uppercase">
+                                <a href="#!" class="text-white">IMPRESSUM</a>
+                            </h6>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="#"><img src="assets/ic-facebook.png" class="social-fb"
+                            alt=""></a>
+                    <a href="#"><img src="assets/ic-instagram.png" class="social-ig"
+                            alt=""></a>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer-copyright" class="footer-copyright text-center py-3 text-white position-relative collapse show">
+            <div class="footer-copyright-txt d-inline-block">
+                ©2018 Helperland. All rights reserved. &nbsp;&nbsp;
+                <a href="#">Terms and Conditions </a>|<a href="#"> Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- -----Scripts----- -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"
+        crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+    <script>
+        // Data Picker Initialization
+        $('.datepicker').datepicker({
+            format: "dd-mm-yyyy",
+            inline: true,
+            autoclose: true,
+            todayHighlight: true,
+        });
+
+        $(document).ready(function () {
+            $('#contodetail').click(function () {
+                $('#pills-details-tab').removeClass('disabled');
+                $('#pills-details-tab')[0].click();
+            })
+            $('#contopay').click(function () {
+                $('#pills-payment-tab').removeClass('disabled');
+                $('#pills-payment-tab')[0].click();
+            })
+
+
+            $("#add-new-address-btn-tab4").click(function () {
+                var is_hide = $("#add-new-address-block-tab4").attr("aria-hidden");
+
+                if (is_hide == "true") {
+                    $("#add-new-address-block-tab4").attr("style", "display:block");
+                    $("#add-new-address-block-tab4").attr("aria-hidden", "false");
+                }
+                else {
+                    $("#add-new-address-block-tab4").attr("style", "display:none");
+                    $("#add-new-address-block-tab4").attr("aria-hidden", "true");
+                }
+            });
+
+            pill1 = $('#pills-setup-tab').hasClass('active');
+
+            if (pill1) {
+                // $('#pills-schedule-tab').addClass('disabled');
+                $('#pills-details-tab').addClass('disabled');
+                $('#pills-payment-tab').addClass('disabled');
+            }
+
+        });
+
+
+    </script>
+</body>
+
+</html>

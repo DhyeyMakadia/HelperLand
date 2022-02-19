@@ -125,6 +125,18 @@
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+
+    @if (TempData["Msg4Popup"] != null)
+    {
+        <script>
+            $(document).ready(function (e) {
+                alert('@TempData["Msg4Popup"]');
+                @TempData.Remove("Msg4Popup");
+            });
+
+        </script>
+    }
+
     @RenderSection("Scripts", required: false)
 </body>
 </html>

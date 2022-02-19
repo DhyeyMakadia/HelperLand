@@ -1,0 +1,665 @@
+﻿
+@{
+    ViewData["Title"] = "BookService";
+}
+@section Styles{
+    <link href="~/css/booknow.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+<partial name="~/Views/Shared/_BookingSuccessModal.cshtml" />
+
+<Section id="book-service" class="book-service">
+    <div class="container">
+        <div class="book-service-head col-lg-6 col-md-10 mx-auto">
+            <div class="head text-center">
+                <h1>Set up your cleaning service</h1>
+            </div>
+
+            <div class="divide-img d-flex align-items-center justify-content-center mb-5">
+                <img src="~/assets/forma-1-copy-5.png" alt="">
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Left Pills -->
+            <div class="col-md-8 col-12 left-segment">
+                <ul class="nav nav-pills mb-3 nav-fill" id="pills-tab" role="tablist">
+
+                    <li class="nav-item">
+                        <a class="nav-link active setup-service-tb book-now-pills-tab" id="pills-setup-tab" data-toggle="pill"
+                           href="#pills-setup" role="tab" aria-controls="pills-setup" aria-selected="true">
+                            <!-- <img src="~/assets/add.png" width="100%" height="100%" alt=""> -->
+                            Setup Service
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link schedule-tb book-now-pills-tab disabled" id="pills-schedule-tab" data-toggle="pill"
+                           href="#pills-schedule" role="tab" aria-controls="pills-schedule"
+                           aria-selected="false">Schedule & Plan</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link details-tb book-now-pills-tab disabled" id="pills-details-tab" data-toggle="pill"
+                           href="#pills-details" role="tab" aria-controls="pills-details"
+                           aria-selected="false">Your Details</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link payment-tb book-now-pills-tab disabled" id="pills-payment-tab" data-toggle="pill"
+                           href="#pills-payment" role="tab" aria-controls="pills-payment"
+                           aria-selected="false">Make Payment</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="pills-tabContent">
+                        <!-- setup-tab -->
+                        <div class="tab-pane fade show active" id="pills-setup" role="tabpanel"
+                             aria-labelledby="pills-setup-tab">
+
+                                <div class="form-row mx-auto align-items-end">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputpass1"><b>Enter your Postal Code</b></label>
+                                        <input type="text" class="form-control newpassword1" id="postalcode1"
+                                               placeholder="Postal Code" required>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <button type="button" class="btn submit-btn" id="check-postal-code">Check Availablity</button>
+                                    </div>
+                                    <div class="form-group col-md-12 text-danger" id="invalid-postal-code-msg"></div>
+                                </div>
+
+                        </div>
+
+                        <!-- Schedule-tab -->
+                        <div class="tab-pane fade" id="pills-schedule" role="tabpanel"
+                             aria-labelledby="pills-schedule-tab">
+
+                            <div class="row mb-2">
+
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label for="input"><b>When do you need the cleaner?</b></label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <input placeholder="Select date" type="date" id="date-schedule-tab"
+                                                            class="form-control datepicker1">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <select class="form-control">
+                                                        <option>1:00 AM</option>
+                                                        <option>2:00 AM</option>
+                                                        <option>3:00 AM</option>
+                                                        <option>4:00 AM</option>
+                                                        <option>5:00 AM</option>
+                                                        <option>6:00 AM</option>
+                                                        <option>7:00 AM</option>
+                                                        <option>9:00 AM</option>
+                                                        <option>10:00 AM</option>
+                                                        <option>11:00 AM</option>
+                                                        <option>12:00 Am</option>
+                                                        <option selected>1:00 PM</option>
+                                                        <option>2:00 PM</option>
+                                                        <option>3:00 PM</option>
+                                                        <option>4:00 PM</option>
+                                                        <option>5:00 PM</option>
+                                                        <option>6:00 PM</option>
+                                                        <option>7:00 PM</option>
+                                                        <option>9:00 PM</option>
+                                                        <option>10:00 PM</option>
+                                                        <option>11:00 PM</option>
+                                                        <option>12:00 PM</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-6">
+                                            <label for="input">
+                                                <b>
+                                                    How long do you need your cleaner to
+                                                    stay?
+                                                </b>
+                                            </label>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <select class="form-control" id="work-in-hrs">
+                                                        <option value="1">1 Hr</option>
+                                                        <option value="2">2 Hrs</option>
+                                                        <option value="3" selected>3 Hrs</option>
+                                                        <option value="4">4 Hrs</option>
+                                                        <option value="5">5 Hrs</option>
+                                                        <option value="6">6 Hrs</option>
+                                                        <option value="7">7 Hrs</option>
+                                                        <option value="8">8 Hrs</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                <div class="col-12" id="check-for-extra">
+                                    <label for="ExtraServices"><b>Extra Services</b></label>
+                                    <div class="form-row justify-content-around">
+                                        <div class="form-check">
+                                            <input class="form-check-input custom-check extra-checkbox" target="extra1" type="checkbox" value=""
+                                                    id="Check1">
+                                            <div class="d-flex justify-content-center flex-column align-items-center">
+                                                <label class="form-check-label custom-check-img" for="Check1">
+                                                    <div class="custom-img">
+                                                        <img src="~/assets/cabinets.png"
+                                                                alt="">
+                                                    </div>
+                                                </label>
+                                                <label for="Check1" class="mt-2"><b>Inside Cabinets</b></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input custom-check extra-checkbox" target="extra2" type="checkbox" value=""
+                                                    id="Check2">
+                                            <div class="d-flex justify-content-center flex-column align-items-center">
+                                                <label class="form-check-label custom-check-img" for="Check2">
+                                                    <div class="custom-img">
+                                                        <img src="~/assets/fridge.png"
+                                                                alt="">
+                                                    </div>
+                                                </label>
+                                                <label for="Check2" class="mt-2"><b>Inside Fridge</b></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input custom-check extra-checkbox" target="extra3" type="checkbox" value=""
+                                                    id="Check3">
+                                            <div class="d-flex justify-content-center flex-column align-items-center">
+                                                <label class="form-check-label custom-check-img" for="Check3">
+                                                    <div class="custom-img">
+                                                        <img src="~/assets/oven.png"
+                                                                alt="">
+                                                    </div>
+                                                </label><label for="Check3" class="mt-2"><b>Inside Oven</b></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input custom-check extra-checkbox" target="extra4" type="checkbox" value=""
+                                                    id="Check4">
+                                            <div class="d-flex justify-content-center flex-column align-items-center">
+                                                <label class="form-check-label custom-check-img" for="Check4">
+                                                    <div class="custom-img">
+                                                        <img src="~/assets/laundry.png"
+                                                                alt="">
+                                                    </div>
+                                                </label>
+                                                <label for="Check4" class="mt-2"><b>Laundry Wash & Dry</b></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input custom-check extra-checkbox" target="extra5" type="checkbox" value=""
+                                                    id="Check5">
+                                            <div class="d-flex justify-content-center flex-column align-items-center">
+                                                <label class="form-check-label custom-check-img" for="Check5">
+                                                    <div class="custom-img">
+                                                        <img src="~/assets/windows.png"
+                                                                alt="">
+                                                    </div>
+                                                </label>
+                                                <label for="Check5" class="mt-2"><b>Interior Windows</b></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="Commentstb"><b>Comments</b></label>
+                                        <textarea class="form-control" id="Commentstb" rows="3"
+                                                    placeholder="Comments"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="Check-for-pets">
+                                            <label class="form-check-label" for="Check-for-pets">
+                                                I have pets at
+                                                home
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+
+                                <div class="col-12">
+                                    <button type="button" class="btn tb2-continue-btn float-right"
+                                            id="contodetail">
+                                        Continue
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Details-tab -->
+                        <div class="tab-pane fade" id="pills-details" role="tabpanel"
+                             aria-labelledby="pills-details-tab">
+                        
+
+                        </div>
+
+                        <!-- Payment-tab -->
+                        <div class="tab-pane fade" id="pills-payment" role="tabpanel"
+                         aria-labelledby="pills-payment-tab">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <b>Pay securely with Helperland payment gateway!</b>
+                                </div>
+
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-row mx-auto align-items-end">
+                                        <div class="form-group col-md-9">
+                                            <label for="promo1">Promo code (optional)</label>
+                                            <input type="text" class="form-control" id="promo1"
+                                                   placeholder="Promo code (optional)">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <button type="button" class="btn apply-btn-4">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <hr>
+                                    <div class="card">
+                                        <div class="card-body" id="card-details">
+                                            <div class="form-row mx-auto">
+
+                                                <div class="form-group mb-0 col-md-6">
+                                                    <div class="input-group is-invalid">
+                                                        <input type="tel"
+                                                               class="card-number form-control is-invalid"
+                                                               maxlength="16" pattern="\d*" placeholder="Card Number"
+                                                               required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group mb-0 col-md-2">
+                                                    <div class="input-group is-invalid">
+                                                        <input type="tel"
+                                                               class="card-expiry form-control is-invalid"
+                                                               maxlength="2" pattern="\d*" placeholder="MM" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-0 col-md-2">
+                                                    <div class="input-group is-invalid">
+                                                        <input type="tel"
+                                                               class="card-expiry form-control is-invalid"
+                                                               maxlength="2" pattern="\d*" placeholder="YY" required>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group mb-0 col-md-2">
+                                                    <div class="input-group is-invalid">
+                                                        <input type="tel" class="card-cvv form-control is-invalid"
+                                                               maxlength="4" pattern="\d*" placeholder="CVV" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <div class="float-right">
+                                            Accepted Cards:
+                                        </div><br>
+                                        <div class="float-right">
+                                            <img src="~/assets/visa.png" width="50" alt="">
+                                            <img src="~/assets/mastercard.png" width="50"
+                                                 alt="">
+                                            <img src="~/assets/americanxepress.png"
+                                                 width="50" alt="">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-12">
+                                    <hr>
+                                    <div class="form-group mb-0">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="Check-for-terms"
+                                                   required>
+                                            <label class="form-check-label" for="Check-for-terms">
+                                                I acccepted <a href="#" class="mylink">terms and conditions</a>,the
+                                                <a href="#" class="mylink">cancellation policy</a>. I confirm that
+                                                Helperland
+                                                starts to execute the contract before
+                                                the expiry of the withdrawal period and I lose my withdrawl as a
+                                                consumer with full perfomance of
+                                                the contract.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="float-right">
+                                <button type="button" class="btn complete-booking-btn"
+                                        data-target="#booking-success-modal" data-toggle="modal" id="complete-booking-btn">
+                                    Complete
+                                    Booking
+                                </button>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary at right -->
+            <div class="col-md-4 col-12">
+
+                <div class="row">
+                    <div class="col">
+                        <div class="card payment-card">
+                            <div class="card-header">
+                                Payment Summary
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item pt-4 pb-4">
+                                    <h5 class="card-title">Duration</h5>
+                                    <h6 class="card-subtitle">
+                                        Basic
+                                        <span class="float-right"><span id="basic-hours">3</span> Hrs</span>
+                                    </h6>
+                                    <div id="extra" class="pt-2">
+                                        <b>Extras</b>
+                                    </div>
+                                    <div id="extra1" class="extra-item">
+                                        Inside Cabinets
+                                        <span class="float-right">30 Mins</span>
+                                    </div>
+                                    <div id="extra2" class="extra-item">
+                                        Inside Fridge
+                                        <span class="float-right">30 Mins</span>
+                                    </div>
+                                    <div id="extra3" class="extra-item">
+                                        Inside Oven
+                                        <span class="float-right">30 Mins</span>
+                                    </div>
+                                    <div id="extra4" class="extra-item">
+                                        Laundry Wash & Dry
+                                        <span class="float-right">30 Mins</span>
+                                    </div>
+                                    <div id="extra5" class="extra-item">
+                                        Interior Windows
+                                        <span class="float-right">30 Mins</span>
+                                    </div>
+                                    <hr>
+                                    <h6 class="card-subtitle font-weight-bold">
+                                        Total Service Time
+                                        <span class="float-right"><span id="total-time">3</span> Hrs</span>
+                                    </h6>
+                                </li>
+
+                                <li class="list-group-item pt-4 pb-4">
+                                    <h6 class="card-subtitle">
+                                        Per cleaning
+                                        <span class="float-right"><span id="sub-total">0.00</span> €</span>
+                                    </h6>
+                                </li>
+                                <li class="list-group-item pt-4 pb-4">
+                                    <h5 class="card-subtitle d-flex align-items-end justify-content-between">
+                                        <span class="link-clr font-weight-bold">Total Payment</span>
+                                        <span class="link-clr total-payment"><span id="total-cost">0.00</span> €</span>
+                                    </h5>
+                                </li>
+                            </ul>
+
+                            <div class="card-footer text-muted">
+                                <i class="fal fa-smile"></i>
+                                <a href="#" class="link-clr">See What is always included</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col">
+                        <div class="text-center font-weight-bold pb-2">Questions?</div>
+                        <div class="accordion" id="accordionExample">
+                            <div class="">
+                                <div class="" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left d-flex collapsed flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseOne"
+                                                aria-expanded="false" aria-controls="collapseOne">
+                                            <img src="~/assets/keyboard-right-arrow-button.png"
+                                                 alt="">
+                                            <p class="m-0 pl-2">What includes in a cleaning?</p>
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Some placeholder content for the first accordion panel. This panel is shown
+                                        by default
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="">
+                                <div class="" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed d-flex flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseTwo"
+                                                aria-expanded="false" aria-controls="collapseTwo">
+                                            <img src="~/assets/keyboard-right-arrow-button.png"
+                                                 alt="">
+                                            <p class="m-0 pl-2">
+                                                Which Helperland professional will come to my place?
+                                            </p>
+
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        Some placeholder content for the second accordion panel. This panel is
+                                        hidden by default.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="">
+                                <div class="" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <button class="btn btn-link btn-block text-left collapsed d-flex flex-row align-items-center que-link"
+                                                type="button" data-toggle="collapse" data-target="#collapseThree"
+                                                aria-expanded="false" aria-controls="collapseThree">
+                                            <img src="~/assets/keyboard-right-arrow-button.png"
+                                                 alt="">
+                                            <p class="m-0 pl-2">Can I skip or reschedule booking?</p>
+
+                                        </button>
+                                    </h2>
+                                </div>
+                                <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                     data-parent="#accordionExample">
+                                    <div class="card-body">
+                                        And lastly, the placeholder content for the third and final accordion panel.
+                                        This panel is hidden by default.
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</Section>
+
+<div style="flex-grow: 1;"></div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function () {
+
+            $(document).on('click', '#pills-details-tab',function () {
+                $("#pills-details").html("Loading Addresses...")
+            .load('@Url.Action("BookServiceAddress", "Home")');
+            });
+
+
+            $(document).on('click', '#contodetail', function () {
+                $('#pills-details-tab').removeClass('disabled');
+                $('#pills-details-tab')[0].click();
+            });
+
+            $(document).on('click','#contopay',function () {
+                $('#pills-payment-tab').removeClass('disabled');
+                $('#pills-payment-tab')[0].click();
+            });
+
+            $(document).on('click', "#add-new-address-btn-tab4",function () {
+                var is_hide = $("#add-new-address-block-tab4").attr("aria-hidden");
+                var postalcode = $('#postalcode1').val();
+
+                if (is_hide == "true") {
+                    $('#inputPostalCode').val(postalcode);
+                    $("#add-new-address-block-tab4").attr("style", "display:block");
+                    $("#add-new-address-block-tab4").attr("aria-hidden", "false");
+                }
+                else {
+                    $("#add-new-address-block-tab4").attr("style", "display:none");
+                    $("#add-new-address-block-tab4").attr("aria-hidden", "true");
+                }
+            });
+
+            var price = 50;
+            var totalTime = 3;
+            $('#total-cost').html(price);
+            $('#sub-total').html(price);
+            $(document).on('click', '.extra-checkbox', function () {
+                var id = $(this).attr('target');
+                if ($(this).is(':checked')) {
+                    $('#' + id).css('display', 'block');
+                    price = price + 9;
+                    totalTime = parseFloat(totalTime) + 0.5;
+                }
+                else {
+                    $('#' + id).css('display', 'none');
+                    price = price - 9;
+                    totalTime = parseFloat(totalTime) - 0.5;
+                }
+                $('#sub-total').html(price);
+                $('#total-cost').html(price);
+                $('#total-time').html(totalTime);
+            });
+
+            $(document).on('click', '#save-address-btn', function () {
+                var address = {};
+                address.AddressLine1 = $('#inputStreetName').val();
+                address.AddressLine2 = $('#inputHouseName').val();
+                address.PostalCode = $('#inputPostalCode').val();
+                address.city = $('#inputCity').val();
+                address.mobile = $('#inputMobile').val();
+
+                $.ajax({
+                    url: '@Url.Action("AddAddress","Home")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(address),
+                    success: function (res) {
+                        if (res == true) {
+                            $("#pills-details").html("Updating Address...").load('@Url.Action("BookServiceAddress", "Home")');
+                        }
+                        else if (res == false) {
+                            alert("Something went wrong while adding address..");
+                        }
+                    },
+                    error: function(err) {
+                        console.log('error in ajax');
+                    }
+                });
+            });
+
+            $(document).on('click', '#reset-add-address-form', function () {
+                $('#add-address-form')[0].reset();
+                $("#add-new-address-block-tab4").attr("style", "display:none");
+                $("#add-new-address-block-tab4").attr("aria-hidden", "true");
+            });
+
+            $('#check-postal-code').on('click', function () {
+                var postalcode = $('#postalcode1').val();
+                $.ajax({
+                    url: '@Url.Action("ValidatePostalCode","Home")',
+                    type: 'post',
+                    data: {
+                        postalcode: $('#postalcode1').val()
+                    },
+                    success: function (res) {
+                        if (res == 'true') {
+                            $('#pills-schedule-tab').removeClass('disabled');
+                            $('#pills-schedule-tab')[0].click();
+                        }
+                        else if (res == 'false') {
+                            $('#invalid-postal-code-msg').html("Please enter valid Postal Code").fadeOut(2000);
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+
+            $(document).on('click', '#complete-booking-btn', function () {
+                var book = {};
+                book.ServiceStartDate = $('#date-schedule-tab').val();
+                book.ZipCode = $('#postalcode1').val();
+                book.ServiceHours = parseFloat($('#total-time').text());
+                book.SubTotal = parseFloat($('#sub-total').text());
+                book.TotalCost = parseFloat($('#total-cost').text());
+                book.HasPets = $('#Check-for-pets').is(':checked');
+                book.AddressId = parseInt($('.select-service-address:checked').val());
+                console.log(book);
+                $.ajax({
+                    url: '@Url.Action("BookServiceRequest", "Home")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(book),
+                    success: function (res) {
+                        console.log(res);
+                        if (res == true) {
+                            console.log("true");
+                        }
+                        else if (res == false) {
+                            alert("Something went wrong while adding address..");
+                        }
+                    },
+                    error: function(err) {
+                        console.log('error in ajax');
+                    }
+                });
+            });
+
+
+
+        });
+
+
+    </script>
+}
