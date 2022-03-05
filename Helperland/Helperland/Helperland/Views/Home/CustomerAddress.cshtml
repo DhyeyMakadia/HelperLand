@@ -1,0 +1,43 @@
+﻿@using Helperland.Models;
+@model IEnumerable<UserAddress>
+@{
+    ViewData["Title"] = "CustomerAddress";
+    Layout = null;
+}
+
+<table class="table mb-0 mt-4" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th class="th-sm">Addresses</th>
+            <th class="th-sm">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div>
+                            <b>Address</b>
+                            <span>@item.AddressLine1, @item.AddressLine2, @item.City @item.PostalCode, @item.State</span>
+                        </div>
+                        <div>
+                            <b>Phone Number</b>
+                            <span>@item.Mobile</span>
+                        </div>
+                    </td>
+                    <td>
+                        <a class="editAddress" data-id="@item.AddressId">
+                            <img src="~/assets/edit-icon.png" alt="">
+                        </a>
+                        <a class="deleteAddress" data-id="@item.AddressId" data-target="#DeleteAddressModal" data-toggle="modal"><img src="~/assets/delete-icon.png" alt=""></a>
+                    </td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+<button class="btn new-address-btn editAddress" data-id="0">Add New Address</button>

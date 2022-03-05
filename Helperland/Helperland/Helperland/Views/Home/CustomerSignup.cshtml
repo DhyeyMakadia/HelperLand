@@ -29,30 +29,35 @@
                     <div class="form-group col-md-6">
                         <input type="text" asp-for="FirstName" class="form-control first-name" id="inputFirstName"
                                placeholder="First Name">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <input type="text" asp-for="LastName" class="form-control last-name" id="inputLastName"
                                placeholder="Last Name">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-6 email-m">
                         <input type="email" asp-for="Email" class="form-control email" id="inputEmail" placeholder="Email address">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="col-md-6 MobileNumber-m">
-                        <div class="input-group form-group">
+                        <div class="input-group">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">+49</div>
+                                <div class="input-group-text">+46</div>
                             </div>
-                            <input type="tel" asp-for="Mobile" class="form-control MobileNumber" id="inlineFormInputGroupUsername"
-                                   placeholder="Mobile Number">
+                            <input type="tel" asp-for="Mobile" class="form-control custom-h"
+                                   placeholder="Phone Number">
                         </div>
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-row mx-auto">
                     <div class="form-group col-md-6">
                         <input type="password" asp-for="Password" class="form-control password1" id="inputpassword1"
                                placeholder="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group col-md-6">
                         <input type="password" asp-for="ConfirmPassword" class="form-control password2" id="inputpassword2"
@@ -60,7 +65,8 @@
                         <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                     </div>
                 </div>
-                <span class="text-success">@ViewBag.Msg</span>
+                <span class="text-success">@TempData["SuccessMsg"]</span>
+                <span class="text-danger">@TempData["ErrorMsg"]</span>
                 <div class="form-row mx-auto pl-1">
                     <div class="form-group">
                         <div class="form-check">

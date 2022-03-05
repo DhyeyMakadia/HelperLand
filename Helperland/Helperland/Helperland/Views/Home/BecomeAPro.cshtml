@@ -24,14 +24,17 @@
                             <div class="form-group">
                                 <input type="text" asp-for="FirstName" class="form-control custom-h" id="InputFirstName"
                                        placeholder="First Name">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="text" asp-for="LastName" class="form-control custom-h" id="InputLastName"
                                        placeholder="Last Name">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="email" asp-for="Email" class="form-control custom-h" id="InputEmail"
                                        placeholder="Email Address">
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <div class="input-group mb-2">
@@ -41,10 +44,12 @@
                                     <input type="tel" asp-for="Mobile" class="form-control custom-h" id="inlineFormInputGroup"
                                            placeholder="Phone Number">
                                 </div>
+                                <span asp-validation-for="Mobile" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="password" asp-for="Password" name="Password" class="form-control custom-h" id="InputPassword1"
                                        placeholder="Password">
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
                             <div class="form-group">
                                 <input type="password" asp-for="ConfirmPassword" class="form-control custom-h" id="InputPassword2"
@@ -67,6 +72,8 @@
                                     </a> & <a href="#">privacy policy</a>
                                 </label>
                             </div>
+                            <span class="text-success">@TempData["SuccessMsg"]</span>
+                            <span class="text-danger">@TempData["ErrorMsg"]</span>
                             <div class="form-group mt-3 captcha-img">
                                 <img src="~/assets/layer-20.png" alt="">
                             </div>

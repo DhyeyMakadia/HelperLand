@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -21,10 +22,15 @@ namespace Helperland.Models
         }
 
         public int UserId { get; set; }
+
+        [Required(ErrorMessage = "Required Field!")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Required Field!")]
         public string LastName { get; set; }
 
         [EmailAddress]
+        [Required(ErrorMessage = "Required Field!")]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]
@@ -36,7 +42,13 @@ namespace Helperland.Models
         [Compare("Password",ErrorMessage ="Password not matched!")]
         public  string ConfirmPassword { get; set; }
 
+        [NotMapped, DataType(DataType.Password)]
+        public string NewPassword { get; set; }
+
+        [RegularExpression(@"^[5-9]{1}[0-9]{9}$",ErrorMessage ="Please Enter a Valid 10 digit Mobile Number")]
+        [Required(ErrorMessage = "Required Field!")]
         public string Mobile { get; set; }
+
         public int UserTypeId { get; set; }
         public int? Gender { get; set; }
         public DateTime? DateOfBirth { get; set; }

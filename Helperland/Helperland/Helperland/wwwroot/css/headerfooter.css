@@ -1,0 +1,348 @@
+
+/***************************************
+             Home HEADER
+***************************************/
+#HomeHeader{
+    z-index: 9998;
+}
+
+#HomeHeader #navbar{
+    transition: all 1000ms ease;
+}
+
+#HomeHeader .navbar .navbar-nav .nav-item:not(:last-child){
+    margin-left:11px;
+}
+
+#HomeHeader .navbar .nav-link{
+    font-size: 17px;
+}
+
+#HomeHeader .navbar .navbar-nav>.nav-item>button{
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    border-radius: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#HomeHeader .navbar .btn-book-cleaner{
+    font-size: 17px;
+    width: 191px;
+}
+
+#HomeHeader .navbar .btn-login{
+    width: 97px;
+    font-size: 16px;
+    margin-left: 9px;
+}
+
+#HomeHeader .navbar .btn-become-helper{
+    font-size: 16px;
+    width: 191px;
+    margin-right: 11px;
+}
+
+#HomeHeader .navbar .lang-select .nav-link::after{
+    content: url("../assets/sp-arrow-down.png");
+    background-size: cover;
+    object-fit: contain;
+    width: 12px;
+    height: 7px;
+}
+
+#HomeHeader #navbar .notify-nav {
+    position: relative;
+    width: 71px;
+    border-left: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+    text-align: center;
+    position: relative;
+}
+
+#HomeHeader #navbar .notify-nav::after {
+    content: '2';
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+
+#HomeHeader #navbar .notify-out {
+    display: none;
+}
+
+#HomeHeader #navbar .profile-nav {
+    padding-left: 18px;
+}
+
+#HomeHeader #navbar .profile-nav .nav-link {
+    padding-left: 0 !important;
+}
+
+#HomeHeader #navbar.active{
+    background-color: #525252 !important;
+    opacity: 90%;
+    transition: all .5s ease;
+}
+
+#HomeHeader button[aria-expanded='true']{
+    background-color: #4F4F4F !important;
+}
+
+/***************************************
+            Public HEADER
+***************************************/
+#PublicHeader{
+    z-index: 9998;
+}
+
+#PublicHeader #navbar{
+    background-color: #525252 !important;
+    min-height:80px;
+}
+
+#PublicHeader .navbar .nav-logo img{
+    width: 73px;
+    height: 54px;
+}
+
+#PublicHeader .navbar .nav-item button{
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF80;
+}
+
+#PublicHeader .navbar .navbar-nav li button,.navbar .navbar-nav li a{
+    font-size: 17px;
+} 
+
+#PublicHeader .navbar .book-now-faq{
+    background-color: #29626D;
+    width: 111px;
+    margin-right: 10px;
+}
+
+#PublicHeader .navbar .prices-faq{
+    width: 161px;
+    margin-right: 27px;
+}
+
+#PublicHeader .navbar .blog-faq{
+    margin: 0 20px;
+}
+
+#PublicHeader .navbar .contact-faq{
+    margin-right: 35px;
+}
+
+#PublicHeader .navbar .login-faq{
+    background-color: #29626D;
+    width: 83px;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+#PublicHeader .navbar .become-helper-faq{
+    background-color: #29626D;
+    width: 161px;
+    font-size: 16px;
+}
+
+#PublicHeader #navbar .notify-nav {
+    position: relative;
+    width: 71px;
+    border-left: 1px solid #E1E1E1;
+    border-right: 1px solid #E1E1E1;
+    text-align: center;
+    position: relative;
+}
+
+#PublicHeader #navbar .notify-nav::after {
+    content: '2';
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+    color: white;
+    font-size: 13px;
+}
+
+#PublicHeader #navbar .notify-out {
+    display: none;
+}
+
+#PublicHeader #navbar .profile-nav {
+    padding-left: 18px;
+}
+
+#PublicHeader #navbar .profile-nav .nav-link {
+    padding-left: 0 !important;
+}
+
+#PublicHeader #navbar.active{
+    opacity: 90%;
+}
+
+/***************************************
+             Footer
+***************************************/
+.page-footer .footer-container{
+    min-height: 131px;
+}
+
+.page-footer .footer-content{
+    margin: 0 123px 0 115px;
+}
+
+.page-footer .footer-logo img{
+    width: 120px;
+    height: 92px;
+    margin-top:20px ;
+}
+
+.page-footer .f-link{
+    color: #F1F1F1;
+    font-size: 14px;
+}
+
+.page-footer .footer-content .footer-social .social-fb{
+    width: 9px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.page-footer .footer-content .footer-social .social-ig{
+    width: 20px;
+    height: 20px;
+}
+
+.page-footer .container:first-of-type{
+    background-color: #111111;
+}
+
+.page-footer .footer-copyright-public{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-public-txt{
+    color: #9BA0A3;
+}
+
+.page-footer .footer-copyright-public-txt a{
+    color: #9BA0A3;
+}
+
+/* Home Footer changes */
+.page-footer .footer-copyright-home{
+    background-color: #292929;
+    font-size: 14px;
+}
+
+.page-footer .footer-copyright-home-txt{
+    color: #F1F1F1;
+}
+
+.page-footer .button-ok{
+    right: 0;
+    top: 10px;
+}
+
+.page-footer .footer-copyright-home button{
+    background-color: #EED507 !important;
+    width: 99px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+/***************************************
+            Media Queries
+***************************************/
+@media screen and (max-width:1200px) {
+    /* HomeHeader */
+    #HomeHeader .navbar .navbar-nav .nav-item:not(:last-child){
+        margin-left:0px;
+        margin-bottom: 10px;
+    }
+
+    #HomeHeader .navbar .btn-login{
+        margin-left: 0px;
+    }
+    
+    #HomeHeader .navbar .btn-become-helper{
+        margin-right: 0px;
+    }
+
+    /* PublicHeader */
+    #PublicHeader .navbar .book-now-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    #PublicHeader .navbar .prices-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+    
+    #PublicHeader .navbar .blog-faq{
+        margin: 10px 0;
+    }
+    
+    #PublicHeader .navbar .contact-faq{
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    #PublicHeader .navbar .login-faq{
+        margin-right: 0;
+        margin-bottom: 10px !important;
+    }
+
+    /* -----Footer----- */
+    .page-footer .footer-content{
+        margin: 0;
+    }
+}
+
+@media screen and (max-width:1024px) {
+    /* ----Footer------ */
+    .page-footer .footer-content{
+        flex-direction: column;
+    }
+
+    .page-footer .footer-content{
+        padding: 30px 0;
+    }
+
+    /* ----Home-Footer---- */
+    .page-footer .button-ok{
+        position: relative !important;
+    }
+
+    .page-footer .footer-copyright-home-txt{
+        margin-bottom: 10px;
+    }
+
+    .page-footer .footer-copyright-home{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .page-footer .collapse:not(.show){
+        display: none !important;
+    }
+}

@@ -1,0 +1,297 @@
+﻿@model List<Helperland.Models.ServiceRequest>
+@{
+    ViewData["Title"] = "Customer Dashboard";
+}
+
+@section Styles{
+    <link href="~/css/servicehistory.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+<partial name="~/Views/Shared/_MobileMenu.cshtml" />
+
+
+<!-- Modals -->
+
+<div class="modal fade" id="ServiceHistoryDashModal" tabindex="-1" role="dialog"
+     aria-labelledby="ServiceHistoryDashModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Reschedule Service Modal -->
+<div class="modal fade" id="ServiceHistoryRescheduleModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Reschedule Service Request</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        Select New Date and Time
+                    </div>
+                    <div class="col-6">
+                        <input type="date" class="w-100 form-control">
+                    </div>
+                    <div class="col-6">
+                        <input type="time" class="form-control time" id="rescheduletime" />
+                    </div>
+                    <div class="col-12 text-center mt-2 reschedule-update">
+                        <button>Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Cancel Service Modal -->
+<div class="modal fade" id="ServiceHistoryCancelModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Cancel Service Request</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-12 mb-2">
+                        Why do yo want to cancel the service request?
+                    </div>
+                    <div class="col-12">
+                        <textarea name="cancel-reason" id="cancel-request-reason" cols="43" rows="4"></textarea>
+                    </div>
+                    <div class="col-12 text-center mt-2 reschedule-cancel">
+                        <button id="cancel-servicerequest">Cancel Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="welcome-tab text-center">
+    <h1 class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></h1>
+</div>
+
+<div class="wrapper container-fluid">
+    <aside>
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-dashboard active" id="dashboard-tab" data-toggle="tab"
+                   href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab" asp-action="CustomerServiceHistory"
+                   role="tab" aria-controls="servicehistory"
+                   aria-selected="true">
+                    Service
+                    History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" data-toggle="tab"
+                   href="#serviceschedule" role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service
+                    Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-favpros" id="favpros-tab" asp-action="CustomerFavouritePros"
+                   role="tab" aria-controls="favpros" aria-selected="false">Favourite Pros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-invoices" id="invoices-tab" data-toggle="tab"
+                   href="#invoices" role="tab" aria-controls="invoices" aria-selected="false">Invoices</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-notifications" id="notifications-tab" data-toggle="tab"
+                   href="#notifications" role="tab" aria-controls="notifications"
+                   aria-selected="false">Notifications</a>
+            </li>
+
+            <li class="nav-item d-none">
+                <a class="nav-link sidebar-only navlink-mysettings" id="mysettings-tab"
+                   role="tab" aria-controls="mysettings"
+                   aria-selected="false"></a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Dashboard Tab -->
+            <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+                <div class="d-flex dashboard-head">
+                    <h2>Dashboard</h2>
+                    <Button onclick="location.href='@Url.Action("BookService", "Home")'">Add New Service Request</Button>
+                </div>
+                <table id="mysorttable1" class="table mb-0" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="th-sm service-id-dash">Service Id</th>
+                            <th class="th-sm">Service Date</th>
+                            <th class="th-sm price-head-dash text-center">Service Provider</th>
+                            <th class="th-sm status-payment-dash text-center">Payment</th>
+                            <th class="th-sm text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="SRDashModal" data-target="#ServiceHistoryDashModal" data-toggle="modall" SRid="@item.ServiceRequestId" style="cursor: pointer;">
+                                    @item.ServiceId
+                                </td>
+                                <td>
+                                    <img src="~/assets/calendar2.png" alt="">
+                                    <b>@item.ServiceStartDate</b>
+                                    <div>
+                                        <img src="~/assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service-provider-datatab">
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="price ml-xl-0 ml-2">@item.TotalCost <span>€</span></div>
+                                </td>
+                                <td class="text-center align-middle d-flex justify-content-center align-items-center">
+                                    <button class="res-dash-btn mr-1" data-target="#ServiceHistoryRescheduleModal"
+                                            data-toggle="modal">
+                                        Reschedule
+                                    </button>
+                                    <button class="cl-dash-btn CancelServiceRequest" data-target="#ServiceHistoryCancelModal" SRid="@item.ServiceRequestId"
+                                            data-toggle="modal">
+                                        Cancel
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Service Schedule Tab -->
+            <div class="tab-pane fade" id="serviceschedule" role="tabpanel" aria-labelledby="serviceschedule-tab">
+                Service
+                Schedule
+            </div>
+
+            <!-- invoices Tab -->
+            <div class="tab-pane fade" id="invoices" role="tabpanel" aria-labelledby="invoices-tab">
+                Invoices
+            </div>
+
+            <!-- Notification -->
+            <div class="tab-pane fade" id="notifications" role="tabpanel" aria-labelledby="notifications-tab">
+                Notifications
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#mysorttable1').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2, 4]
+                }]
+            });
+        });
+    </script>
+
+    <script>
+        $(".SRDashModal").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("SRDashModal", "Home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    id: parseInt($(this).attr("SRid"))
+                },
+                success: function (res) {
+                    $("#ServiceHistoryDashModal .modal-body").html(res);
+                    $("#ServiceHistoryDashModal").modal();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+
+        var srid;
+        $(document).on("click",".CancelServiceRequest",function () {
+            srid = parseInt($(this).attr("SRid"));
+            console.log(srid);
+        });
+
+        $("#cancel-servicerequest").click(function () {
+            var comment = $("#cancel-request-reason").val();
+                console.log(comment);
+
+            $.ajax({
+                url: '@Url.Action("CustomerDashboardCancelRequest", "Home")',
+                type: 'post',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({
+                    ServiceRequestId: srid,
+                    Comments: $("#cancel-request-reason").val()
+                }),
+                success: function (res) {
+                    console.log(res);
+                    $("#ServiceHistoryCancelModal").modal("hide");
+                    alert("Your Service Request has been Cancelled.");
+                    location.reload();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+    </script>
+
+}

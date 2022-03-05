@@ -163,4 +163,12 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\bin\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\ResetPassword.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\BookService.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\BookServiceAddress.cshtml.g.cs
-E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_BookingSuccessModal.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerDashboard.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_MobileMenu.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerSettings.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerServiceHistory.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerFavouritePros.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.AssemblyReference.cache
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SRDashModal.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddress.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddressAddOrEdit.cshtml.g.cs

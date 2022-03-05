@@ -1,0 +1,60 @@
+﻿@model Helperland.Models.UserAddress
+@{
+    ViewData["Title"] = "CustomerAddressAddOrEdit";
+    Layout = null;
+}
+
+<form id="AddOrEditAddress">
+
+    <div class="form-row mx-auto">
+        <input type="hidden" asp-for="AddressId" />
+        <input type="hidden" asp-for="UserId" />
+        <input type="hidden" asp-for="State" />
+        <input type="hidden" asp-for="IsDefault" />
+        <input type="hidden" asp-for="IsDeleted" />
+        <input type="hidden" asp-for="Email" />
+
+        <div class="form-group col-md-6">
+            <label for="inputStreet">Street Name</label>
+            <input type="text" class="form-control" id="inputStreetName" placeholder="Street Name"
+                   asp-for="AddressLine1">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputHouse">House Name</label>
+            <input type="text" class="form-control" id="inputHouseName" placeholder="House Name"
+                   asp-for="AddressLine2">
+        </div>
+    </div>
+    <div class="form-row mx-auto">
+        <div class="form-group col-md-6">
+            <label for="inputPostal">Postal Code</label>
+            <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code"
+                   asp-for="PostalCode">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" placeholder="City"
+                   asp-for="City">
+        </div>
+    </div>
+    <div class="form-row mx-auto">
+        <div class="col-md-6">
+            <label for="inputMobileNum">Mobile Number</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">+49</div>
+                </div>
+                <input type="tel" class="form-control MobileNumber"
+                       id="EditMobileNumber" placeholder="Mobile Number"
+                       asp-for="Mobile">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row mx-auto">
+        <div class="form-group w-100">
+            <button type="button" class="btn btn-primary submit-btn mx-auto" id="AddOrEditAddressBtn">Save</button>
+        </div>
+    </div>
+
+</form>

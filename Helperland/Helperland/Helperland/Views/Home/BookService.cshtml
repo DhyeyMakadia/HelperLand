@@ -7,7 +7,53 @@
 }
 
 <partial name="~/Views/Shared/_PublicHeader.cshtml" />
-<partial name="~/Views/Shared/_BookingSuccessModal.cshtml" />
+
+<!-- Modals -->
+<div class="modal fade" id="booking-success-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center justify-content-center flex-column">
+                    <div class="success-symbol d-flex align-items-center justify-content-center">
+                        <img src="~/assets/ic-check.png" alt="">
+                    </div>
+                    <div class="text-center mt-3">
+                        <h5>Booking has been successfully submitted</h5>
+                    </div>
+                    <div class="mt-3 mb-2">Service Request id: <span id="service-id">8848</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="booking-failed-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex align-items-center justify-content-center flex-column">
+                    <div class="failed-symbol d-flex align-items-center justify-content-center">
+                        <img src="~/assets/close-white.png" alt="">
+                    </div>
+                    <div class="text-center mt-3">
+                        <h5>Booking Failed</h5>
+                    </div>
+                    <div class="mt-3 mb-2 text-center">Contact Customer Care for further assistance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <Section id="book-service" class="book-service">
     <div class="container">
@@ -85,30 +131,7 @@
                                                             class="form-control datepicker1">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <select class="form-control">
-                                                        <option>1:00 AM</option>
-                                                        <option>2:00 AM</option>
-                                                        <option>3:00 AM</option>
-                                                        <option>4:00 AM</option>
-                                                        <option>5:00 AM</option>
-                                                        <option>6:00 AM</option>
-                                                        <option>7:00 AM</option>
-                                                        <option>9:00 AM</option>
-                                                        <option>10:00 AM</option>
-                                                        <option>11:00 AM</option>
-                                                        <option>12:00 Am</option>
-                                                        <option selected>1:00 PM</option>
-                                                        <option>2:00 PM</option>
-                                                        <option>3:00 PM</option>
-                                                        <option>4:00 PM</option>
-                                                        <option>5:00 PM</option>
-                                                        <option>6:00 PM</option>
-                                                        <option>7:00 PM</option>
-                                                        <option>9:00 PM</option>
-                                                        <option>10:00 PM</option>
-                                                        <option>11:00 PM</option>
-                                                        <option>12:00 PM</option>
-                                                    </select>
+                                                    <input type="time" id="time" class="form-control time"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +368,7 @@
                             <hr>
                             <div class="float-right">
                                 <button type="button" class="btn complete-booking-btn"
-                                        data-target="#booking-success-modal" data-toggle="modal" id="complete-booking-btn">
+                                         id="complete-booking-btn" disabled>
                                     Complete
                                     Booking
                                 </button>
@@ -536,7 +559,7 @@
                 var postalcode = $('#postalcode1').val();
 
                 if (is_hide == "true") {
-                    $('#inputPostalCode').val(postalcode);
+                    $('#inputPostalCode').val(postalcode); //Set Postal Code
                     $("#add-new-address-block-tab4").attr("style", "display:block");
                     $("#add-new-address-block-tab4").attr("aria-hidden", "false");
                 }
@@ -615,7 +638,7 @@
                             $('#pills-schedule-tab')[0].click();
                         }
                         else if (res == 'false') {
-                            $('#invalid-postal-code-msg').html("Please enter valid Postal Code").fadeOut(2000);
+                            $('#invalid-postal-code-msg').html("Please enter valid Postal Code");
                         }
                     },
                     error: function (err) {
@@ -624,6 +647,13 @@
                 });
             });
 
+            $('#Check-for-terms').click(function () {
+                if ($(this).is(':checked')) {
+                    $('#complete-booking-btn').removeAttr('disabled');
+                } else {
+                    $('#complete-booking-btn').attr('disabled', 'disabled');
+                }
+            });
 
             $(document).on('click', '#complete-booking-btn', function () {
                 var book = {};
@@ -632,8 +662,17 @@
                 book.ServiceHours = parseFloat($('#total-time').text());
                 book.SubTotal = parseFloat($('#sub-total').text());
                 book.TotalCost = parseFloat($('#total-cost').text());
+                book.Comments = $('#Commentstb').val();
                 book.HasPets = $('#Check-for-pets').is(':checked');
                 book.AddressId = parseInt($('.select-service-address:checked').val());
+
+                extras = [];
+                extras[0] = $("#Check1").is(":checked");
+                extras[1] = $("#Check2").is(":checked");
+                extras[2] = $("#Check3").is(":checked");
+                extras[3] = $("#Check4").is(":checked");
+                extras[4] = $("#Check5").is(":checked");
+                book.Extras = extras;
                 console.log(book);
                 $.ajax({
                     url: '@Url.Action("BookServiceRequest", "Home")',
@@ -643,15 +682,18 @@
                     data: JSON.stringify(book),
                     success: function (res) {
                         console.log(res);
-                        if (res == true) {
+                        if (res != "") {
                             console.log("true");
+                            $("#service-id").html(res);
+                            $("#booking-success-modal").modal();
                         }
-                        else if (res == false) {
-                            alert("Something went wrong while adding address..");
+                        else if (res == "") {
+                            $("#booking-failed-modal").modal();
                         }
                     },
                     error: function(err) {
-                        console.log('error in ajax');
+                        console.log('error..ajax failed to work');
+                        alert("Error....Something went wrong while inserting data");
                     }
                 });
             });

@@ -1,5 +1,5 @@
 ﻿
-<header class="position-fixed w-100">
+<header class="position-fixed w-100" id="HomeHeader">
     <nav id="navbar" class="navbar navbar-expand-xl navbar-dark bg-transparent">
         <a class="navbar-brand nav-logo" asp-controller="Home" asp-action="Index">
             <img id="nav-logo" src="~/assets/logo.png" alt="">
@@ -19,7 +19,7 @@
                     <a class="nav-link" asp-controller="Home" asp-action="Prices">Prices</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Our Guarantee</a>
+                    <a class="nav-link" asp-action="SRDashModal">Our Guarantee</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Blog</a>
@@ -46,10 +46,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Welcome,<div>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")</div></a>
                                 <div class="dropdown-divider"></div>
-                                <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
-                                <a id="dd-settings" class="dropdown-item" href="#mysettings" data-toggle="tab">
-                                    My
-                                    Settings
+                                <a class="dropdown-item" asp-action="CustomerDashboard">My Dashboard</a>
+                                <a class="dropdown-item" asp-action="CustomerSettings">
+                                    My Settings
                                 </a>
                                 <a class="dropdown-item" asp-action="Logout">Logout</a>
                             </div>

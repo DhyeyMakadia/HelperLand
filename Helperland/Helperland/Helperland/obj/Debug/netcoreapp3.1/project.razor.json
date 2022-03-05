@@ -14407,6 +14407,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerDashboard.cshtml",
+      "TargetPath": "Views\\Home\\CustomerDashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_LoginModal.cshtml",
       "TargetPath": "Views\\Shared\\_LoginModal.cshtml",
       "FileKind": "mvc"
@@ -14459,11 +14464,6 @@
     {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\BookServiceAddress.cshtml",
       "TargetPath": "Views\\Home\\BookServiceAddress.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_BookingSuccessModal.cshtml",
-      "TargetPath": "Views\\Shared\\_BookingSuccessModal.cshtml",
       "FileKind": "mvc"
     },
     {

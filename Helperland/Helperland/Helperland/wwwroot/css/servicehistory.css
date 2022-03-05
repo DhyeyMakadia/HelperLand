@@ -89,86 +89,6 @@ a,a:hover{
     border: none;
     width: 80px;
 }
-/***************************************
-              HEADER
-***************************************/
-header{
-    height: 80px;
-}
-
-#navbar{
-    background-color: #525252 !important;
-
-}
-
-#navbar .nav-logo img{
-    width: 73px;
-    height: 54px;
-}
-
-#navbar .navbar-nav li button,.navbar .navbar-nav li a{
-    font-size: 17px;
-} 
-
-#navbar .book-now-nav{
-    background-color: #29626D;
-    width: 111px;
-    margin-right: 28px;
-    height: 40px;
-    border-radius: 20px;
-    border: 1px solid #FFFFFF80;
-}
-
-.navbar-expand-xl .navbar-nav .prices-nav{
-    padding: 0 41px 0 0 !important;
-}
-
-#navbar .blog-nav{
-    margin: 0 20px;
-}
-
-#navbar .contact-nav{
-    margin-right: 30px;
-}
-
-#navbar .notify-nav{
-    position: relative;
-    width: 71px;
-    border-left:1px solid #E1E1E1;
-    border-right:1px solid #E1E1E1;
-    text-align: center;
-    position: relative;
-}
-
-#navbar .notify-nav::after{
-    content: '2';
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    font-size: 13px;
-}
-
-#navbar .notify-out{
-    display: none;
-}
-
-#navbar .profile-nav{
-    padding-left: 18px;
-}
-
-#navbar .profile-nav .nav-link{
-    padding-left: 0 !important;
-}
-
-#navbar.active{
-    opacity: 90%;
-}
 
 /***************************************
              Welcome-Tab
@@ -180,6 +100,7 @@ header{
     height: 120px;
     background-color: #F9F9F9;
     margin-bottom: 31px;
+    margin-top: 80px;
 }
 
 .welcome-tab .greet{
@@ -205,7 +126,7 @@ aside .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
     font-size: 18px !important;
     height: 55px;
     line-height: 55px;
-    color: white;
+    color: white !important;
     padding: 0 0 0 15px;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
 }
@@ -466,14 +387,14 @@ bottom: 13.5px !important;
 
 #mysettings .nav-item .nav-link{
     background-color: #FFFFFF;
-    color: #646464;
+    color: #646464 !important;
     font-weight: bold;
     padding: 0 20px;
     border-bottom:1px solid #808080;
 }
 
 #mysettings .nav-item .nav-link.active{
-    color: #1D7A8C;
+    color: #1D7A8C !important;
     border-bottom: 3px solid #1D7A8C;
 }
 
@@ -514,69 +435,22 @@ bottom: 13.5px !important;
     height: 34px;
     width: 80px;
 }
-/***************************************
-              FOOTER
-***************************************/
-.page-footer .footer-container{
-    min-height: 131px;
-}
-
-.page-footer .footer-content{
-    margin: 0 123px 0 115px;
-}
-
-.page-footer .footer-logo img{
-    width: 120px;
-    height: 92px;
-    margin-top:20px ;
-}
-
-.page-footer .f-link{
-    color: #F1F1F1;
-    font-size: 14px;
-}
-
-.page-footer .footer-content .footer-social .social-fb{
-    width: 9px;
-    height: 18px;
-    margin-right: 20px;
-}
-
-.page-footer .footer-content .footer-social .social-ig{
-    width: 20px;
-    height: 20px;
-}
-
-.page-footer .container:first-of-type{
-    background-color: #111111;
-}
-
-.page-footer .footer-copyright{
-    background-color: #292929;
-    font-size: 14px;
-}
-
-.page-footer .footer-copyright-txt{
-    color: #9BA0A3;
-}
-
-.page-footer .footer-copyright-txt a{
-    color: #9BA0A3;
-}
 
 /***************************************
             Mobile-Navbar
 ***************************************/
 .modal.right .modal-dialog {
-	position:fixed;
-	right: 0;
-	margin: auto;
-	width: 320px;
-	height: 100%;
-	-webkit-transform: translate3d(0%, 0, 0);
-	-ms-transform: translate3d(0%, 0, 0);
-	-o-transform: translate3d(0%, 0, 0);
-	transform: translate3d(0%, 0, 0);
+    position: fixed;
+    right: 0;
+    margin: auto;
+    width: 320px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+
+    z-index:9999;
 }
 
 .modal.right .modal-content {
@@ -616,28 +490,13 @@ bottom: 13.5px !important;
 }
 
 @media screen and (max-width:1199px) {
-    /* -----Header----- */
-    #navbar .blog-nav{
-        margin: 10px 0;
-    }
-    
-    #navbar .contact-nav{
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    #navbar .notify-out{
-        display: block;
-    }
-
     /* -----Sidebar-&-Content----- */
     aside{
         display: none !important;
     }
 
-    /* -----Footer----- */
-    .page-footer .footer-content{
-        margin: 0;
+    .table-content .favpros-table tbody {
+        justify-content: center;
     }
 }
 
@@ -660,7 +519,7 @@ bottom: 13.5px !important;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        min-height: 280px;
+        height: auto;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
@@ -673,7 +532,7 @@ bottom: 13.5px !important;
         display: flex;
         flex-direction: column;
         flex-wrap: nowrap;
-        min-height: 315px;
+        height: auto;
         max-width: 700px;
         margin-left: auto;
         margin-right: auto;
@@ -687,26 +546,26 @@ bottom: 13.5px !important;
         justify-content: flex-start;
     }
 
-    .table-content table tbody .badge{
+    .table-content table tbody .badge {
         margin-left: 10px;
     }
 
     .table-content table tbody tr td:nth-child(4){
         text-align: left;
     }
-
-
-    /* ----Footer------ */
-    .page-footer .footer-content{
-        flex-direction: column;
-    }
-
-    .page-footer .footer-content{
-        padding: 30px 0;
-    }
 }
 
-@media screen and (max-width:560px) {
+@media screen and (max-width:576px) {
+    #ServiceHistoryDashModal,
+    #ServiceHistoryRescheduleModal,
+    #ServiceHistoryCancelModal,
+    #RateSPModal,
+    #EditAddressModal,
+    #AddAddressModal{
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
     #mysettings .nav-tabs{
         border-bottom: none;
         flex-direction: column;

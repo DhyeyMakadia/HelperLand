@@ -68,104 +68,6 @@ section{
 }
 
 /***************************************
-                Header
-***************************************/
-header{
-    z-index: 9998;
-}
-
-#navbar{
-    transition: all 1000ms ease;
-}
-
-.navbar .navbar-nav .nav-item:not(:last-child){
-    margin-left:11px;
-}
-
-.navbar .nav-link{
-    font-size: 17px;
-}
-
-.navbar .navbar-nav>.nav-item>button{
-    background-color: transparent;
-    border: 1px solid #fff;
-    color: #fff;
-    border-radius: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-.navbar .btn-book-cleaner{
-    font-size: 17px;
-    width: 191px;
-}
-
-.navbar .btn-login{
-    width: 97px;
-    font-size: 16px;
-    margin-left: 9px;
-}
-
-.navbar .btn-become-helper{
-    font-size: 16px;
-    width: 191px;
-    margin-right: 11px;
-}
-
-.navbar .lang-select .nav-link::after{
-    content: url("../assets/sp-arrow-down.png");
-    background-size: cover;
-    object-fit: contain;
-    width: 12px;
-    height: 7px;
-}
-
-#navbar .notify-nav {
-    position: relative;
-    width: 71px;
-    border-left: 1px solid #E1E1E1;
-    border-right: 1px solid #E1E1E1;
-    text-align: center;
-    position: relative;
-}
-
-#navbar .notify-nav::after {
-    content: '2';
-    position: absolute;
-    top: 0px;
-    right: 10px;
-    display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: red;
-    color: white;
-    font-size: 13px;
-}
-
-#navbar .notify-out {
-    display: none;
-}
-
-#navbar .profile-nav {
-    padding-left: 18px;
-}
-
-#navbar .profile-nav .nav-link {
-    padding-left: 0 !important;
-}
-
-#navbar.active{
-    background-color: #525252 !important;
-    opacity: 90%;
-    transition: all .5s ease;
-}
-
-button[aria-expanded='true']{
-    background-color: #4F4F4F !important;
-}
-
-/***************************************
               Section-1
 ***************************************/
 #home{
@@ -454,79 +356,8 @@ button[aria-expanded='true']{
     border-radius: 20px;
 }
 
-/***************************************
-              Section-5
-***************************************/
-.page-footer .footer-container{
-    min-height: 131px;
-}
-
-.page-footer .footer-content    {
-    max-width: 1323px;
-}
-
-.page-footer .footer-logo img{
-    width: 120px;
-    height: 92px;
-    margin-top:20px ;
-}
-
-.page-footer .f-link{
-    color: #F1F1F1;
-    font-size: 14px;
-}
-
-.page-footer .footer-content .footer-social .social-fb{
-    width: 9px;
-    height: 18px;
-    margin-right: 20px;
-}
-
-.page-footer .footer-content .footer-social .social-ig{
-    width: 20px;
-    height: 20px;
-}
-
-.page-footer .container:first-of-type{
-    background-color: #111111;
-}
-
-.page-footer .footer-copyright{
-    background-color: #292929;
-    font-size: 14px;
-}
-
-.page-footer .footer-copyright-txt{
-    color: #F1F1F1;
-}
-
-.page-footer .button-ok{
-    right: 0;
-    top: 10px;
-}
-
-.page-footer .footer-copyright button{
-    background-color: #EED507 !important;
-    width: 99px;
-    height: 40px;
-    border-radius: 20px;
-}
-
 @media  screen and (max-width:1200px) {
     /* ----Section-1------ */
-    .navbar .navbar-nav .nav-item:not(:last-child){
-        margin-left:0px;
-        margin-bottom: 10px;
-    }
-
-    .navbar .btn-login{
-        margin-left: 0px;
-    }
-    
-    .navbar .btn-become-helper{
-        margin-right: 0px;
-    }
-
     #home .steps-arrow{
         visibility: hidden;
     }
@@ -588,26 +419,6 @@ button[aria-expanded='true']{
         line-height: 1.41;
         margin: 30px 0;
     }
-    
-    /* -----Section-5----- */
-    .page-footer .button-ok{
-        position: relative !important;
-    }
-
-    .page-footer .footer-copyright-txt{
-        margin-bottom: 10px;
-    }
-
-    .page-footer .footer-copyright{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .page-footer .collapse:not(.show){
-        display: none !important;
-    }
 }
 
 @media screen and (max-width:768px) {
@@ -629,12 +440,6 @@ button[aria-expanded='true']{
 
     #review .review-mail{
         margin: 0 0 10px 0;
-    }
-
-    /* ----Section-5------ */
-    .page-footer .footer-content{
-        flex-direction: column;
-        padding: 30px 0;
     }
 }
 

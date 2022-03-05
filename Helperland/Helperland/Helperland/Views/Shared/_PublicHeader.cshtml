@@ -2,12 +2,12 @@
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor 
 
 
-<header style="z-index:999999">
+<header id="PublicHeader">
     <nav id="navbar" class="navbar navbar-expand-xl navbar-dark text-white fixed-top">
         <a class="navbar-brand nav-logo" asp-controller="Home" asp-action="Index">
             <img src="~/assets/logo.png" width="175" height="130" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <button class="navbar-toggler" type="button" data-toggle="modal" data-target="#sidenavModal"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,10 +49,9 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="#">Welcome,<div>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")</div></a>
                                 <div class="dropdown-divider"></div>
-                                <a id="dd-dash" class="dropdown-item" href="#dashboard" data-toggle="tab">My Dashboard</a>
-                                <a id="dd-settings" class="dropdown-item" href="#mysettings" data-toggle="tab">
-                                    My
-                                    Settings
+                                <a class="dropdown-item" asp-action="CustomerDashboard">My Dashboard</a>
+                                <a class="dropdown-item" asp-action="CustomerSettings">
+                                    My Settings
                                 </a>
                                 <a class="dropdown-item" asp-action="Logout">Logout</a>
                             </div>

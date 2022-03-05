@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewData["Title"] = "CustomerFavouritePros";
+}
+
+@section Styles{
+    <link href="~/css/servicehistory.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+<partial name="~/Views/Shared/_MobileMenu.cshtml" />
+
+
+<div class="welcome-tab text-center">
+    <h1 class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></h1>
+</div>
+
+<div class="wrapper container-fluid">
+    <aside>
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" asp-action="CustomerDashboard"
+                   role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab"
+                   role="tab" aria-controls="servicehistory" asp-action="CustomerServiceHistory"
+                   aria-selected="true">
+                    Service History
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service
+                    Schedule
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-favpros active" id="favpros-tab"
+                   role="tab" aria-controls="favpros" aria-selected="false">Favourite Pros</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-invoices" id="invoices-tab"
+                   role="tab" aria-controls="invoices" aria-selected="false">Invoices</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-notifications" id="notifications-tab"
+                   role="tab" aria-controls="notifications"
+                   aria-selected="false">Notifications</a>
+            </li>
+
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Favourite Pros Tab -->
+            <div class="tab-pane fade show active" id="favpros" role="tabpanel" aria-labelledby="favpros-tab">
+                <table id="mysorttable3" class="table mb-0 favpros-table" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="th-sm">Service Provider</th>
+                            <th class="th-sm">Cleanings</th>
+                            <th class="th-sm">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="favourite-pros-datatab mt-2">
+                                    <div class="profile-sp m-auto">
+                                        <img src="~/assets/cap.png" alt="">
+                                    </div>
+                                    <div class="text-center favpro-texttab">
+                                        <div>Sandip Patel</div>
+                                        <div>
+                                            <img src="~/assets/star1.png" alt="">
+                                            <img src="~/assets/star1.png" alt="">
+                                            <img src="~/assets/star1.png" alt="">
+                                            <img src="~/assets/star1.png" alt="">
+                                            <img src="~/assets/star2.png" alt="">
+                                            <span>4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="">18 Cleanings</div>
+                            </td>
+                            <td class="text-center align-middle d-flex justify-content-center align-items-center">
+                                <button class="res-dash-btn mr-2">Remove</button>
+                                <button class="cl-dash-btn">Block</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="favourite-pros-datatab mt-2">
+                                    <div class="profile-sp m-auto">
+                                        <img src="~/assets/cap.png" alt="">
+                                    </div>
+                                    <div class="text-center favpro-texttab">
+                                        <div>Gaurang Patel</div>
+                                        <div>
+                                            <img src="~/assets/star2.png" alt="">
+                                            <img src="~/assets/star2.png" alt="">
+                                            <img src="~/assets/star2.png" alt="">
+                                            <img src="~/assets/star2.png" alt="">
+                                            <img src="~/assets/star2.png" alt="">
+                                            <span>0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="">1 Cleanings</div>
+                            </td>
+                            <td class="text-center align-middle d-flex justify-content-center align-items-center">
+                                <button class="res-dash-btn mr-2">Remove</button>
+                                <button class="cl-dash-btn">Block</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+
+    </script>
+
+    @*<script>
+            $(".SRDashModal").click(function () {
+                var id = $(this).attr("SRid");
+                console.log(id);
+
+                $.ajax({
+                    url: '@Url.Action("ViewSRDashModal","Home")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(id),
+                    success: function (res) {
+                        console.log(res);
+                        $("#ServiceHistoryDashModal").empty().append(res);
+                        $("#ServiceHistoryDashModal").modal();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+        </script>*@
+
+}

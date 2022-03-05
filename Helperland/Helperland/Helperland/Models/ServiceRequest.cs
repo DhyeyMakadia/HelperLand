@@ -45,7 +45,10 @@ namespace Helperland.Models
         [NotMapped]
         public int AddressId { get; set; }
 
-        public virtual User ServiceProvider { get; set; }
+        [NotMapped]
+        public bool[] Extras { get; set; }
+
+    public virtual User ServiceProvider { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<Rating> Ratings { get; set; }
         public virtual ICollection<ServiceRequestAddress> ServiceRequestAddresses { get; set; }

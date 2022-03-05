@@ -13,7 +13,7 @@
             <div class="modal-body">
                 <form asp-controller="Home" asp-action="Login" method="post">
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control border-right-0" asp-for="Email" placeholder="Email">
+                        <input type="email" class="form-control border-right-0" id="EmailId" asp-for="Email" placeholder="Email">
                         <span class="input-group-append bg-white border-left-0">
                             <span class="input-group-text bg-transparent">
                                 <i class="fas fa-user"></i>
@@ -21,7 +21,7 @@
                         </span>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control border-right-0" asp-for="Password" placeholder="Password">
+                        <input type="password" class="form-control border-right-0" id="pass1" asp-for="Password" placeholder="Password">
                         <span class="input-group-append bg-white border-left-0">
                             <span class="input-group-text bg-transparent">
                                 <i class="fas fa-lock"></i>
