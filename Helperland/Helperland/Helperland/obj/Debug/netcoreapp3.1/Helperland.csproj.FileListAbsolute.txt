@@ -172,3 +172,12 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SRDashModal.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddress.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddressAddOrEdit.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPDashboard.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPSettings.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPUpcoming.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPServiceHistory.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPRatings.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SPBlockCustomer.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SPDashModal.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SPUpcomingModal.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RateSPModal.cshtml.g.cs

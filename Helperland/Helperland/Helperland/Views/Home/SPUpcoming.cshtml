@@ -1,0 +1,170 @@
+﻿@model IEnumerable<Helperland.Models.CustomModel>
+@{
+    ViewData["Title"] = "SPUpcoming";
+}
+
+@section Styles{
+    <link href="~/css/upcoming-services.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+
+<!--Modals-->
+<div class="modal fade" id="ServiceDetailsUpcomingModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="welcome-tab text-center">
+    <div class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></div>
+</div>
+
+<div class="wrapper container-fluid">
+    <!-- side-nav -->
+    <aside>
+
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            @*<li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                </li>*@
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-newreq" id="newreq-tab" role="tab" aria-controls="newreq" aria-selected="false" asp-action="SPDashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-upcomingreq active" id="upcomingreq-tab"
+                   role="tab" aria-controls="upcomingreq" aria-selected="false">
+                    Upcoming Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service
+                    Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab"
+                   role="tab" aria-controls="servicehistory" aria-selected="false" asp-action="SPServiceHistory">
+                    Service
+                    History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-ratings" id="ratings-tab"
+                   role="tab" aria-controls="ratings" aria-selected="false" asp-action="SPRatings">My Ratings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-blockcustomer" id="blockcustomer-tab"
+                   role="tab" aria-controls="blockcustomer" aria-selected="false" asp-action="SPBlockCustomer">
+                    Block
+                    Customer
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Upcoming-Request-tab -->
+            <div class="tab-pane fade show active" id="upcomingreq" role="tabpanel"
+                 aria-labelledby="upcomingreq-tab">
+                <table id="mysorttable" class="table mb-0" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="th-sm">Service ID</th>
+                            <th class="th-sm">Service date</th>
+                            <th class="th-sm">Customer details</th>
+                            <th class="th-sm text-center">Distance</th>
+                            <th class="th-sm text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="SPUpcomingModal" SRid="@item.ServiceRequestId"
+                                    style="cursor: pointer;">
+                                    @item.ServiceId
+                                </td>
+                                <td>
+                                    <img src="~/assets/calendar2.png" alt="">
+                                    <b>@item.ServiceStartDate.ToShortDateString()</b>
+                                    <div>
+                                        <img src="~/assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    @item.FirstName @item.LastName
+                                    <div>
+                                        <img src="~/assets/layer-15.png" alt="">
+                                        @item.AddressLine1, @item.AddressLine2 @item.PostalCode @item.City
+                                    </div>
+                                </td>
+                                <td>15</td>
+                                <td class="cancel-btn text-center align-middle">
+                                    <a asp-action="CancelServiceRequest" asp-route-id="@item.ServiceRequestId"><button>Cancel</button></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#mysorttable').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2, 4]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+
+        $(".SPUpcomingModal").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("_SPUpcomingModal", "Home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    id: parseInt($(this).attr("SRid"))
+                },
+                success: function (res) {
+                    $("#ServiceDetailsUpcomingModal .modal-body").html(res);
+                    $("#ServiceDetailsUpcomingModal").modal();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+    </script>
+}

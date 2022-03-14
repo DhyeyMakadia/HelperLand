@@ -20,31 +20,7 @@
             <span>@Model.ServiceId</span>
         </div>
         <div>
-            <b>Extras:</b>
-            @foreach (var item in Model.ServiceExtraId)
-            {
-                switch (item)
-                {
-                    case 1:
-                        <div>Inside Cabinets</div>
-                        break;
-                    case 2:
-                        <div>Inside Fridge</div>
-                        break;
-                    case 3:
-                        <div>Inside Oven</div>
-                        break;
-                    case 4:
-                        <div>Laundry Wash & Dry</div>
-                        break;
-                    case 5:
-                        <div>Interior Windows</div>
-                        break;
-                    default:
-                        <span></span>
-                        break;
-                }
-            }
+            <b>Extras:</b>@Model.ServiceExtraId
         </div>
         <div class="net-amount text-center">
             <b class="float-left">Net Amount:</b>

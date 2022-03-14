@@ -127,7 +127,7 @@
                                             <label for="input"><b>When do you need the cleaner?</b></label>
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <input placeholder="Select date" type="date" id="date-schedule-tab"
+                                                    <input placeholder="Select date" type="date" id="date-schedule-tab" name="date-schedule-tab"
                                                             class="form-control datepicker1">
                                                 </div>
                                                 <div class="col-md-6">
@@ -703,5 +703,10 @@
         });
 
 
+    </script>
+
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date-schedule-tab")[0].setAttribute('min', today);
     </script>
 }

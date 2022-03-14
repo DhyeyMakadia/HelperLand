@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Helperland.Models.CustomModel>
+@{
+    ViewData["Title"] = "SPServiceHistory";
+}
+
+@section Styles{
+    <link href="~/css/upcoming-services.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+
+<div class="welcome-tab text-center">
+    <div class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></div>
+</div>
+
+<div class="wrapper container-fluid">
+    <!-- side-nav -->
+    <aside>
+
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            @*<li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                </li>*@
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-newreq" id="newreq-tab" role="tab" aria-controls="newreq" aria-selected="false" asp-action="SPDashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-upcomingreq" id="upcomingreq-tab"
+                   role="tab" aria-controls="upcomingreq" aria-selected="false" asp-action="SPUpcoming">
+                    Upcoming Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory active" id="servicehistory-tab"
+                   role="tab" aria-controls="servicehistory" aria-selected="false">
+                    Service History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-ratings" id="ratings-tab"
+                   role="tab" aria-controls="ratings" aria-selected="false" asp-action="SPRatings">My Ratings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-blockcustomer" id="blockcustomer-tab"
+                   role="tab" aria-controls="blockcustomer" aria-selected="false" asp-action="SPBlockCustomer">
+                    Block Customer
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Service-History-tab -->
+            <div class="tab-pane fade show active" id="servicehistory" role="tabpanel" aria-labelledby="servicehistory-tab">
+                <div class="d-flex servicehistory-head">
+                    <Button>Export</Button>
+                </div>
+                <table id="mysorttable3" class="table mb-0" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="">Service ID</th>
+                            <th class="">Service date</th>
+                            <th class="">Customer details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+	                    {
+                            <tr>
+                                <td>@item.ServiceId</td>
+                                <td>
+                                    <img src="~/assets/calendar2.png" alt="">
+                                    <b>@item.ServiceStartDate.ToShortDateString()</b>
+                                    <div>
+                                        <img src="~/assets/layer-712.png" alt="">
+                                        12:00 - 18:00
+                                    </div>
+                                </td>
+                                <td>
+                                    @item.FirstName @item.LastName
+                                    <div>
+                                        <img src="~/assets/layer-15.png" alt="">
+                                        @item.AddressLine1, @item.AddressLine2 @item.PostalCode @item.City
+                                    </div>
+                                </td>
+                            </tr>
+	                    }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#mysorttable3').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+}

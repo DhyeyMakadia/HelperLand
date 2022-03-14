@@ -8,7 +8,6 @@
 }
 
 <partial name="~/Views/Shared/_PublicHeader.cshtml" />
-<partial name="~/Views/Shared/_MobileMenu.cshtml" />
 
 
 <!-- Add or Edit Address -->
@@ -117,7 +116,7 @@
                     </ul>
                 </div>
                 <div class="tab-content">
-                    <div id="my-details-st" class="container tab-pane active p-0">
+                    <div id="my-details-st" class="container-fluid tab-pane active p-0">
                         <br>
                         <form id="CustomerDetailsInSettings" asp-action="CustomerSettings">
                             <input type="hidden" asp-for="UserId" />
@@ -179,11 +178,11 @@
                         </form>
                     </div>
 
-                    <div id="my-addresses-st" class="container tab-pane fade mx-0 px-0">
+                    <div id="my-addresses-st" class="container-fluid tab-pane fade mx-0 px-0">
 
                     </div>
 
-                    <div id="change-password-st" class="container tab-pane fade mx-0 px-0">
+                    <div id="change-password-st" class="container-fluid tab-pane fade mx-0 px-0">
                         <br>
                         <form id="CustomerPasswordChange">
                             <div class="form-row mx-auto">

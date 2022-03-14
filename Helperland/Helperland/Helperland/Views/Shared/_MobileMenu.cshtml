@@ -1,5 +1,4 @@
-﻿
-@*
+﻿@*
     For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
@@ -9,34 +8,58 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 <div class="nav flex-column">
-                    <div class="nav-item nav-link">Welcome,<br><b>Gaurang Patel</b></div>
+
+                    @if (HttpContextAccessor.HttpContext.Session.GetInt32("UserID_Session") != null)
+                    {
+                        <div class="nav-item nav-link">Welcome,<br><b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")</b></div>
+                        <div class="dropdown-divider"></div>
+
+                        switch (HttpContextAccessor.HttpContext.Session.GetInt32("UserType_Session"))
+                        {
+                            case 1:
+                                <a class="nav-item nav-link navlink-servicerequests" data-dismiss="modal">Service Requests</a>
+                                <a class="nav-item nav-link navlink-usermanagement" data-dismiss="modal">User Management</a>
+                                break;
+                            case 2:
+                                <a asp-action="SPDashboard" class="nav-item nav-link navlink-newreq">Dashboard</a>
+                                <a asp-action="SPUpcoming" class="nav-item nav-link navlink-upcoming">Upcoming Services</a>
+                                <a class="nav-item nav-link navlink-serviceschedule">Service Schedule</a>
+                                <a asp-action="SPServiceHistory" class="nav-item nav-link navlink-servicehistory">Service History</a>
+                                <a asp-action="SPRatings" class="nav-item nav-link navlink-myratings">My Ratings</a>
+                                <a asp-action="SPBlockCustomer" class="nav-item nav-link navlink-blockcustomer">Block Customer</a>
+                                <a class="nav-item nav-link navlink-notifications" data-dismiss="modal">Notifications</a>
+                                <a asp-action="SPSettings" class="nav-item nav-link">My Settings</a>
+                                break;
+                            case 3:
+                                <a asp-action="CustomerDashboard" class="nav-item nav-link navlink-dashboard">Dashboard</a>
+                                <a asp-action="CustomerServiceHistory" class="nav-item nav-link navlink-servicehistory">Service History</a>
+                                <a class="nav-item nav-link navlink-serviceschedule" data-dismiss="modal">Service Schedule</a>
+                                <a asp-action="CustomerFavouritePros" class="nav-item nav-link navlink-favpros">Favourite Pros</a>
+                                <a class="nav-item nav-link navlink-invoices" data-dismiss="modal">Invoices</a>
+                                <a class="nav-item nav-link navlink-notifications" data-dismiss="modal">Notifications</a>
+                                <a asp-action="CustomerSettings" class="nav-item nav-link">My Settings</a>
+                                break;
+                            default:
+                                break;
+                        }
+
+                        <a class="nav-item nav-link" asp-action="Logout">Logout</a>
+
+                    }
+                    else
+                    {
+                        <a class="nav-item nav-link" data-toggle="modal" data-target="#LoginModal" data-dismiss="modal">Login</a>
+                    }
+
                     <div class="dropdown-divider"></div>
-                    <a href="#dashboard" class="nav-item nav-link navlink-dashboard" data-toggle="tab"
-                       data-dismiss="modal">Dashboard</a>
-                    <a href="#servicehistory" class="nav-item nav-link navlink-servicehistory active"
-                       data-toggle="tab" data-dismiss="modal">Service History</a>
-                    <a href="#serviceschedule" class="nav-item nav-link navlink-serviceschedule" data-toggle="tab"
-                       data-dismiss="modal">Service Schedule</a>
-                    <a href="#favpros" class="nav-item nav-link navlink-favpros" data-toggle="tab"
-                       data-dismiss="modal">Favourite Pros</a>
-                    <a href="#invoices" class="nav-item nav-link navlink-invoices" data-toggle="tab"
-                       data-dismiss="modal">Invoices</a>
-
-
-                    <a href="#notifications" class="nav-item nav-link navlink-notifications" data-toggle="tab"
-                       data-dismiss="modal">Notifications</a>
-
-                    <a href="#mysettings" data-dismiss="modal" data-toggle="tab" class="nav-item nav-link">
-                        My
-                        Settings
-                    </a>
-                    <a href="#" class="nav-item nav-link">Logout</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="prices.html" class="nav-item nav-link">Prices & Services</a>
-                    <a href="#" class="nav-item nav-link">Warranty</a>
-                    <a href="#" class="nav-item nav-link">Blog</a>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a class="nav-item nav-link" asp-action="Prices">Prices & Services</a>
+                    <a class="nav-item nav-link">Warranty</a>
+                    <a class="nav-item nav-link">Blog</a>
+                    <a class="nav-item nav-link" asp-action="Contact">Contact</a>
                 </div>
             </div>
             <div class="modal-footer">

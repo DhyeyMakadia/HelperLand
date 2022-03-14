@@ -33,6 +33,48 @@ namespace Helperland.Controllers
             this.hostEnvironment = hostEnvironment;
         }
 
+        //Login
+        [HttpPost]
+        public IActionResult Login(User obj)
+        {
+            User user = _db.Users.Where(x => x.Email == obj.Email && x.Password == obj.Password).SingleOrDefault();
+            if (user != null)
+            {
+                var username = user.FirstName + " " + user.LastName;
+                HttpContext.Session.SetInt32("UserID_Session", user.UserId);
+                HttpContext.Session.SetString("UserName_Session", username);
+                HttpContext.Session.SetInt32("UserType_Session", user.UserTypeId);
+                int usertype = user.UserTypeId;
+
+                switch (usertype)
+                {
+                    case 1:
+                        return RedirectToAction("Index");
+                    case 2:
+                        return RedirectToAction("SPDashboard");
+                    case 3:
+                        return RedirectToAction("CustomerDashboard");
+                    default:
+                        return RedirectToAction("Index");
+                }
+
+            }
+            else
+            {
+                TempData["Msg4Popup"] = "Username or Password is Incorrect. Please try again";
+                return RedirectToAction("Index");
+            }
+        }
+
+        //Logout
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("UserID_Session");
+            HttpContext.Session.Remove("UserName_Session");
+            HttpContext.Session.Remove("UserType_Session");
+            return RedirectToAction("Index");
+        }
+
         //====================================
         //          Public-Pages
         //====================================
@@ -92,46 +134,6 @@ namespace Helperland.Controllers
         public IActionResult Prices()
         {
             return View();
-        }
-
-        //Login
-        [HttpPost]
-        public IActionResult Login(User obj)
-        {
-            User user = _db.Users.Where(x => x.Email == obj.Email && x.Password == obj.Password).SingleOrDefault();
-            if (user != null)
-            {
-                var username = user.FirstName + " " + user.LastName;
-                HttpContext.Session.SetInt32("UserID_Session", user.UserId);
-                HttpContext.Session.SetString("UserName_Session", username);
-                int usertype = user.UserTypeId;
-
-                switch (usertype)
-                {
-                    case 1:
-                        return RedirectToAction("Index");
-                    case 2:
-                        return RedirectToAction("Index");
-                    case 3:
-                        return RedirectToAction("CustomerDashboard");
-                    default:
-                        return RedirectToAction("Index");
-                }
-
-            }
-            else
-            {
-                TempData["Msg4Popup"] = "Username or Password is Incorrect. Please try again";
-                return RedirectToAction("Index");
-            }
-        }
-
-        //Logout
-        public IActionResult Logout()
-        {
-            HttpContext.Session.Remove("UserID_Session");
-            HttpContext.Session.Remove("UserName_Session");
-            return RedirectToAction("Index");
         }
 
         //ForgotPassword
@@ -252,10 +254,29 @@ namespace Helperland.Controllers
         public IActionResult SRDashModal(int id = 5)
         {
             ServiceRequestExtra[] obj = _db.ServiceRequestExtras.Where(x => x.ServiceRequestId == id).ToArray();
-            List<int> extras = new List<int>();
+            List<string> extras = new List<string>();
             foreach (var item in obj)
             {
-               extras.Add(item.ServiceExtraId);
+                switch (item.ServiceExtraId)
+                {
+                    case 1:
+                        extras.Add("Inside Cabinet");
+                        break;
+                    case 2:
+                        extras.Add("Inside Fridge");
+                        break;
+                    case 3:
+                        extras.Add("Inside Oven");
+                        break;
+                    case 4:
+                        extras.Add("Laundry Wash & Dry");
+                        break;
+                    case 5:
+                        extras.Add("Interior Windows");
+                        break;
+                    default:
+                        break;
+                }
             }
             var query = (from SR in _db.ServiceRequests
                         join SRaddress in _db.ServiceRequestAddresses on SR.ServiceRequestId equals SRaddress.ServiceRequestId
@@ -278,7 +299,7 @@ namespace Helperland.Controllers
                             PostalCode = SRaddress.PostalCode,
                             Mobile = SRaddress.Mobile,
 
-                            ServiceExtraId = extras
+                            ServiceExtraId = String.Join(", ", extras)
                         }).Single();
 
             return View(query);
@@ -413,8 +434,76 @@ namespace Helperland.Controllers
         public IActionResult CustomerServiceHistory()
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
-            List<ServiceRequest> obj = _db.ServiceRequests.Where(x => x.UserId == userid && x.Status == 2 || x.Status == 3).ToList();
-            return View(obj);
+
+            var query = from sr in _db.ServiceRequests
+                        join user in _db.Users on sr.ServiceProviderId equals user.UserId into x
+                        from user in x.DefaultIfEmpty()
+                        join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into abc
+                        from rate in abc.DefaultIfEmpty()
+                        where sr.UserId == userid && sr.Status == 2 || sr.Status == 3
+                        select new CustomModel
+                        {
+                            ServiceStartDate = sr.ServiceStartDate,
+                            Ratings = rate == null ? 0 : rate.Ratings,
+                            TotalCost = sr.TotalCost,
+                            Status = sr.Status,
+                            ServiceProviderId = sr.ServiceProviderId,
+                            ServiceRequestId = sr.ServiceRequestId,
+                            FirstName = user == null ? "" : user.FirstName,
+                            LastName = user == null? "" : user.LastName
+                        };
+
+            return View(query);
+        }
+
+        public IActionResult _RateSPModal(int srid)
+        {
+
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = (from user in _db.Users
+                        join sr in _db.ServiceRequests on user.UserId equals sr.ServiceProviderId 
+                        join r in _db.Ratings on sr.ServiceProviderId equals r.RatingTo into x
+                        from rate in x.DefaultIfEmpty()
+                        where sr.ServiceRequestId == srid && rate.RatingFrom == userid
+                        select new CustomModel
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Ratings = rate == null? 0 : rate.Ratings,
+                            OnTimeArrival = rate == null ? 0 : rate.OnTimeArrival,
+                            Friendly = rate == null ? 0 : rate.Friendly,
+                            QualityOfService = rate == null ? 0 : rate.QualityOfService,
+                            Comments = rate == null ? "" :rate.Comments
+                        }).Single();
+
+            return PartialView(query);
+        }
+
+        public string CustomerRateSP([FromBody] Rating rate)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            Rating r = _db.Ratings.Where(x => x.ServiceRequestId == rate.ServiceRequestId).FirstOrDefault();
+            
+            if (r != null)
+            {
+                r.Ratings = rate.Ratings;
+                r.Comments = rate.Comments;
+                r.Friendly = rate.Friendly;
+                r.OnTimeArrival = rate.OnTimeArrival;
+                r.QualityOfService = rate.QualityOfService;
+                r.RatingDate = DateTime.Now;
+                _db.Ratings.Update(r);
+            }
+            else
+            {
+                rate.RatingFrom = userid;
+                rate.RatingDate = DateTime.Now;
+                _db.Ratings.Add(rate);
+            }
+            _db.SaveChanges();
+            return "true";
         }
 
         //Customer Service History Tab
@@ -524,9 +613,9 @@ namespace Helperland.Controllers
             {
                 return "false";
             }
-            var PostalCode = _db.Users.Where(x => x.ZipCode == postalcode).SingleOrDefault();
+            var PostalCode = _db.Users.Any(x => x.ZipCode == postalcode);
             string IsValidated;
-            if (PostalCode != null)
+            if (PostalCode)
             {
                 IsValidated = "true";
             }
@@ -610,6 +699,398 @@ namespace Helperland.Controllers
             }
             
             return View();
+        }
+
+        public IActionResult SPDashboard()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+
+            var query = from sr in _db.ServiceRequests
+                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                        from Sra in srad.DefaultIfEmpty()
+                        join user in _db.Users on sr.UserId equals user.UserId
+                        where sp.ZipCode == sr.ZipCode && sr.Status == 0 //new
+                        select new CustomModel
+                        {
+                            ServiceRequestId = sr.ServiceRequestId,
+                            ServiceId = sr.ServiceId,
+                            ServiceStartDate = sr.ServiceStartDate,
+                            TotalCost = sr.TotalCost,
+
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+
+                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                            PostalCode = Sra == null ? "" : Sra.PostalCode,
+                            City = Sra == null ? "" : Sra.City
+                        };
+            return View(query);
+        }
+
+        public IActionResult _SPDashModal(int id)
+        {
+            ServiceRequestExtra[] obj = _db.ServiceRequestExtras.Where(x => x.ServiceRequestId == id).ToArray();
+            List<string> extras = new List<string>();
+            foreach (var item in obj)
+            {
+                switch (item.ServiceExtraId)
+                {
+                    case 1:
+                        extras.Add("Inside Cabinet");
+                        break;
+                    case 2:
+                        extras.Add("Inside Fridge");
+                        break;
+                    case 3:
+                        extras.Add("Inside Oven");
+                        break;
+                    case 4:
+                        extras.Add("Laundry Wash & Dry");
+                        break;
+                    case 5:
+                        extras.Add("Interior Windows");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            
+            var query = (from SR in _db.ServiceRequests
+                         join SRaddress in _db.ServiceRequestAddresses on SR.ServiceRequestId equals SRaddress.ServiceRequestId into srad
+                         from SRa in srad.DefaultIfEmpty()
+                         join user in _db.Users on SR.UserId equals user.UserId
+                         where SR.ServiceRequestId == id
+                         select new CustomModel
+                         {
+                             ServiceRequestId = SR.ServiceRequestId,
+                             ServiceId = SR.ServiceId,
+                             ServiceStartDate = SR.ServiceStartDate,
+                             ServiceHours = SR.ServiceHours,
+                             Comments = SR.Comments,
+                             HasPets = SR.HasPets,
+                             TotalCost = SR.TotalCost,
+
+                             FirstName = user.FirstName,
+                             LastName = user.LastName,
+
+                             AddressLine1 = SRa == null ? "" : SRa.AddressLine1,
+                             AddressLine2 = SRa == null ? "" : SRa.AddressLine2,
+                             City = SRa == null ? "" : SRa.City,
+                             State = SRa == null ? "" : SRa.State,
+                             PostalCode = SRa == null ? "" : SRa.PostalCode,
+                             Mobile = SRa == null ? "" : SRa.Mobile,
+
+                             ServiceExtraId = String.Join(", ", extras)
+                         }).Single();
+
+            return PartialView(query);
+        }
+
+        public IActionResult AcceptServiceRequest(int id)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+            sr.Status = 1;
+            sr.ServiceProviderId = userid;
+            sr.SpacceptedDate = DateTime.Now;
+            _db.ServiceRequests.Update(sr);
+            _db.SaveChanges();
+            return RedirectToAction("SPDashboard");
+        }
+
+        public IActionResult SPSettings()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = (from u in _db.Users
+                        join ad in _db.UserAddresses on u.UserId equals ad.UserId into address
+                        from ad in address.DefaultIfEmpty()
+                        where u.UserId == id
+                        select new SPSettings
+                        {
+                            UserId = u.UserId,
+                            FirstName = u.FirstName,
+                            LastName = u.LastName,
+                            Email = u.Email,
+                            Mobile = u.Mobile,
+                            DateOfBirth = u.DateOfBirth,
+                            Gender = u.Gender,
+                            UserProfilePicture = u.UserProfilePicture,
+
+                            AddressId = ad == null ? 0 : ad.AddressId,
+                            AddressLine1 = ad == null ? "" : ad.AddressLine1,
+                            AddressLine2 = ad == null ? "" : ad.AddressLine2,
+                            City = ad == null ? "" : ad.City,
+                            PostalCode = ad == null ? "" : ad.PostalCode 
+                        }).Single();
+            return View(query);
+        }
+
+        [HttpPost]
+        public IActionResult SPSettings(SPSettings sp)
+        {
+            
+            if (sp.AddressLine1 == null && sp.AddressLine2 == null && sp.City == null && sp.PostalCode == null && sp.AddressId == 0)
+            {
+                ModelState.Remove("AddressLine1");
+                ModelState.Remove("City");
+                ModelState.Remove("PostalCode");
+                
+            }
+
+            if (ModelState.IsValid)
+            {
+                int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+                User user = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+                user.FirstName = sp.FirstName;
+                user.LastName = sp.LastName;
+                user.Mobile = sp.Mobile;
+                user.Gender = sp.Gender;
+                user.DateOfBirth = sp.DateOfBirth;
+                _db.Users.Update(user);
+                UserAddress useraddress = new UserAddress()
+                {
+                    UserId = id,
+                    AddressLine1 = sp.AddressLine1,
+                    AddressLine2 = sp.AddressLine2,
+                    City = sp.City,
+                    PostalCode = sp.PostalCode,
+                    Mobile = user.Mobile,
+                    Email = user.Email
+                };
+                if (sp.AddressId == 0)
+                {
+                    if (useraddress.AddressLine1 != null || useraddress.AddressLine2 != null || useraddress.City != null || useraddress.PostalCode != null)
+                    {
+                        _db.UserAddresses.Add(useraddress);
+                    }
+                }
+                else
+                {
+                    useraddress.AddressId = sp.AddressId;
+                    _db.UserAddresses.Update(useraddress);
+                }
+
+                var username = user.FirstName + " " + user.LastName;
+                HttpContext.Session.SetString("UserName_Session", username);
+
+                TempData["Msg4Popup"] = "Profile Updated Successfully";
+
+                _db.SaveChanges();
+            }
+
+            return View();
+        }
+
+        public IActionResult SPUpcoming()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = from sr in _db.ServiceRequests
+                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                        from Sra in srad.DefaultIfEmpty()
+                        join user in _db.Users on sr.UserId equals user.UserId
+                        where sr.ServiceProviderId==id && sr.Status == 1 //pending
+                        select new CustomModel
+                        {
+                            ServiceRequestId = sr.ServiceRequestId,
+                            ServiceId = sr.ServiceId,
+                            ServiceStartDate = sr.ServiceStartDate,
+                            TotalCost = sr.TotalCost,
+
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+
+                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                            PostalCode = Sra == null ? "" : Sra.PostalCode,
+                            City = Sra == null ? "" : Sra.City
+                        };
+            return View(query);
+        }
+
+        public IActionResult _SPUpcomingModal(int id)
+        {
+            ServiceRequestExtra[] obj = _db.ServiceRequestExtras.Where(x => x.ServiceRequestId == id).ToArray();
+            List<string> extras = new List<string>();
+            foreach (var item in obj)
+            {
+                switch (item.ServiceExtraId)
+                {
+                    case 1:
+                        extras.Add("Inside Cabinet");
+                        break;
+                    case 2:
+                        extras.Add("Inside Fridge");
+                        break;
+                    case 3:
+                        extras.Add("Inside Oven");
+                        break;
+                    case 4:
+                        extras.Add("Laundry Wash & Dry");
+                        break;
+                    case 5:
+                        extras.Add("Interior Windows");
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            var query = (from SR in _db.ServiceRequests
+                         join SRaddress in _db.ServiceRequestAddresses on SR.ServiceRequestId equals SRaddress.ServiceRequestId into srad
+                         from SRa in srad.DefaultIfEmpty()
+                         join user in _db.Users on SR.UserId equals user.UserId
+                         where SR.ServiceRequestId == id
+                         select new CustomModel
+                         {
+                             ServiceRequestId = SR.ServiceRequestId,
+                             ServiceId = SR.ServiceId,
+                             ServiceStartDate = SR.ServiceStartDate,
+                             ServiceHours = SR.ServiceHours,
+                             Comments = SR.Comments,
+                             HasPets = SR.HasPets,
+                             TotalCost = SR.TotalCost,
+
+                             FirstName = user.FirstName,
+                             LastName = user.LastName,
+
+                             AddressLine1 = SRa == null ? "" : SRa.AddressLine1,
+                             AddressLine2 = SRa == null ? "" : SRa.AddressLine2,
+                             City = SRa == null ? "" : SRa.City,
+                             State = SRa == null ? "" : SRa.State,
+                             PostalCode = SRa == null ? "" : SRa.PostalCode,
+                             Mobile = SRa == null ? "" : SRa.Mobile,
+
+                             ServiceExtraId = String.Join(", ", extras)
+                         }).Single();
+
+            return PartialView(query);
+        }
+
+        public IActionResult CancelServiceRequest(int id)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+            sr.Status = 0; //new
+            sr.ServiceProviderId = null;
+            sr.SpacceptedDate = null;
+            _db.ServiceRequests.Update(sr);
+            _db.SaveChanges();
+            return RedirectToAction("SPUpcoming");
+        }
+
+        public IActionResult CompleteServiceRequest(int id)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+            sr.Status = 2; //completed
+
+            bool isa = _db.FavoriteAndBlockeds.Any(x => x.UserId == userid && x.TargetUserId == sr.UserId);
+
+            if (!isa)
+            {
+                FavoriteAndBlocked FB = new FavoriteAndBlocked()
+                {
+                    UserId = userid,
+                    TargetUserId = sr.UserId,
+                    IsFavorite = false,
+                    IsBlocked = false
+                };
+                _db.FavoriteAndBlockeds.Add(FB);
+            }
+            
+            _db.ServiceRequests.Update(sr);
+            _db.SaveChanges();
+
+            TempData["Msg4Popup"] = "Congratulations!! Your Service has been completed Successfully";
+            return RedirectToAction("SPUpcoming");
+        }
+
+        public IActionResult SPServiceHistory()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = from sr in _db.ServiceRequests
+                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                        from Sra in srad.DefaultIfEmpty()
+                        join user in _db.Users on sr.UserId equals user.UserId
+                        where sr.ServiceProviderId == id && sr.Status == 2 //completed
+                        select new CustomModel
+                        {
+                            ServiceId = sr.ServiceId,
+                            ServiceStartDate = sr.ServiceStartDate,
+
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+
+                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                            PostalCode = Sra == null ? "" : Sra.PostalCode,
+                            City = Sra == null ? "" : Sra.City
+                        };
+            return View(query);
+        }
+
+        public IActionResult SPRatings()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = from rate in _db.Ratings
+                        join sr in _db.ServiceRequests on rate.ServiceRequestId equals sr.ServiceRequestId
+                        join user in _db.Users on rate.RatingFrom equals user.UserId
+                        where rate.RatingTo == id
+                        select new CustomModel
+                        {
+                            ServiceId = sr.ServiceId,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+
+                            Ratings = rate.Ratings,
+                            Comments = rate.Comments,
+                            RatingDate = rate.RatingDate
+                        };
+            return View(query);
+        }
+
+        public IActionResult SPBlockCustomer()
+        {
+            int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            var query = from user in _db.Users
+                        join fav in _db.FavoriteAndBlockeds on user.UserId equals fav.TargetUserId
+                        where fav.UserId == id
+                        select new CustomModel
+                        {
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            IsBlocked = fav.IsBlocked,
+                            Id = fav.Id
+                        };
+            return View(query);
+        }
+
+        public IActionResult BlockCustomer(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsBlocked = true;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+            return RedirectToAction("SPBlockCustomer");
+        }
+
+        public IActionResult UnblockCustomer(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsBlocked = false;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+            return RedirectToAction("SPBlockCustomer");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

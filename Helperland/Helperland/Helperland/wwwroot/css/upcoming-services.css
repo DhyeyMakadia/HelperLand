@@ -52,6 +52,7 @@ a,a:hover{
     line-height: 120px;
     background-color: #F9F9F9;
     margin-bottom: 31px;
+    margin-top:80px;
 }
 
 .welcome-tab .greet{
@@ -77,7 +78,7 @@ aside .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link{
     font-size: 18px !important;
     height: 55px;
     line-height: 55px;
-    color: white;
+    color: white !important;
     padding: 0 0 0 15px;
     border-bottom: 1px solid hsla(0, 0%, 100%, 0.2);
 }
@@ -89,7 +90,7 @@ aside .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link:hover{
 
 aside .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
     background-color: #1a626e;
-    color: white;
+    color: white !important;
     border: none;
 }
 
@@ -101,7 +102,7 @@ aside .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
 .table-content{
     padding-left: 31px;
     width: 100%;
-    max-width: 847px;
+    /*max-width: 847px;*/
 }
 
 .table-content table{
@@ -189,7 +190,7 @@ bottom: 13.5px !important;
     border-radius: 17px;
 }
 
-.table-content .accept-btn button:hover{
+.table-content .accept-btn button:hover {
     background-color: #1a626e;
     color: White;
 }
@@ -272,8 +273,21 @@ bottom: 13.5px !important;
     background-color: #FF6B6B;
 }
 
+#blockcustomer .block-btn button.unblock-btn {
+    width: 85px;
+    border: none;
+    border-radius: 17px;
+    height: 34px;
+    color: #FFFFFF;
+    background-color: #1D7A8C;
+}
+
 #blockcustomer .block-btn button:hover{
     background-color: #fa5151;
+}
+
+#blockcustomer .block-btn button.unblock-btn:hover {
+    background-color: #1a626e;
 }
 
 /* -----my-settings----- */
@@ -283,14 +297,14 @@ bottom: 13.5px !important;
 
 #mysettings .nav-item .nav-link{
     background-color: #FFFFFF;
-    color: #646464;
+    color: #646464 !important;
     font-weight: bold;
     padding: 0 20px;
     border-bottom:1px solid #808080;
 }
 
 #mysettings .nav-item .nav-link.active{
-    color: #1D7A8C;
+    color: #1D7A8C !important;
     border-bottom: 3px solid #1D7A8C;
 }
 
@@ -342,58 +356,15 @@ bottom: 13.5px !important;
     width: 80px;
 }
 
-/* -----Side-Navbar----- */
-.modal.right .modal-dialog {
-	position:fixed;
-	right: 0;
-	margin: auto;
-	width: 320px;
-	height: 100%;
-	-webkit-transform: translate3d(0%, 0, 0);
-	-ms-transform: translate3d(0%, 0, 0);
-	-o-transform: translate3d(0%, 0, 0);
-	transform: translate3d(0%, 0, 0);
-}
-
-.modal.right .modal-content {
-	height: 100%;
-	overflow-y: auto;
-}
-
-.modal.right .modal-body {
-	padding: 15px 15px 80px;
-}
-
-.modal.right.fade .modal-dialog {
-	right: -320px;
-	-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
-	-moz-transition: opacity 0.3s linear, right 0.3s ease-out;
-	-o-transition: opacity 0.3s linear, right 0.3s ease-out;
-	transition: opacity 0.3s linear, right 0.3s ease-out;
-}
-
-.modal.right.fade.show .modal-dialog {
-	right: 0;
-}
-
-/* ------MODAL-STYLE------ */
-.modal-content {
-	border-radius: 0;
-	border: none;
-}
-
-.modal-content .modal-body div a,
-.modal-content .modal-body div{
-    color: #808080;
-}
-
-.modal-content .modal-body a.active{
-    color: #1D7A8C;
-}
-
 @media screen and (max-width:1199px) {
+
+    /* -----Block Customer----- */
+    #blockcustomer .block-cust-content{
+        justify-content:center;
+    }
+
     /* -----Sidebar-&-Content----- */
-    aside{
+    aside {
         display: none !important;
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Helperland.Models.ServiceRequest>
+﻿@model IEnumerable<Helperland.Models.CustomModel>
 @{
     ViewData["Title"] = "CustomerServiceHistory";
 }
@@ -8,7 +8,6 @@
 }
 
 <partial name="~/Views/Shared/_PublicHeader.cshtml" />
-<partial name="~/Views/Shared/_MobileMenu.cshtml" />
 
 
 <!-- Rate SP Modal -->
@@ -17,66 +16,7 @@
     <div class="modal-dialog modal-dialog-centered mx-auto" role="document">
         <div class="modal-content">
             <div class="modal-body">
-                <form>
-                    <div class="d-flex flex-row mb-3">
-                        <div class="profile-img">
-                            <img src="~/assets/cap.png" alt="">
-                        </div>
-                        <div class="details">
-                            <b>Sandip Patel</b>
-                            <div class="rate">
-                                <img src="~/assets/star1.png" alt="">
-                                <img src="~/assets/star1.png" alt="">
-                                <img src="~/assets/star1.png" alt="">
-                                <img src="~/assets/star1.png" alt="">
-                                <img src="~/assets/star2.png" alt="">
-                                <span>4.0</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <h5><b>Rate your service provider</b></h5>
-                    </div>
-                    <hr>
-                    <div>
-                        <span>On time arrival</span>
-                        &nbsp;&nbsp;&nbsp;
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star2.png" alt=""></span>
-                    </div>
-                    <div>
-                        <span>Friendly</span>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                    </div>
-                    <div>
-                        <span>Quality of service</span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star1.png" alt=""></span>
-                        <span><img src="~/assets/star2.png" alt=""></span>
-                        <span><img src="~/assets/star2.png" alt=""></span>
-                    </div>
-                    <div class="form-row mt-3">
-                        <div class="form-group col-md-12">
-                            <label for="fbofsp" class="cm-dez">Feedback on service provider</label>
-                            <textarea class="form-control" id="fbofsp" rows="3" placeholder=""></textarea>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <button class="submit-btn">Submit</button>
-                        </div>
-                    </div>
-                </form>
+                
             </div>
         </div>
     </div>
@@ -171,14 +111,39 @@
                                                 <img src="~/assets/cap.png" alt="">
                                             </div>
                                             <div>
-                                                <div>Lyum Watson</div>
+                                                <div>@item.FirstName @item.LastName</div>
                                                 <div>
-                                                    <img src="~/assets/star1.png" alt="">
-                                                    <img src="~/assets/star1.png" alt="">
-                                                    <img src="~/assets/star1.png" alt="">
-                                                    <img src="~/assets/star1.png" alt="">
-                                                    <img src="~/assets/star2.png" alt="">
-                                                    <span>4</span>
+                                                    @for (int i = 0; i < 5; i++)
+                                                    {
+                                                        if (i < ((int)item.Ratings))
+                                                        {
+                                                            <img src="~/assets/star1.png" alt="">
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="~/assets/star2.png" alt="">
+                                                        }
+                                                    }
+                                                    @switch (((int)item.Ratings))
+                                                    {
+                                                        case 1:
+                                                            <span>Very Bad</span>
+                                                            break;
+                                                        case 2:
+                                                            <span>Bad</span>
+                                                            break;
+                                                        case 3:
+                                                            <span>Good</span>
+                                                            break;
+                                                        case 4:
+                                                            <span>Very Good</span>
+                                                            break;
+                                                        case 5:
+                                                            <span>Excellent</span>
+                                                            break;
+                                                        default:
+                                                            break;
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
@@ -199,429 +164,12 @@
                                 <td class="rate-btn text-center align-middle">
                                     @if (item.ServiceProviderId != null)
                                     {
-                                        <button data-target="#RateSPModal" data-toggle="modal">Rate SP</button>
+                                        <button class="CustomerRateSP" SRid="@item.ServiceRequestId" SPId="@item.ServiceProviderId" rateid="">Rate SP</button>
                                     }
                                 </td>
                             </tr>
                         }
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>31/03/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="badge status-complete">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button data-target="#RateSPModal" data-toggle="modal">Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>15/03/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>10/03/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>28/02/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-incomplete badge">Cancelled</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>15/02/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>11/02/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-incomplete badge">Cancelled</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>31/01/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>19/01/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>05/01/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-incomplete badge">Cancelled</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>01/01/2018</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>63</div>
-                            </td>
-                            <td>
-                                <div class="status-incomplete badge">Cancelled</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div>
-                                    <img src="~/assets/calendar.png" alt="">
-                                    <b>31/12/2017</b>
-                                </div>
-                                <div>
-                                    12:00 - 18:00
-                                </div>
-                            </td>
-                            <td>
-                                <div class="service-provider-datatab">
-                                    <div class="profile-sp">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div>
-                                        <div>Lyum Watson</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="price"> <span>€</span>64</div>
-                            </td>
-                            <td>
-                                <div class="status-complete badge">Completed</div>
-                            </td>
-                            <td class="rate-btn text-center align-middle">
-                                <button>Rate SP</button>
-                            </td>
-                        </tr>
+                        
                     </tbody>
                 </table>
             </div>
@@ -664,6 +212,197 @@
                 }
             });
 
+        });
+    </script>
+
+    <script>
+        $(document).on("click",".CustomerRateSP",function () {
+
+            $.ajax({
+                url: '@Url.Action("_RateSPModal", "Home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    srid: parseInt($(this).attr("SRid")),
+                    //spid: parseInt($(this).attr("SPId"))
+                },
+                success: function (res) {
+                    $("#RateSPModal .modal-body").html(res);
+                    $("#RateSPModal").modal();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+    </script>
+
+    @*<script>
+        var s , t , p ;
+
+        $(document).ready(function () {
+            $(document).on("click","#s1",function () {
+                $("#s1").attr('src', '/assets/star1.png');
+                $("#s2,#s3,#s4,#s5").attr('src', '/assets/star2.png');
+                s = 1;
+            });
+            $(document).on("click","#s2",function () {
+                $("#s1,#s2").attr('src', '/assets/star1.png');
+                $("#s3,#s4,#s5").attr('src', '/assets/star2.png');
+                s = 2;
+            });
+            $(document).on("click","#s3",function () {
+                $("#s1,#s2,#s3").attr('src', '/assets/star1.png');
+                $("#s4,#s5").attr('src', '/assets/star2.png');
+                s = 3;
+            });
+            $(document).on("click","#s4",function () {
+                $("#s1,#s2,#s3,#s4").attr('src', '/assets/star1.png');
+                $("#s5").attr('src', '/assets/star2.png');
+                s = 4;
+            });
+            $(document).on("click","#s5",function () {
+                $("#s1,#s2,#s3,#s4,#s5").attr('src', '/assets/star1.png');
+                s = 5;
+            });
+
+
+
+
+            $(document).on("click","#t1",function () {
+                $("#t1").attr('src', '/assets/star1.png');
+                $("#t2,#t3,#t4,#t5").attr('src', '/assets/star2.png');
+                t = 1;
+            });
+            $(document).on("click","#t2",function () {
+                $("#t1,#t2").attr('src', '/assets/star1.png');
+                $("#t3,#t4,#t5").attr('src', '/assets/star2.png');
+                t = 2;
+            });
+            $(document).on("click","#t3",function () {
+                $("#t1,#t2,#t3").attr('src', '/assets/star1.png');
+                $("#t4,#t5").attr('src', '/assets/star2.png');
+                t = 3;
+            });
+            $(document).on("click","#t4",function () {
+                $("#t1,#t2,#t3,#t4").attr('src', '/assets/star1.png');
+                $("#t5").attr('src', '/assets/star2.png');
+                t = 4;
+            });
+            $(document).on("click","#t5",function () {
+                $("#t1,#t2,#t3,#t4,#t5").attr('src', '/assets/star1.png');
+                t = 5;
+            });
+
+
+
+
+            $(document).on("click","#p1",function () {
+                $("#p1").attr('src', '/assets/star1.png');
+                $("#p2,#p3,#p4,#p5").attr('src', '/assets/star2.png');
+                p = 1;
+            });
+            $(document).on("click","#p2",function () {
+                $("#p1,#p2").attr('src', '/assets/star1.png');
+                $("#p3,#p4,#p5").attr('src', '/assets/star2.png');
+                p = 2;
+            });
+            $(document).on("click","#p3",function () {
+                $("#p1,#p2,#p3").attr('src', '/assets/star1.png');
+                $("#p4,#p5").attr('src', '/assets/star2.png');
+                p = 3;
+            });
+            $(document).on("click","#p4",function () {
+                $("#p1,#p2,#p3,#p4").attr('src', '/assets/star1.png');
+                $("#p5").attr('src', '/assets/star2.png');
+                p = 4;
+            });
+            $(document).on("click","#p5",function () {
+                $("#p1,#p2,#p3,#p4,#p5").attr('src', '/assets/star1.png');
+                p = 5;
+            });
+
+            $(document).on('click',".ratesp", function () {
+                var ratesp = (s + t + p) / 3;
+                x = ratesp.toFixed(0);
+                $("#rateavg").html(x);
+
+                switch (x) {
+                    case '0':
+                        $("#v1,#v2,#v3,#v4,#v5").attr('src', '/assets/star2.png');
+                        break;
+                    case '1':
+                        $("#v1").attr('src', '/assets/star1.png');
+                        $("#v2,#v3,#v4,#v5").attr('src', '/assets/star2.png');
+                        break;
+                    case '2':
+                        $("#v1,#v2").attr('src', '/assets/star1.png');
+                        $("#v3,#v4,#v5").attr('src', '/assets/star2.png');
+                        break;
+                    case '3':
+                        $("#v1,#v2,#v3").attr('src', '/assets/star1.png');
+                        $("#v4,#v5").attr('src', '/assets/star2.png');
+                        break;
+                    case '4':
+                        $("#v1,#v2,#v3,#v4").attr('src', '/assets/star1.png');
+                        $("#v5").attr('src', '/assets/star2.png');
+                        break;
+                    case '5':
+                        $("#v1,#v2,#v3,#v4,#v5").attr('src', '/assets/star1.png');
+                        break;
+                    default:
+                        alert('Wohoo!');
+                }
+
+            })
+
+
+        });
+
+    </script>*@
+
+    <script>
+        var ServiceRequestId = 0, ServiceProviderId = 0;
+        $(document).on('click', ".CustomerRateSP", function () {
+            ServiceRequestId = $(this).attr("SRid");
+            ServiceProviderId = $(this).attr("SPId");
+            console.log(ServiceRequestId);
+            console.log(ServiceProviderId);
+        });
+
+        $(document).on('click', '#rateSP-submitbtn', function () {
+            var rate = {};
+            rate.Ratings = parseInt(x);
+            rate.OnTimeArrival = parseInt(s);
+            rate.Friendly = parseInt(t);
+            rate.QualityOfService = parseInt(p);
+            rate.Comments = $(".comment-in-ratesp").val();
+            rate.ServiceRequestId = parseInt(ServiceRequestId);
+            rate.RatingTo = parseInt(ServiceProviderId);
+            console.log(rate);
+
+
+            $.ajax({
+                url: '@Url.Action("CustomerRateSP", "Home")',
+                type: 'post',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(rate),
+
+
+                success: function (resp) {
+                    alert("SP Rated");
+                    $("#RateSPModal").modal("hide");
+                    location.reload();
+                },
+                error: function (err) {
+                    console.log(err);
+                    alert("Error while inserting data");
+                }
+            });
         });
     </script>
 

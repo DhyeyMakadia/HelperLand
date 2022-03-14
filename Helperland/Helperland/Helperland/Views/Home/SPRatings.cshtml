@@ -1,0 +1,144 @@
+﻿@model IEnumerable<Helperland.Models.CustomModel>
+@{
+    ViewData["Title"] = "SPRatings";
+}
+
+@section Styles{
+    <link href="~/css/upcoming-services.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+
+<div class="welcome-tab text-center">
+    <div class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></div>
+</div>
+
+<div class="wrapper container-fluid">
+    <!-- side-nav -->
+    <aside>
+
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            @*<li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                </li>*@
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-newreq" id="newreq-tab" role="tab" aria-controls="newreq" aria-selected="false" asp-action="SPDashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-upcomingreq" id="upcomingreq-tab"
+                   role="tab" aria-controls="upcomingreq" aria-selected="false" asp-action="SPUpcoming">
+                    Upcoming Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab"
+                   role="tab" aria-controls="servicehistory" aria-selected="false" asp-action="SPServiceHistory">
+                    Service History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-ratings active" id="ratings-tab"
+                   role="tab" aria-controls="ratings" aria-selected="false">My Ratings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-blockcustomer" id="blockcustomer-tab"
+                   role="tab" aria-controls="blockcustomer" aria-selected="false" asp-action="SPBlockCustomer">
+                    Block Customer
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+
+            <!-- Ratings-tab -->
+            <div class="tab-pane fade show active" id="ratings" role="tabpanel" aria-labelledby="ratings-tab">
+
+                @foreach (var item in Model)
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="ratings-content">
+                                <div class="group1 d-flex flex-row">
+                                    <div class="cust-details">
+                                        <div class="id">@item.ServiceId</div>
+                                        <div class="cust-name"><b>@item.FirstName @item.LastName</b></div>
+                                    </div>
+                                    <div class="service-details">
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>@item.RatingDate.ToShortDateString()</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            08:00 - 11:00
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="group2">
+                                    <div class="cust-ratings">
+                                        <b>ratings</b>
+                                        <div class="stars">
+                                            @for (int i = 0; i < 5; i++)
+                                            {
+                                                if (i < ((int)item.Ratings))
+                                                {
+                                                    <img src="~/assets/star1.png" alt="">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/assets/star2.png" alt="">
+                                                }
+                                            }
+                                            @switch (((int)item.Ratings))
+                                            {
+                                                case 1:
+                                                    <span>Very Bad</span>
+                                                    break;
+                                                case 2:
+                                                    <span>Bad</span>
+                                                    break;
+                                                case 3:
+                                                    <span>Good</span>
+                                                    break;
+                                                case 4:
+                                                    <span>Very Good</span>
+                                                    break;
+                                                case 5:
+                                                    <span>Excellent</span>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="cust-comments">
+                                <b>Customer Comment</b>
+                                <p>@item.Comments</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+        
+    </script>
+}
+

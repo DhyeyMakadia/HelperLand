@@ -14417,8 +14417,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerAddressAddOrEdit.cshtml",
+      "TargetPath": "Views\\Home\\CustomerAddressAddOrEdit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPRatings.cshtml",
+      "TargetPath": "Views\\Home\\SPRatings.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_ForgotModal.cshtml",
       "TargetPath": "Views\\Shared\\_ForgotModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerSettings.cshtml",
+      "TargetPath": "Views\\Home\\CustomerSettings.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerServiceHistory.cshtml",
+      "TargetPath": "Views\\Home\\CustomerServiceHistory.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_SPDashModal.cshtml",
+      "TargetPath": "Views\\Shared\\_SPDashModal.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14432,8 +14457,23 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPServiceHistory.cshtml",
+      "TargetPath": "Views\\Home\\SPServiceHistory.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SRDashModal.cshtml",
+      "TargetPath": "Views\\Home\\SRDashModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_HomeHeader.cshtml",
       "TargetPath": "Views\\Shared\\_HomeHeader.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPBlockCustomer.cshtml",
+      "TargetPath": "Views\\Home\\SPBlockCustomer.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14444,6 +14484,21 @@
     {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\About.cshtml",
       "TargetPath": "Views\\Home\\About.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPSettings.cshtml",
+      "TargetPath": "Views\\Home\\SPSettings.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_RateSPModal.cshtml",
+      "TargetPath": "Views\\Shared\\_RateSPModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerFavouritePros.cshtml",
+      "TargetPath": "Views\\Home\\CustomerFavouritePros.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -14467,6 +14522,21 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_MobileMenu.cshtml",
+      "TargetPath": "Views\\Shared\\_MobileMenu.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerAddress.cshtml",
+      "TargetPath": "Views\\Home\\CustomerAddress.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPDashboard.cshtml",
+      "TargetPath": "Views\\Home\\SPDashboard.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -14477,6 +14547,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPUpcoming.cshtml",
+      "TargetPath": "Views\\Home\\SPUpcoming.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\BecomeAPro.cshtml",
       "TargetPath": "Views\\Home\\BecomeAPro.cshtml",
       "FileKind": "mvc"
@@ -14484,6 +14559,11 @@
     {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\Prices.cshtml",
       "TargetPath": "Views\\Home\\Prices.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_SPUpcomingModal.cshtml",
+      "TargetPath": "Views\\Shared\\_SPUpcomingModal.cshtml",
       "FileKind": "mvc"
     },
     {

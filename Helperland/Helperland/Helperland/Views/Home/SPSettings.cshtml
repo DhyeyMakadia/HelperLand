@@ -1,0 +1,309 @@
+﻿@model Helperland.Models.SPSettings
+@{
+    ViewData["Title"] = "SPSettings";
+}
+
+@section Styles{
+    <link href="~/css/upcoming-services.css" rel="stylesheet" />
+}
+
+<partial name="~/Views/Shared/_PublicHeader.cshtml" />
+
+<div class="welcome-tab text-center">
+    <div class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></div>
+</div>
+
+<div class="wrapper container-fluid">
+    <!-- side-nav -->
+    <aside>
+
+        <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
+            @*<li class="nav-item">
+                    <a class="nav-link sidebar-only navlink-dashboard" id="dashboard-tab" role="tab" aria-controls="dashboard" aria-selected="true">Dashboard</a>
+                </li>*@
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-newreq" id="newreq-tab" role="tab" aria-controls="newreq" aria-selected="false" asp-action="SPDashboard">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-upcomingreq" id="upcomingreq-tab"
+                   role="tab" aria-controls="upcomingreq" aria-selected="false" asp-action="SPUpcoming">
+                    Upcoming
+                    Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
+                    Service
+                    Schedule
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab"
+                   role="tab" aria-controls="servicehistory" aria-selected="false" asp-action="SPServiceHistory">
+                    Service
+                    History
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-ratings" id="ratings-tab"
+                   role="tab" aria-controls="ratings" aria-selected="false" asp-action="SPRatings">My Ratings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link sidebar-only navlink-blockcustomer" id="blockcustomer-tab"
+                   role="tab" aria-controls="blockcustomer" aria-selected="false" asp-action="SPBlockCustomer">
+                    Block
+                    Customer
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <div class="table-content">
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Settings-tab -->
+            <div class="tab-pane fade show active" id="mysettings" role="tabpanel" aria-labelledby="mysettings-tab">
+                <div class="tab-heading">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item flex-grow-1">
+                            <a class="nav-link text-center active" data-toggle="tab" href="#my-details-st">My Details</a>
+                        </li>
+                        <li class="nav-item flex-grow-1">
+                            <a class="nav-link text-center" data-toggle="tab" href="#change-password-st">Change Password</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-content">
+                    <div id="my-details-st" class="container-fluid tab-pane active p-0">
+                        <br>
+                        <div class="d-flex flex-row align-items-start">
+                            <div class="details-head w-100">
+                                <h4><b>Account Status: <span class="active-clr">Active</span></b></h4>
+                                <h5 class="l-head">Basic details</h5>
+                                <hr>
+                            </div>
+                            <div class="details-img">
+                                <img src="~/assets/avatar-car.png" alt="">
+                            </div>
+                        </div>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <form method="post" asp-action="SPSettings">
+                            <div class="form-row mx-auto">
+                                <div class="form-group col-md-4">
+                                    <label for="inputFName" class="l-label">First Name</label>
+                                    <input type="text" class="form-control" id="inputFirstName"
+                                           placeholder="First Name" asp-for="FirstName">
+                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputLName" class="l-label">Last Name</label>
+                                    <input type="text" class="form-control" id="inputLastName"
+                                           placeholder="Last Name" asp-for="LastName">
+                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputEmail" class="l-label">E-mail Address</label>
+                                    <input type="email" class="form-control email" id="inputEmail"
+                                           placeholder="Email address" asp-for="Email" readonly>
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-auto">
+                                <div class="col-md-4">
+                                    <label for="inputNum" class="l-label">Mobile Number</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">+49</div>
+                                        </div>
+                                        <input type="tel" class="form-control MobileNumber"
+                                               id="inlineFormInputGroupUsername" placeholder="Mobile Number"
+                                               asp-for="Mobile">
+                                    </div>
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="inputDOB" class="l-label">Date of Birth</label>
+                                    <input type="date" asp-for="DateOfBirth" class="form-control" />
+                                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                </div>
+                                
+                                <div class="form-group col-md-4">
+                                    <label for="inputNationality" class="l-label">Nationality</label>
+                                    <select id="inputNationality" class="form-control">
+                                        <option selected>Indian</option>
+                                        <option>German</option>
+                                        <option>Spanish</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <label for="gender" class="l-label">Gender</label>
+                            <div class="form-row mx-auto mb-3">
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="gender" value="1">Male</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="gender" value="2">Female</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="gender" value="0" checked>Rather not to say
+                                    </label>
+                                </div>
+                            </div>
+
+                            <label for="inputAvatar" class="l-label">Select Avatar</label>
+                            <div class="form-row mx-auto mb-3">
+                                <div class="form-group col">
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar" checked><img src="~/assets/avatar-car.png" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-female.png" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-hat.png" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-iron.png" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-male.png" alt="">
+                                        </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                        <label class="form-check-label">
+                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-ship.png" alt="">
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="l-head">My addresses</h5><hr>
+                            <div class="form-row mx-auto">
+                                <input type="hidden" asp-for="AddressId" />
+                                <div class="form-group col-md-4">
+                                    <label for="inputStreet" class="l-label">Street Name</label>
+                                    <input type="text" class="form-control" id="inputStreetName"
+                                           placeholder="Street Name" asp-for="AddressLine1">
+                                    <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputHouse" class="l-label">House Name</label>
+                                    <input type="text" class="form-control" id="inputHouseName"
+                                           placeholder="House Name" asp-for="AddressLine2">
+                                    <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputPostal" class="l-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="inputPostalCode"
+                                           placeholder="Postal Code" asp-for="PostalCode">
+                                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputCity" class="l-label">City</label>
+                                    <input type="text" class="form-control" id="inputCity" placeholder="City"
+                                           asp-for="City">
+                                    <span asp-validation-for="City" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-row mx-auto">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary save-btn mx-auto">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="change-password-st" class="container-fluid tab-pane fade mx-0 px-0">
+                        <br>
+                        <form>
+                            <div class="form-row mx-auto">
+                                <div class="form-group col-md-4">
+                                    <label for="inputPass0"><b>Old Password</b></label>
+                                    <input type="password" class="form-control" id="SPpass0"
+                                           placeholder="Current Password">
+                                </div>
+                            </div>
+                            <div class="form-row mx-auto">
+                                <div class="form-group col-md-4">
+                                    <label for="inputPass1"><b>Password</b></label>
+                                    <input type="password" class="form-control" id="SPpass1"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-row mx-auto">
+                                <div class="form-group col-md-4">
+                                    <label for="inputPass2"><b>Confirm Password</b></label>
+                                    <input type="password" class="form-control email" id="SPpass2"
+                                           placeholder="Confirm Password">
+                                </div>
+                            </div>
+                            <button class="btn save-pass-btn" type="button" id="SPPasswordChangeBtn">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="flex-grow:1"></div>
+
+@section Scripts{
+    <script>
+        $(document).on('click', '#SPPasswordChangeBtn', function () {
+            var passwords = {};
+            passwords.Password = $('#SPpass0').val();
+            passwords.NewPassword = $('#SPpass1').val();
+            passwords.ConfirmPassword = $('#SPpass2').val();
+            console.log(passwords);
+
+            if (passwords.Password == "" || passwords.NewPassword == "" || passwords.ConfirmPassword == "") {
+                alert("All Fields are Required!");
+            }
+
+            else if (passwords.NewPassword != passwords.ConfirmPassword) {
+                alert("Password Must Match!");
+            }
+            else {
+                $.ajax({
+                    url: '@Url.Action("CustomerPasswordChange", "Home")',
+                    type: 'post',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    data: JSON.stringify(passwords),
+                    success: function (res) {
+                        console.log(res);
+                        console.log(typeof res);
+                        if (res == true) {
+                            alert("Password Updated Successfully");
+                            console.log("Done");
+                            location.reload();
+                        }
+                        else if (res == false) {
+                            alert("Please Enter Correct Current Password...");
+                        }
+                    },
+                    error: function(err) {
+                        console.log('error in ajax');
+                    }
+                });
+            }
+        });
+    </script>
+}

@@ -15,7 +15,8 @@ namespace Helperland.Models
         public decimal TotalCost { get; set; }
         public string Comments { get; set; }
         public bool HasPets { get; set; }
-
+        public int? Status { get; set; }
+        public int? ServiceProviderId { get; set; }
 
         //ServiceRequestAddress
         public string AddressLine1 { get; set; }
@@ -26,6 +27,22 @@ namespace Helperland.Models
         public string Mobile { get; set; }
 
         //ServiceRequestExtra
-        public List<int> ServiceExtraId { get; set; }
+        public string ServiceExtraId { get; set; }
+
+        //User
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        //Favourite and Blocked
+        public bool IsBlocked { get; set; }
+        public int Id { get; set; }
+
+        //Ratings
+        public int RatingId { get; set; }
+        public decimal Ratings { get; set; }
+        public DateTime RatingDate { get; set; }
+        public decimal OnTimeArrival { get; set; }
+        public decimal Friendly { get; set; }
+        public decimal QualityOfService { get; set; }
     }
 }
