@@ -53,8 +53,8 @@
         </div>
         <hr>
         <div class="action-history-modal">
-            <button class="reschedule-upcoming" data-dismiss="modal"
-                    data-target="#ServiceHistoryRescheduleModal" data-toggle="modal">
+            <button class="reschedule-upcoming reschedule-date" data-dismiss="modal"
+                    data-target="#ServiceHistoryRescheduleModal" data-toggle="modal" SRid="@Model.ServiceRequestId">
                 Reschedule
             </button>
             <button class="cancel-upcoming CancelServiceRequest" id="CancelServiceRequest" data-target="#ServiceHistoryCancelModal" SRid="@Model.ServiceRequestId" data-toggle="modal" data-dismiss="modal">

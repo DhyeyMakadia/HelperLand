@@ -9,6 +9,24 @@
 
 <partial name="~/Views/Shared/_PublicHeader.cshtml" />
 
+<!--Modals-->
+<div class="modal fade" id="ServiceDetailsHistoryModal" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"><b>Service Details</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="welcome-tab text-center">
     <div class="greet align-middle">Welcome, <b>@HttpContextAccessor.HttpContext.Session.GetString("UserName_Session")!</b></div>
 </div>
@@ -62,7 +80,7 @@
             <!-- Service-History-tab -->
             <div class="tab-pane fade show active" id="servicehistory" role="tabpanel" aria-labelledby="servicehistory-tab">
                 <div class="d-flex servicehistory-head">
-                    <Button>Export</Button>
+                    <Button id="exporttabledata">Export</Button>
                 </div>
                 <table id="mysorttable3" class="table mb-0" cellspacing="0" width="100%">
                     <thead>
@@ -74,9 +92,9 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-	                    {
+                        {
                             <tr>
-                                <td>@item.ServiceId</td>
+                                <td class="SPHistoryModal" style="cursor:pointer;" SRid="@item.ServiceRequestId">@item.ServiceId</td>
                                 <td>
                                     <img src="~/assets/calendar2.png" alt="">
                                     <b>@item.ServiceStartDate.ToShortDateString()</b>
@@ -93,7 +111,7 @@
                                     </div>
                                 </td>
                             </tr>
-	                    }
+                        }
                     </tbody>
                 </table>
             </div>
@@ -105,6 +123,7 @@
 <div style="flex-grow:1"></div>
 
 @section Scripts{
+    <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/jquery.table2excel.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#mysorttable3').DataTable({
@@ -115,6 +134,48 @@
                 }]
             });
             $('.dataTables_length').addClass('bs-select');
+        });
+
+        $(".SPHistoryModal").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("_SPServiceHistoryModal", "Home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    id: parseInt($(this).attr("SRid"))
+                },
+                success: function (res) {
+                    $("#ServiceDetailsHistoryModal .modal-body").html(res);
+                    $("#ServiceDetailsHistoryModal").modal();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#exporttabledata").click(function (e) {
+                var table = $("#mysorttable3");
+                if (table && table.length) {
+                    $(table).table2excel({
+                        exclude: ".noExl",
+                        name: "Excel Document Name",
+                        filename: "ServiceHistory" + new Date().toISOString().replace(/[\-\:\.]/g, "") + ".xls",
+                        fileext: ".xls",
+                        exclude_img: true,
+                        exclude_links: true,
+                        exclude_inputs: true,
+                        preserveColors: false
+                    });
+                }
+            });
+
         });
     </script>
 }

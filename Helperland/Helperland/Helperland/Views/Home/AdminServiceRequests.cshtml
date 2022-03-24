@@ -1,0 +1,1230 @@
+﻿@model IEnumerable<Helperland.Models.CustomModel>
+@{
+    ViewData["Title"] = "Service Requests";
+}
+
+@section Styles{
+    <link href="~/css/servicerequests.css" rel="stylesheet" />
+}
+
+<!-- Modals -->
+<div class="modal fade" id="EditReqModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Edit Service Request</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="RefundModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mx-auto" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Refund Amount</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <div>Paid Amount</div>
+                            <div>54,00 €</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <div>Refunded Amount</div>
+                            <div>0,00 €</div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <div>In Balance Amount</div>
+                            <div>54,00 €</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="return-amount" class="cm-dez">Amount</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control">
+                                <select class="selectpicker form-control">
+                                    <option selected>Percentage</option>
+                                    <option>...</option>
+                                    <option>...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="Calculate" class="cm-dez">Calculate</label>
+                            <div class="input-group">
+                                <button class="btn border-secondary">Calculate</button>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label class="cm-dez">
+                                Why do you want to reschedule service
+                                request?
+                            </label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                                      placeholder="Why do you want to reschedule service request?"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <label for="EMPNotes" class="cm-dez">Call Center EMP Notes</label>
+                            <textarea class="form-control" id="EMPNotes" rows="3"
+                                      placeholder="Enter Notes"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-12">
+                            <button class="refund-btn w-100">Refund</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <nav id="navbar" class="navbar navbar-expand fixed-top justify-content-between">
+        <a class="navbar-brand" asp-action="Index">helperland</a>
+        <div class="" id="navbarNavAltMarkup">
+            <div class="navbar-nav align-items-center">
+                <a class="nav-item nav-link active text-white" href="#">
+                    <img src="~/assets/admin-user.png" alt="" class="mr-1">
+                    @HttpContextAccessor.HttpContext.Session.GetString("UserName_Session") <span class="sr-only">(current user)</span>
+                </a>
+                <a class="nav-item nav-link" asp-action="Logout">
+                    <img src="~/assets/logout.png" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Sidebar -->
+<aside class="sidebar">
+    <div class="navbar-header">
+        <a id="navbar2-btn" type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar2"
+           aria-expanded="true" aria-controls="navbar2">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="ic fa fa-bars"></i>
+        </a>
+    </div>
+    <nav id="navbar2" class="col-sm-5 sidebar navbar-collapse collapse show">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Service Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Role Management</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#cc-manage" data-toggle="collapse" aria-controls="#cc-manage"
+                   aria-expanded="false">
+                    Coupon Code Management
+                    <span style="padding-right: 15px;float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png"
+                             class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="cc-manage">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Escalation Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">Service Requests <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Service Providers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="AdminUserManagement">User Management</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#finance-module" data-toggle="collapse" aria-controls="#finance-module"
+                   aria-expanded="false">
+                    Finance Module
+                    <span style="padding-right: 15px; float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png"
+                             class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="finance-module">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Zip Code Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Rating Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inquiry Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Newsletter Management</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#content-manage" data-toggle="collapse" aria-controls="#content-manage"
+                   aria-expanded="false">
+                    Content Management
+                    <span style="padding-right: 15px; float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png"
+                             class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="content-manage">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+        </ul>
+    </nav>
+</aside>
+
+<!-- Main Content -->
+<section id="content-area">
+    <div class="container-fluid">
+
+        <div class="content-header d-flex justify-content-start align-items-center">
+            <div class="heading">Service Requests</div>
+        </div>
+
+        <!-- Filter -->
+        <div class="card mt-3">
+            <div class="card-body">
+                <form id="FilterForm">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="text" class="form-control" id="ServiceIdSearch" placeholder="Service ID">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="text" class="form-control" id="CustomerSearch" placeholder="Customer">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="text" class="form-control" id="SPSearch" placeholder="Service Provider">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <select class="form-control" id="StatusSearch">
+                                <option value="" selected>Status</option>
+                                <option value="New">New</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Cancelled">Cancelled</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="date" id="minDate" class="form-control" placeholder="From Date">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="date" id="maxDate" class="form-control" placeholder="To Date">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <button type="button" class="btn search-filter" id="SearchBtn">Search</button>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <button type="button" class="btn border-dark" id="ClearSearch">Clear</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Data -->
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="mysorttable1" class="table mb-0 table-hover"
+                               table-responsive="false" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="th-sm">Service Id</th>
+                                    <th class="th-sm">Service date</th>
+                                    <th class="th-sm">Customer details</th>
+                                    <th class="th-sm">Service Provider</th>
+                                    <th class="th-sm">Gross Amount</th>
+                                    <th class="th-sm">Net Amount</th>
+                                    <th class="th-sm">Discount</th>
+                                    <th class="th-sm text-center">Status</th>
+                                    <th class="th-sm">Payment Status</th>
+                                    <th class="th-sm text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.ServiceId</td>
+                                        <td>
+                                            <img src="~/assets/calendar2.png" alt="">
+                                            <b>@item.ServiceStartDate.ToString("yyyy/MM/dd")</b>
+
+                                            <div>
+                                                <img src="~/assets/layer-712.png" alt="">
+                                                12:00 - 18:00
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @item.FirstName @item.LastName
+                                            <div>
+                                                <img src="~/assets/layer-15.png" alt="">
+                                                @item.AddressLine1, @item.AddressLine2 @item.PostalCode @item.City
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if (item.ServiceProviderId != null)
+                                            {
+                                                <div class="service-provider-datatab">
+                                                    <div class="profile-sp">
+                                                        <img src="~/assets/cap.png" alt="">
+                                                    </div>
+                                                    <div>
+                                                        <div>@item.SPFirstName @item.SPLastName</div>
+                                                        <div>
+                                                            @for (int i = 0; i < 5; i++)
+                                                            {
+                                                                if (i < ((int)item.Ratings))
+                                                                {
+                                                                    <img src="~/assets/star1.png" alt="">
+                                                                }
+                                                                else
+                                                                {
+                                                                    <img src="~/assets/star2.png" alt="">
+                                                                }
+                                                            }
+                                                            <span>@item.Ratings</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </td>
+                                        <td>@item.TotalCost €</td>
+                                        <td>@item.TotalCost €</td>
+                                        <td></td>
+                                        <td>
+                                            @switch (item.Status)
+                                            {
+                                                case 0:
+                                                    <div class="badge status-new">New</div>
+                                                    break;
+                                                case 1:
+                                                    <div class="badge status-pending">Pending</div>
+                                                    break;
+                                                case 2:
+                                                    <div class="badge status-completed">Completed</div>
+                                                    break;
+                                                case 3:
+                                                    <div class="badge status-cancelled">Cancelled</div>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </td>
+                                        <td>
+                                            @*<div class="badge status-not-applicable">not applicable</div>
+                                                <div class="badge status-settled">Settled</div>
+                                                <div class="badge status-not-settled">Not Settled</div>*@
+                                        </td>
+                                        <td class="actions-btn text-center align-middle">
+                                            <div class="dropdown">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                   id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-right"
+                                                     aria-labelledby="dropdownMenuLink">
+                                                    @if (item.Status == 0 || item.Status == 1)
+                                                    {
+                                                        <a class="dropdown-item EditandReschedule" SRid="@item.ServiceRequestId">Edit & Reschedule</a>
+                                                    }
+                                                    <a class="dropdown-item" href="#" data-toggle="modal"
+                                                       data-target="#RefundModal">Refund</a>
+                                                    <a class="dropdown-item" href="#">Cancel</a>
+                                                    <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                                    <a class="dropdown-item" href="#">Escalate</a>
+                                                    <a class="dropdown-item" href="#">History Log</a>
+                                                    <a class="dropdown-item" href="#">Download Invoice</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                                <!--<tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-new">New</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                   data-target="#EditReqModal">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#" data-toggle="modal"
+                                                   data-target="#RefundModal">Refund</a>
+                                                <a class="dropdown-item" href="#">Cancel</a>-->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-new">New</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>
+                                                <a class="dropdown-item" href="#">Cancel</a>-->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-pending">Pending</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>
+                                                <a class="dropdown-item" href="#">Cancel</a>
+                                                <a class="dropdown-item" href="#">Change SP</a>
+                                                <a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-pending">Pending</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>
+                                                <a class="dropdown-item" href="#">Cancel</a>
+                                                <a class="dropdown-item" href="#">Change SP</a>
+                                                <a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-completed">Completed</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-settled">Settled</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">-->
+                                <!-- <a class="dropdown-item" href="#">Edit & Reschedule</a> -->
+                                <!--<a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-completed">Completed</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-settled">Settled</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">-->
+                                <!-- <a class="dropdown-item" href="#">Edit & Reschedule</a> -->
+                                <!--<a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-cancelled">Cancelled</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!-- <a class="dropdown-item" href="#">Escalate</a> -->
+                                <!--<a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-completed">Completed</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-settled">Not Settled</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">-->
+                                <!-- <a class="dropdown-item" href="#">Edit & Reschedule</a> -->
+                                <!--<a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-cancelled">Cancelled</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!-- <a class="dropdown-item" href="#">Escalate</a> -->
+                                <!--<a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="service-provider-datatab">
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
+                                            <div>
+                                                <div>Lyum Watson</div>
+                                                <div>
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star1.png" alt="">
+                                                    <img src="~/assets/star2.png" alt="">
+                                                    <span>4</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-completed">Completed</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-settled">Settled</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">-->
+                                <!-- <a class="dropdown-item" href="#">Edit & Reschedule</a> -->
+                                <!--<a class="dropdown-item" href="#">Refund</a>-->
+                                <!-- <a class="dropdown-item" href="#">Cancel</a> -->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>323436</td>
+                                    <td>
+                                        <img src="~/assets/calendar2.png" alt="">
+                                        <b>09/04/2018</b>
+                                        <div>
+                                            <img src="~/assets/layer-712.png" alt="">
+                                            12:00 - 18:00
+                                        </div>
+                                    </td>
+                                    <td>
+                                        David Bough
+                                        <div>
+                                            <img src="~/assets/layer-15.png" alt="">
+                                            David Bough Musterstrabe 5,12345 Bonn
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td>54,00 €</td>
+                                    <td>54,00 €</td>
+                                    <td></td>
+                                    <td>
+                                        <div class="badge status-new">New</div>
+                                    </td>
+                                    <td>
+                                        <div class="badge status-not-applicable">not applicable</div>
+                                    </td>
+                                    <td class="actions-btn text-center align-middle">
+                                        <div class="dropdown">
+                                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                               id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+
+                                            <div class="dropdown-menu dropdown-menu-right"
+                                                 aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="#">Edit & Reschedule</a>
+                                                <a class="dropdown-item" href="#">Refund</a>
+                                                <a class="dropdown-item" href="#">Cancel</a>-->
+                                <!-- <a class="dropdown-item" href="#">Change SP</a> -->
+                                <!--<a class="dropdown-item" href="#">Escalate</a>
+                                                <a class="dropdown-item" href="#">History Log</a>
+                                                <a class="dropdown-item" href="#">Download Invoice</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>-->
+                            </tbody>
+                            <tfoot class="d-none">
+                                <tr>
+                                    <th class="th-sm">Service Id</th>
+                                    <th class="th-sm">Service date</th>
+                                    <th class="th-sm">Customer details</th>
+                                    <th class="th-sm">Service Provider</th>
+                                    <th class="th-sm">Gross Amount</th>
+                                    <th class="th-sm">Net Amount</th>
+                                    <th class="th-sm">Discount</th>
+                                    <th class="th-sm text-center">Status</th>
+                                    <th class="th-sm">Payment Status</th>
+                                    <th class="th-sm text-center">Actions</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Coryright -->
+<section id="footer-section" class="footer-section mt-3">
+    <div class="copyright-content">©2018 Helperland. All rights reserved.</div>
+</section>
+
+@section Scripts{
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>*@
+    @*<script src="https://cdn.datatables.net/datetime/1.1.2/js/dataTables.dateTime.min.js"></script>*@
+    <script>
+        //var minDate, maxDate;
+        //$.fn.dataTable.ext.search.push(
+        //    function (settings, data, dataIndex) {
+        //        var min = minDate.val();
+        //        var max = maxDate.val();
+        //        var date = new Date(data[1]);
+        //        console.log(date);
+        //        if (
+        //            (min === null && max === null) ||
+        //            (min === null && date <= max) ||
+        //            (min <= date && max === null) ||
+        //            (min <= date && date <= max)
+        //        ) {
+        //            return true;
+        //        }
+        //        return false;
+        //    }
+        //);
+
+        $(document).ready(function () {
+            //// Create date inputs
+            //minDate = new DateTime($('#minDate'), {
+            //    format: 'MMMM Do YYYY'
+            //});
+            //maxDate = new DateTime($('#maxDate'), {
+            //    format: 'MMMM Do YYYY'
+            //});
+
+            var table1 = $('#mysorttable1').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [9]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+
+            $(document).on("click", "#SearchBtn", function () {
+                console.log("click");
+                table1.column(0).search($("#ServiceIdSearch").val()).draw();
+                table1.column(2).search($("#CustomerSearch").val()).draw();
+                table1.column(3).search($("#SPSearch").val()).draw();
+                table1.column(7).search($("#StatusSearch option:selected").val()).draw();
+                //table1.draw();
+            });
+
+            $("#ClearSearch").on("click", function () {
+                $("#FilterForm")[0].reset();
+                $("#SearchBtn")[0].click();
+                return false;
+            });
+
+        });
+
+        $(".EditandReschedule").click(function () {
+
+            $.ajax({
+                url: '@Url.Action("_EditandReschedule", "Home")',
+                type: 'GET',
+                contentType: 'application/html; charset=utf-8',
+                dataType: 'html',
+                data: {
+                    id: parseInt($(this).attr("SRid"))
+                },
+                success: function (res) {
+                    $("#EditReqModal .modal-body").html(res);
+                    $("#EditReqModal").modal();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
+
+        $(document).on("click", "#UpdateAdminEditReq", function () {
+            $.ajax({
+
+                url: '@Url.Action("EditandRescheduleService", "Home")',
+                type: "post",
+                dataType:'json',
+                data: $("#EditandRescheduleForm").serialize(),
+                success: function (res) {
+                    $("#EditReqModal").modal("hide");
+                    alert("Service Request has been updated successfully!");
+                    location.reload();
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+             });
+        });
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $("#navbar2-btn").click(function () {
+                var display1 = $("#navbar2-btn").attr("aria-expanded");
+                if (display1) {
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                    $('#content-area').css("transition-delay", '.3s')
+                    $('#footer-section').attr('style', 'margin-left: 273px');
+                    $('#footer-section').css("transition-delay", '.3s')
+                }
+                if (display1 == 'true') {
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                    $('#footer-section').attr('style', 'margin-left: 0px');
+                }
+
+            });
+        });
+
+
+        jQuery(document).ready(function ($) {
+            var alterClass = function () {
+                var ww = document.body.clientWidth;
+                var display2 = $("#navbar2-btn").attr("aria-expanded");
+                if (ww <= 1024) {
+                    $('#navbar2').removeClass('show');
+                    $('#navbar2-btn').addClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "false");
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                    $('#footer-section').attr('style', 'margin-left: 0px');
+                } else if (ww > 1024) {
+                    $('#navbar2').addClass('show');
+                    $('#navbar2-btn').removeClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "true");
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                    $('#footer-section').attr('style', 'margin-left: 273px');
+                };
+            };
+            $(window).resize(function () {
+                alterClass();
+            });
+            //Fire it when the page first loads:
+            alterClass();
+        });
+    </script>
+}
+

@@ -131,7 +131,7 @@
                                                             class="form-control datepicker1">
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <input type="time" id="time" class="form-control time"/>
+                                                    <input type="time" id="time-schedule" class="form-control time"/>
                                                 </div>
                                             </div>
                                         </div>
@@ -166,7 +166,7 @@
                                     <label for="ExtraServices"><b>Extra Services</b></label>
                                     <div class="form-row justify-content-around">
                                         <div class="form-check">
-                                            <input class="form-check-input custom-check extra-checkbox" target="extra1" type="checkbox" value=""
+                                            <input class="form-check-input custom-check extra-checkbox" name="Extras" target="extra1" type="checkbox" value=""
                                                     id="Check1">
                                             <div class="d-flex justify-content-center flex-column align-items-center">
                                                 <label class="form-check-label custom-check-img" for="Check1">
@@ -179,7 +179,7 @@
                                             </div>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input custom-check extra-checkbox" target="extra2" type="checkbox" value=""
+                                            <input class="form-check-input custom-check extra-checkbox" name="Extras" target="extra2" type="checkbox" value=""
                                                     id="Check2">
                                             <div class="d-flex justify-content-center flex-column align-items-center">
                                                 <label class="form-check-label custom-check-img" for="Check2">
@@ -192,7 +192,7 @@
                                             </div>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input custom-check extra-checkbox" target="extra3" type="checkbox" value=""
+                                            <input class="form-check-input custom-check extra-checkbox" name="Extras" target="extra3" type="checkbox" value=""
                                                     id="Check3">
                                             <div class="d-flex justify-content-center flex-column align-items-center">
                                                 <label class="form-check-label custom-check-img" for="Check3">
@@ -204,7 +204,7 @@
                                             </div>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input custom-check extra-checkbox" target="extra4" type="checkbox" value=""
+                                            <input class="form-check-input custom-check extra-checkbox" name="Extras" target="extra4" type="checkbox" value=""
                                                     id="Check4">
                                             <div class="d-flex justify-content-center flex-column align-items-center">
                                                 <label class="form-check-label custom-check-img" for="Check4">
@@ -217,7 +217,7 @@
                                             </div>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input custom-check extra-checkbox" target="extra5" type="checkbox" value=""
+                                            <input class="form-check-input custom-check extra-checkbox" name="Extras" target="extra5" type="checkbox" value=""
                                                     id="Check5">
                                             <div class="d-flex justify-content-center flex-column align-items-center">
                                                 <label class="form-check-label custom-check-img" for="Check5">
@@ -569,25 +569,23 @@
                 }
             });
 
-            var price = 50;
-            var totalTime = 3;
-            $('#total-cost').html(price);
-            $('#sub-total').html(price);
+            var price,baseprice = 50;
+            var baseTime = 3;
+            var totalTime = baseTime + ExtraTime();
+            TIMEnPRICE(totalTime, baseprice);
             $(document).on('click', '.extra-checkbox', function () {
                 var id = $(this).attr('target');
                 if ($(this).is(':checked')) {
                     $('#' + id).css('display', 'block');
-                    price = price + 9;
-                    totalTime = parseFloat(totalTime) + 0.5;
                 }
                 else {
                     $('#' + id).css('display', 'none');
-                    price = price - 9;
-                    totalTime = parseFloat(totalTime) - 0.5;
                 }
-                $('#sub-total').html(price);
-                $('#total-cost').html(price);
-                $('#total-time').html(totalTime);
+                var extraTime = parseFloat(ExtraTime()) * 0.5;
+                totalTime = baseTime + extraTime;
+                var extraprice = parseInt(ExtraTime()) * 9;
+                price = baseprice + extraprice;
+                TIMEnPRICE(totalTime, price);
             });
 
             $(document).on('click', '#save-address-btn', function () {
@@ -657,7 +655,8 @@
 
             $(document).on('click', '#complete-booking-btn', function () {
                 var book = {};
-                book.ServiceStartDate = $('#date-schedule-tab').val();
+                //book.ServiceStartDate = $('#date-schedule-tab').val();
+                book.Date = $('#date-schedule-tab').val() + " " + $("#time-schedule").val();
                 book.ZipCode = $('#postalcode1').val();
                 book.ServiceHours = parseFloat($('#total-time').text());
                 book.SubTotal = parseFloat($('#sub-total').text());
@@ -703,6 +702,23 @@
         });
 
 
+    </script>
+
+    <script>
+        function ExtraTime() {
+            return $('input[type=checkbox][name=Extras]:checked').length;
+        }
+        function TIMEnPRICE(time, price) {
+            $('#total-time').html(time);
+            $('#sub-total').html(price);
+            $('#total-cost').html(price);
+        }
+    </script>
+
+    <script>
+        $('#booking-success-modal').on('hidden.bs.modal', function () {
+            location.reload();
+        });
     </script>
 
     <script>

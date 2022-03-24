@@ -87,7 +87,7 @@
                             <th class="th-sm text-center">Service Provider</th>
                             <th class="th-sm price-head">Price</th>
                             <th class="th-sm status text-center">Status</th>
-                            <th class="th-sm text-center">Rate SP</th>
+                            <th class="th-sm text-center noExl">Rate SP</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -161,7 +161,7 @@
                                         <div class="status-incomplete badge">Cancelled</div>
                                     }
                                 </td>
-                                <td class="rate-btn text-center align-middle">
+                                <td class="rate-btn text-center align-middle noExl">
                                     @if (item.ServiceProviderId != null)
                                     {
                                         <button class="CustomerRateSP" SRid="@item.ServiceRequestId" SPId="@item.ServiceProviderId" rateid="">Rate SP</button>
@@ -239,130 +239,6 @@
 
         });
     </script>
-
-    @*<script>
-        var s , t , p ;
-
-        $(document).ready(function () {
-            $(document).on("click","#s1",function () {
-                $("#s1").attr('src', '/assets/star1.png');
-                $("#s2,#s3,#s4,#s5").attr('src', '/assets/star2.png');
-                s = 1;
-            });
-            $(document).on("click","#s2",function () {
-                $("#s1,#s2").attr('src', '/assets/star1.png');
-                $("#s3,#s4,#s5").attr('src', '/assets/star2.png');
-                s = 2;
-            });
-            $(document).on("click","#s3",function () {
-                $("#s1,#s2,#s3").attr('src', '/assets/star1.png');
-                $("#s4,#s5").attr('src', '/assets/star2.png');
-                s = 3;
-            });
-            $(document).on("click","#s4",function () {
-                $("#s1,#s2,#s3,#s4").attr('src', '/assets/star1.png');
-                $("#s5").attr('src', '/assets/star2.png');
-                s = 4;
-            });
-            $(document).on("click","#s5",function () {
-                $("#s1,#s2,#s3,#s4,#s5").attr('src', '/assets/star1.png');
-                s = 5;
-            });
-
-
-
-
-            $(document).on("click","#t1",function () {
-                $("#t1").attr('src', '/assets/star1.png');
-                $("#t2,#t3,#t4,#t5").attr('src', '/assets/star2.png');
-                t = 1;
-            });
-            $(document).on("click","#t2",function () {
-                $("#t1,#t2").attr('src', '/assets/star1.png');
-                $("#t3,#t4,#t5").attr('src', '/assets/star2.png');
-                t = 2;
-            });
-            $(document).on("click","#t3",function () {
-                $("#t1,#t2,#t3").attr('src', '/assets/star1.png');
-                $("#t4,#t5").attr('src', '/assets/star2.png');
-                t = 3;
-            });
-            $(document).on("click","#t4",function () {
-                $("#t1,#t2,#t3,#t4").attr('src', '/assets/star1.png');
-                $("#t5").attr('src', '/assets/star2.png');
-                t = 4;
-            });
-            $(document).on("click","#t5",function () {
-                $("#t1,#t2,#t3,#t4,#t5").attr('src', '/assets/star1.png');
-                t = 5;
-            });
-
-
-
-
-            $(document).on("click","#p1",function () {
-                $("#p1").attr('src', '/assets/star1.png');
-                $("#p2,#p3,#p4,#p5").attr('src', '/assets/star2.png');
-                p = 1;
-            });
-            $(document).on("click","#p2",function () {
-                $("#p1,#p2").attr('src', '/assets/star1.png');
-                $("#p3,#p4,#p5").attr('src', '/assets/star2.png');
-                p = 2;
-            });
-            $(document).on("click","#p3",function () {
-                $("#p1,#p2,#p3").attr('src', '/assets/star1.png');
-                $("#p4,#p5").attr('src', '/assets/star2.png');
-                p = 3;
-            });
-            $(document).on("click","#p4",function () {
-                $("#p1,#p2,#p3,#p4").attr('src', '/assets/star1.png');
-                $("#p5").attr('src', '/assets/star2.png');
-                p = 4;
-            });
-            $(document).on("click","#p5",function () {
-                $("#p1,#p2,#p3,#p4,#p5").attr('src', '/assets/star1.png');
-                p = 5;
-            });
-
-            $(document).on('click',".ratesp", function () {
-                var ratesp = (s + t + p) / 3;
-                x = ratesp.toFixed(0);
-                $("#rateavg").html(x);
-
-                switch (x) {
-                    case '0':
-                        $("#v1,#v2,#v3,#v4,#v5").attr('src', '/assets/star2.png');
-                        break;
-                    case '1':
-                        $("#v1").attr('src', '/assets/star1.png');
-                        $("#v2,#v3,#v4,#v5").attr('src', '/assets/star2.png');
-                        break;
-                    case '2':
-                        $("#v1,#v2").attr('src', '/assets/star1.png');
-                        $("#v3,#v4,#v5").attr('src', '/assets/star2.png');
-                        break;
-                    case '3':
-                        $("#v1,#v2,#v3").attr('src', '/assets/star1.png');
-                        $("#v4,#v5").attr('src', '/assets/star2.png');
-                        break;
-                    case '4':
-                        $("#v1,#v2,#v3,#v4").attr('src', '/assets/star1.png');
-                        $("#v5").attr('src', '/assets/star2.png');
-                        break;
-                    case '5':
-                        $("#v1,#v2,#v3,#v4,#v5").attr('src', '/assets/star1.png');
-                        break;
-                    default:
-                        alert('Wohoo!');
-                }
-
-            })
-
-
-        });
-
-    </script>*@
 
     <script>
         var ServiceRequestId = 0, ServiceProviderId = 0;

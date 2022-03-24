@@ -1,0 +1,99 @@
+﻿@model Helperland.Models.CustomModel
+
+
+
+<form id="EditandRescheduleForm">
+    <input type="hidden" asp-for="ServiceRequestId" />
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="datepicker3" class="cm-dez">Date</label>
+            <input type="datetime-local" class="form-control" placeholder="From Date" asp-for="ServiceStartDate">
+        </div>
+        @*<div class="form-group col-md-6">
+            <label class="cm-dez">Time</label>
+            <select class="form-control">
+                <option selected>12:30</option>
+                <option>01:30</option>
+            </select>
+        </div>*@
+    </div>
+    <div class="form-row mt-2">
+        <h6 class="cm-dez">Service Address</h6>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="InputStreetName">Street Name</label>
+            <input type="text" class="form-control" id="InputStreetName" placeholder="Street Name"
+                   asp-for="AddressLine1">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="InputHouseNumber">House number</label>
+            <input type="text" class="form-control" id="InputHouseNumber" placeholder="House Number"
+                   asp-for="AddressLine2">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="InputPostalCode">Postal Code</label>
+            <input type="number" class="form-control" id="InputPostalCode" placeholder="Street Name"
+                   asp-for="PostalCode">
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Inputcity">City</label>
+            <input type="text" class="form-control" id="Inputcity" placeholder="City"
+                   asp-for="City">
+        </div>
+    </div>
+    @*<div class="form-row mt-2">
+            <h6 class="cm-dez">Invoice Address</h6>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="InputStreetName">Street Name</label>
+                <input type="text" class="form-control" id="InputStreetName" placeholder="Street Name"
+                       value="Koenigstrasse">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="InputHouseNumber">House number</label>
+                <input type="text" class="form-control" id="InputHouseNumber" placeholder="House Number"
+                       value="111">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="InputPostalCode">Postal Code</label>
+                <input type="number" class="form-control" id="InputPostalCode" placeholder="Street Name"
+                       value="99897">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="InputHouseNumber">City</label>
+                <select class="form-control">
+                    <option>Default select</option>
+                    <option selected>Tambach-Dietharz</option>
+                </select>
+            </div>
+        </div>*@
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="exampleFormControlTextarea1">
+                Why do you want to reschedule service
+                request?
+            </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+                      placeholder="Why do you want to reschedule service request?" asp-for="Comments">
+                            </textarea>
+        </div>
+    </div>
+    @*<div class="form-row">
+            <div class="form-group col-md-12">
+                <label for="EMPNotes">Call Center EMP Notes</label>
+                <textarea class="form-control" id="EMPNotes" rows="3"
+                          placeholder="Enter Notes"></textarea>
+            </div>
+        </div>*@
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <button type="button" class="update-btn w-100" id="UpdateAdminEditReq">Update</button>
+        </div>
+    </div>
+</form>

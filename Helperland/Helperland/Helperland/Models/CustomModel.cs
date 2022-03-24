@@ -32,6 +32,9 @@ namespace Helperland.Models
         //User
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string SPFirstName { get; set; }
+        public string SPLastName { get; set; }
+        public string UserProfilePicture { get; set; }
 
         //Favourite and Blocked
         public bool IsBlocked { get; set; }

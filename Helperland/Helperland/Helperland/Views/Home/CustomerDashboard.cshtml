@@ -1,4 +1,4 @@
-﻿@model List<Helperland.Models.ServiceRequest>
+﻿@model IEnumerable<Helperland.Models.CustomModel>
 @{
     ViewData["Title"] = "Customer Dashboard";
 }
@@ -32,7 +32,7 @@
 <!-- Reschedule Service Modal -->
 <div class="modal fade" id="ServiceHistoryRescheduleModal" tabindex="-1" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm mx-auto" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-md mx-auto" style="max-width:425px;" role="document">.
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLongTitle"><b>Reschedule Service Request</b></h5>
@@ -46,13 +46,13 @@
                         Select New Date and Time
                     </div>
                     <div class="col-6">
-                        <input type="date" class="w-100 form-control">
+                        <input type="date" id="rescheduledate1" class="w-100 form-control" name="date-schedule-tab">
                     </div>
                     <div class="col-6">
-                        <input type="time" class="form-control time" id="rescheduletime" />
+                        <input type="time" class="form-control time" id="rescheduletime1" />
                     </div>
                     <div class="col-12 text-center mt-2 reschedule-update">
-                        <button>Update</button>
+                        <button id="reschedule-btn">Update</button>
                     </div>
                 </div>
             </div>
@@ -177,15 +177,22 @@
                                 </td>
                                 <td>
                                     <div class="service-provider-datatab">
-
+                                        @if (item.Status == 1)
+                                        {
+                                        <div class="profile-sp">
+                                            <img src="~/assets/cap.png"  alt="">
+                                        </div>
+                                            <div>@item.FirstName @item.LastName</div>
+                                            
+                                        }
                                     </div>
                                 </td>
                                 <td>
                                     <div class="price ml-xl-0 ml-2">@item.TotalCost <span>€</span></div>
                                 </td>
                                 <td class="text-center align-middle d-flex justify-content-center align-items-center">
-                                    <button class="res-dash-btn mr-1" data-target="#ServiceHistoryRescheduleModal"
-                                            data-toggle="modal">
+                                    <button class="res-dash-btn mr-1 reschedule-date" data-target="#ServiceHistoryRescheduleModal"
+                                            data-toggle="modal" SRid="@item.ServiceRequestId">
                                         Reschedule
                                     </button>
                                     <button class="cl-dash-btn CancelServiceRequest" data-target="#ServiceHistoryCancelModal" SRid="@item.ServiceRequestId"
@@ -291,6 +298,49 @@
             });
 
         });
+
+
+        $(document).on("click", ".reschedule-date", function () {
+            srid = parseInt($(this).attr("SRid"));
+            console.log(srid);
+        });
+
+        $("#reschedule-btn").click(function () {
+            var Date = $("#rescheduledate1").val() + " " + $("#rescheduletime1").val();
+                console.log(Date);
+
+            $.ajax({
+                url: '@Url.Action("CustomerDashboardRescheduleRequest", "Home")',
+                type: 'post',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify({
+                    ServiceRequestId: srid,
+                    Date: $("#rescheduledate1").val() + " " + $("#rescheduletime1").val()
+                }),
+                success: function (res) {
+                    console.log(res);
+                    if (res == true) {
+                        $("#ServiceHistoryRescheduleModal").modal("hide");
+                        alert("Your Service Request has been Rescheduled.");
+                        location.reload();
+                    }
+                    else {
+                        alert("Rescheduled Date & Time must be greater than Present Date & Time");
+                        location.reload();
+                    }
+                },
+                error: function (err) {
+                    console.log(err);
+                    console.log("Error");
+                }
+            });
+
+        });
     </script>
 
+    <script>
+        var today = new Date().toISOString().split('T')[0];
+        document.getElementsByName("date-schedule-tab")[0].setAttribute('min', today);
+    </script>
 }

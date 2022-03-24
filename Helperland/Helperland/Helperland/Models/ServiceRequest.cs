@@ -43,6 +43,9 @@ namespace Helperland.Models
         public Guid? RecordVersion { get; set; }
 
         [NotMapped]
+        public string Date { get; set; }
+
+        [NotMapped]
         public int AddressId { get; set; }
 
         [NotMapped]

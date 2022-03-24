@@ -1,5 +1,6 @@
 ﻿@{
     bool IsHomePage = ViewBag.IsHomePage ?? false;
+    bool AdminPage = ViewBag.AdminPage ?? false;
 }
 
 
@@ -29,96 +30,101 @@
 
     @RenderBody()
 
-    <footer class="page-footer font-small">
-        <div class="container mw-100 footer-container">
-            <div class=" d-flex justify-content-between align-items-center footer-content m-auto">
+    @if (AdminPage != true)
+    {
+        <footer class="page-footer font-small">
+            <div class="container mw-100 footer-container">
+                <div class=" d-flex justify-content-between align-items-center footer-content m-auto">
 
-                <div class="footer-logo">
-                    <a href="#"><img src="~/assets/footer-logo.png" alt=""></a>
-                </div>
+                    <div class="footer-logo">
+                        <a href="#"><img src="~/assets/footer-logo.png" alt=""></a>
+                    </div>
 
-                <div class="footer-links">
-                    <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+                    <div class="footer-links">
+                        <div class="row text-center d-flex justify-content-center pt-5 mb-3">
 
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a asp-controller="Home" asp-action="Index" class="f-link">HOME</a>
-                            </h6>
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a asp-controller="Home" asp-action="Index" class="f-link">HOME</a>
+                                </h6>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a asp-controller="Home" asp-action="About" class="f-link">ABOUT</a>
+                                </h6>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a href="#!" class="f-link">TESTIMONIALS</a>
+                                </h6>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a asp-controller="Home" asp-action="Faq" class="f-link">FAQS</a>
+                                </h6>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a href="#!" class="f-link">INSURANCE POLICY</a>
+                                </h6>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <h6 class="text-uppercase">
+                                    <a href="#!" class="f-link">IMPRESSUM</a>
+                                </h6>
+                            </div>
+
                         </div>
-
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a asp-controller="Home" asp-action="About" class="f-link">ABOUT</a>
-                            </h6>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a href="#!" class="f-link">TESTIMONIALS</a>
-                            </h6>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a asp-controller="Home" asp-action="Faq" class="f-link">FAQS</a>
-                            </h6>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a href="#!" class="f-link">INSURANCE POLICY</a>
-                            </h6>
-                        </div>
-
-                        <div class="col-md-2 mb-3">
-                            <h6 class="text-uppercase">
-                                <a href="#!" class="f-link">IMPRESSUM</a>
-                            </h6>
-                        </div>
-
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><img src="~/assets/ic-facebook.png" class="social-fb" alt=""></a>
+                        <a href="#"><img src="~/assets/ic-instagram.png" class="social-ig" alt=""></a>
                     </div>
                 </div>
-                <div class="footer-social">
-                    <a href="#"><img src="~/assets/ic-facebook.png" class="social-fb" alt=""></a>
-                    <a href="#"><img src="~/assets/ic-instagram.png" class="social-ig" alt=""></a>
-                </div>
             </div>
-        </div>
 
-        @if (IsHomePage)
-        {
-            <div id="footer-copyright" class="footer-copyright-home text-center py-3 text-white position-relative collapse show">
-                <div class="footer-copyright-home-txt d-inline-block">
-                    Lorem ipsum dolor sit amet consectetur
-                    adipisicing elit. Sed nisi at nihil aperiam nesciunt deserunt odit fuga.
-                    <a href="#"> Privacy Policy</a>
+            @if (IsHomePage)
+            {
+                <div id="footer-copyright" class="footer-copyright-home text-center py-3 text-white position-relative collapse show">
+                    <div class="footer-copyright-home-txt d-inline-block">
+                        Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Sed nisi at nihil aperiam nesciunt deserunt odit fuga.
+                        <a href="#"> Privacy Policy</a>
+                    </div>
+                    <div class="button-ok d-inline-block position-absolute">
+                        <button type="button" class=" text-dark border-0 font-weight-bold" data-toggle="collapse"
+                                data-target="#footer-copyright" aria-expanded="true" aria-controls="#footer-copyright">
+                            OK!
+                        </button>
+                    </div>
                 </div>
-                <div class="button-ok d-inline-block position-absolute">
-                    <button type="button" class=" text-dark border-0 font-weight-bold" data-toggle="collapse"
-                            data-target="#footer-copyright" aria-expanded="true" aria-controls="#footer-copyright">
-                        OK!
-                    </button>
+            }
+            else
+            {
+                <div id="footer-copyright" class="footer-copyright-public text-center py-3 text-white position-relative collapse show">
+                    <div class="footer-copyright-public-txt d-inline-block">
+                        ©2018 Helperland. All rights reserved. &nbsp;&nbsp;
+                        <a href="#">Terms and Conditions </a>|<a href="#"> Privacy Policy</a>
+                    </div>
                 </div>
-            </div>
-        }
-        else
-        {
-            <div id="footer-copyright" class="footer-copyright-public text-center py-3 text-white position-relative collapse show">
-                <div class="footer-copyright-public-txt d-inline-block">
-                    ©2018 Helperland. All rights reserved. &nbsp;&nbsp;
-                    <a href="#">Terms and Conditions </a>|<a href="#"> Privacy Policy</a>
-                </div>
-            </div>
-        }
-    </footer>
+            }
+        </footer>
+    }
+
+
 
     <!-- -----Scripts----- -->
     <script src="~/lib/jquery/jquery.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    @*<script src="~/lib/bootstrap/js/bootstrap.js"></script>*@
+    @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+    @*<script src="~/js/site.js" asp-append-version="true"></script>*@
     @*<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>*@
-    @*<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>*@
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/main.js"></script>
     <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>

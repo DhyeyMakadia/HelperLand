@@ -168,7 +168,6 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerSettings.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerServiceHistory.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerFavouritePros.cshtml.g.cs
-E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.AssemblyReference.cache
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\SRDashModal.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddress.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\CustomerAddressAddOrEdit.cshtml.g.cs
@@ -181,3 +180,8 @@ E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netco
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SPDashModal.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SPUpcomingModal.cshtml.g.cs
 E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_RateSPModal.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\AdminUserManagement.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Home\AdminServiceRequests.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_EditandReschedule.cshtml.g.cs
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Helperland.csproj.AssemblyReference.cache
+E:\TATVASOFT\Project-Helperland\Helperland\Helperland\Helperland\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SPServiceHistoryModal.cshtml.g.cs

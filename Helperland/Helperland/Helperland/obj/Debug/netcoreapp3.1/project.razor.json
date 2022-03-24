@@ -14427,6 +14427,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\AdminUserManagement.cshtml",
+      "TargetPath": "Views\\Home\\AdminUserManagement.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_ForgotModal.cshtml",
       "TargetPath": "Views\\Shared\\_ForgotModal.cshtml",
       "FileKind": "mvc"
@@ -14444,6 +14449,11 @@
     {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_SPDashModal.cshtml",
       "TargetPath": "Views\\Shared\\_SPDashModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\AdminServiceRequests.cshtml",
+      "TargetPath": "Views\\Home\\AdminServiceRequests.cshtml",
       "FileKind": "mvc"
     },
     {

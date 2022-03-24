@@ -21,8 +21,8 @@
                         switch (HttpContextAccessor.HttpContext.Session.GetInt32("UserType_Session"))
                         {
                             case 1:
-                                <a class="nav-item nav-link navlink-servicerequests" data-dismiss="modal">Service Requests</a>
-                                <a class="nav-item nav-link navlink-usermanagement" data-dismiss="modal">User Management</a>
+                                <a class="nav-item nav-link navlink-servicerequests" data-dismiss="modal" asp-action="AdminServiceRequests">Service Requests</a>
+                                <a class="nav-item nav-link navlink-usermanagement" data-dismiss="modal" asp-action="AdminUserManagement">User Management</a>
                                 break;
                             case 2:
                                 <a asp-action="SPDashboard" class="nav-item nav-link navlink-newreq">Dashboard</a>

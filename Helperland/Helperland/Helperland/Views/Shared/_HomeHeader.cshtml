@@ -49,6 +49,8 @@
                                 @switch (HttpContextAccessor.HttpContext.Session.GetInt32("UserType_Session"))
                                 {
                                     case 1:
+                                        <a class="dropdown-item" asp-action="AdminUserManagement">User Management</a>
+                                        <a class="dropdown-item" asp-action="AdminServiceRequests">Service Requests</a>
                                         break;
                                     case 2:
                                         <a class="dropdown-item" asp-action="SPDashboard">My Dashboard</a>

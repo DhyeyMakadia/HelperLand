@@ -40,22 +40,30 @@ namespace Helperland.Controllers
             User user = _db.Users.Where(x => x.Email == obj.Email && x.Password == obj.Password).SingleOrDefault();
             if (user != null)
             {
-                var username = user.FirstName + " " + user.LastName;
-                HttpContext.Session.SetInt32("UserID_Session", user.UserId);
-                HttpContext.Session.SetString("UserName_Session", username);
-                HttpContext.Session.SetInt32("UserType_Session", user.UserTypeId);
-                int usertype = user.UserTypeId;
-
-                switch (usertype)
+                if (user.Status == 1)
                 {
-                    case 1:
-                        return RedirectToAction("Index");
-                    case 2:
-                        return RedirectToAction("SPDashboard");
-                    case 3:
-                        return RedirectToAction("CustomerDashboard");
-                    default:
-                        return RedirectToAction("Index");
+                    var username = user.FirstName + " " + user.LastName;
+                    HttpContext.Session.SetInt32("UserID_Session", user.UserId);
+                    HttpContext.Session.SetString("UserName_Session", username);
+                    HttpContext.Session.SetInt32("UserType_Session", user.UserTypeId);
+                    int usertype = user.UserTypeId;
+
+                    switch (usertype)
+                    {
+                        case 1:
+                            return RedirectToAction("AdminServiceRequests");
+                        case 2:
+                            return RedirectToAction("SPDashboard");
+                        case 3:
+                            return RedirectToAction("CustomerDashboard");
+                        default:
+                            return RedirectToAction("Index");
+                    }
+                }
+                else
+                {
+                    TempData["Msg4Popup"] = "You are not Approved...You can login after Admin Authentication";
+                    return RedirectToAction("Index");
                 }
 
             }
@@ -163,6 +171,7 @@ namespace Helperland.Controllers
                 smtp.Credentials = NC;
                 smtp.Send(msg);
                 TempData["Msg4Popup"] = "Mail sent successfully";
+                HttpContext.Session.SetInt32("ResetPassword",_objuserdetail.UserId);
                 return RedirectToAction("Index");
             }
             else
@@ -175,11 +184,16 @@ namespace Helperland.Controllers
         //Reset Password
         [HttpGet]
         public IActionResult ResetPassword(int? id)
-        
         {
-            ViewData["ResetUser"] = id;
-            User user = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
-            return View(user);
+            var userid = HttpContext.Session.GetInt32("ResetPassword");
+            if (userid != null)
+            {
+                ViewData["ResetUser"] = id;
+                User user = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+                return View(user);
+            }
+            TempData["Msg4Popup"] = "Authorization Denied!";
+            return RedirectToAction("Index");
         }
 
         //Reset Password (POST)
@@ -195,6 +209,7 @@ namespace Helperland.Controllers
                 _db.Users.Update(user);
                 _db.SaveChanges();
                 TempData["Msg4Popup"] = "Password has been changed successfully";
+                HttpContext.Session.Remove("ResetPassword");
                 return RedirectToAction("Index");
             }
             return View();
@@ -225,6 +240,7 @@ namespace Helperland.Controllers
                     obj.CreatedDate = DateTime.Now;
                     obj.ModifiedDate = DateTime.Now;
                     obj.ModifiedBy = 0;
+                    obj.Status = 1;
                     obj.IsApproved = false;
                     obj.IsActive = true;
                     obj.IsDeleted = false;
@@ -245,9 +261,43 @@ namespace Helperland.Controllers
         public IActionResult CustomerDashboard()
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
-            List<ServiceRequest> obj = new List<ServiceRequest>();
-            obj = _db.ServiceRequests.Where(x => x.UserId == userid && x.Status == 0).ToList();
-            return View(obj);
+            User cust = _db.Users.Where(x => x.UserId == userid).FirstOrDefault();
+            if (cust != null)
+            {
+                if (cust.UserTypeId == 3)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join user in _db.Users on sr.ServiceProviderId equals user.UserId into abc
+                                from user in abc.DefaultIfEmpty()
+                                join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into x
+                                from rate in x.DefaultIfEmpty()
+                                where sr.UserId == userid && sr.Status == 0 || sr.Status == 1
+                                select new CustomModel
+                                {
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    ServiceId = sr.ServiceId,
+                                    ServiceStartDate = sr.ServiceStartDate,
+                                    Status = sr.Status,
+                                    TotalCost = sr.TotalCost,
+                                    Ratings = rate == null? 0 : rate.Ratings,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
+                                    UserProfilePicture = user.UserProfilePicture
+                                };
+
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
         }
 
         //Customer Dashboard Modal View
@@ -305,6 +355,21 @@ namespace Helperland.Controllers
             return View(query);
         }
 
+        //Customer Dashboard Reschedule Request
+        public bool CustomerDashboardRescheduleRequest([FromBody] ServiceRequest sr)
+        {
+            ServiceRequest obj = _db.ServiceRequests.Where(x => x.ServiceRequestId == sr.ServiceRequestId).FirstOrDefault();
+            var output = DateTime.Compare(DateTime.Now, DateTime.Parse(sr.Date));
+            if (output == -1)
+            {
+                obj.ServiceStartDate = DateTime.Parse(sr.Date);
+                _db.ServiceRequests.Update(obj);
+                _db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         //Customer Dashboard Cancel Request
         public bool CustomerDashboardCancelRequest([FromBody] ServiceRequest sr)
         {
@@ -321,7 +386,23 @@ namespace Helperland.Controllers
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
             User user = _db.Users.Where(x => x.UserId == userid).FirstOrDefault();
-            return View(user);
+            if (user != null)
+            {
+                if (user.UserTypeId == 3)
+                {
+                    return View(user);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
         }
 
         //Customer Settings Tab (POST)
@@ -434,26 +515,44 @@ namespace Helperland.Controllers
         public IActionResult CustomerServiceHistory()
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User cust = _db.Users.Where(x => x.UserId == userid).FirstOrDefault();
 
-            var query = from sr in _db.ServiceRequests
-                        join user in _db.Users on sr.ServiceProviderId equals user.UserId into x
-                        from user in x.DefaultIfEmpty()
-                        join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into abc
-                        from rate in abc.DefaultIfEmpty()
-                        where sr.UserId == userid && sr.Status == 2 || sr.Status == 3
-                        select new CustomModel
-                        {
-                            ServiceStartDate = sr.ServiceStartDate,
-                            Ratings = rate == null ? 0 : rate.Ratings,
-                            TotalCost = sr.TotalCost,
-                            Status = sr.Status,
-                            ServiceProviderId = sr.ServiceProviderId,
-                            ServiceRequestId = sr.ServiceRequestId,
-                            FirstName = user == null ? "" : user.FirstName,
-                            LastName = user == null? "" : user.LastName
-                        };
+            if (cust != null)
+            {
+                if (cust.UserTypeId == 3)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join user in _db.Users on sr.ServiceProviderId equals user.UserId into x
+                                from user in x.DefaultIfEmpty()
+                                join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into abc
+                                from rate in abc.DefaultIfEmpty()
+                                where sr.UserId == userid && sr.Status == 2 || sr.Status == 3
+                                select new CustomModel
+                                {
+                                    ServiceStartDate = sr.ServiceStartDate,
+                                    Ratings = rate == null ? 0 : rate.Ratings,
+                                    TotalCost = sr.TotalCost,
+                                    Status = sr.Status,
+                                    ServiceProviderId = sr.ServiceProviderId,
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    FirstName = user == null ? "" : user.FirstName,
+                                    LastName = user == null ? "" : user.LastName
+                                };
 
-            return View(query);
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
         public IActionResult _RateSPModal(int srid)
@@ -463,9 +562,9 @@ namespace Helperland.Controllers
 
             var query = (from user in _db.Users
                         join sr in _db.ServiceRequests on user.UserId equals sr.ServiceProviderId 
-                        join r in _db.Ratings on sr.ServiceProviderId equals r.RatingTo into x
+                        join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into x
                         from rate in x.DefaultIfEmpty()
-                        where sr.ServiceRequestId == srid && rate.RatingFrom == userid
+                         where rate == null ? (sr.ServiceRequestId == srid) : (sr.ServiceRequestId == srid && rate.RatingFrom == userid)
                         select new CustomModel
                         {
                             FirstName = user.FirstName,
@@ -483,7 +582,7 @@ namespace Helperland.Controllers
         public string CustomerRateSP([FromBody] Rating rate)
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
-
+           
             Rating r = _db.Ratings.Where(x => x.ServiceRequestId == rate.ServiceRequestId).FirstOrDefault();
             
             if (r != null)
@@ -509,7 +608,27 @@ namespace Helperland.Controllers
         //Customer Service History Tab
         public IActionResult CustomerFavouritePros()
         {
-            return View();
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User cust = _db.Users.Where(x => x.UserId == userid).FirstOrDefault();
+
+            if (cust != null)
+            {
+                if (cust.UserTypeId == 3)
+                {
+                    return View();
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
         //====================================
@@ -517,15 +636,26 @@ namespace Helperland.Controllers
         //====================================
         public IActionResult BookService()
         {
-            var userID = HttpContext.Session.GetInt32("UserID_Session");
-            var userName = HttpContext.Session.GetInt32("UserName_Session");
+            var userid = HttpContext.Session.GetInt32("UserID_Session");
+            User cust = _db.Users.Where(x => x.UserId == userid).FirstOrDefault();
 
-            if (userID != null)
+            if (cust != null)
             {
-                return View();
+                if (cust.UserTypeId == 3)
+                {
+                    return View();
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
             }
-            TempData["Msg4Popup"] = "You have to login to Book a Service.";
-            return RedirectToAction("Index");
+            else
+            {
+                TempData["Msg4Popup"] = "You have to login to Book a Service.";
+                return RedirectToAction("Index");
+            }
         }
 
         //Book Service (POST)
@@ -536,6 +666,7 @@ namespace Helperland.Controllers
             UserAddress address = _db.UserAddresses.Where(x => x.AddressId == book.AddressId).SingleOrDefault();
             book.UserId = userID;
             book.ServiceId = 1000;
+            book.ServiceStartDate = DateTime.Parse(book.Date);
             book.PaymentDue = true;
             book.CreatedDate = DateTime.Now;
             book.ModifiedDate = DateTime.Now;
@@ -580,8 +711,8 @@ namespace Helperland.Controllers
             MailMessage msg = new MailMessage();
             
             msg.From = new MailAddress("getpaswordback@gmail.com");
-            msg.Subject = "New Service - Helperland";
-            msg.Body = "Hello Service Provider,\n\nNew Service Request is Available in your area\n \nThank you for visiting Helperland \n\nRegards,\nHelperland Team";
+            msg.Subject = "New Service Request - Helperland";
+            msg.Body = "Hello Service Provider,\n\nNew Service Request is Available in your area\n \n Visit Helperland for further Information.  \n\nRegards,\nHelperland Team";
 
             var emailList = from u in _db.Users
                             where u.UserTypeId == 2
@@ -684,6 +815,7 @@ namespace Helperland.Controllers
                     obj.CreatedDate = DateTime.Now;
                     obj.ModifiedDate = DateTime.Now;
                     obj.ModifiedBy = 0;
+                    obj.Status = 0;
                     obj.IsApproved = false;
                     obj.IsActive = true;
                     obj.IsDeleted = false;
@@ -706,27 +838,47 @@ namespace Helperland.Controllers
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
             User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = from sr in _db.ServiceRequests
-                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
-                        from Sra in srad.DefaultIfEmpty()
-                        join user in _db.Users on sr.UserId equals user.UserId
-                        where sp.ZipCode == sr.ZipCode && sr.Status == 0 //new
-                        select new CustomModel
-                        {
-                            ServiceRequestId = sr.ServiceRequestId,
-                            ServiceId = sr.ServiceId,
-                            ServiceStartDate = sr.ServiceStartDate,
-                            TotalCost = sr.TotalCost,
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                                from Sra in srad.DefaultIfEmpty()
+                                join user in _db.Users on sr.UserId equals user.UserId
+                                join f in _db.FavoriteAndBlockeds on sr.UserId equals f.TargetUserId into fav
+                                from f in fav.DefaultIfEmpty()
+                                where sp.ZipCode == sr.ZipCode && sr.Status == 0 && (f.UserId == id || f.UserId == null) && (f.IsBlocked != true || f.IsBlocked == null)
+                                select new CustomModel
+                                {
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    ServiceId = sr.ServiceId,
+                                    ServiceStartDate = sr.ServiceStartDate,
+                                    TotalCost = sr.TotalCost,
 
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
 
-                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
-                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
-                            PostalCode = Sra == null ? "" : Sra.PostalCode,
-                            City = Sra == null ? "" : Sra.City
-                        };
-            return View(query);
+                                    AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                                    AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                                    PostalCode = Sra == null ? "" : Sra.PostalCode,
+                                    City = Sra == null ? "" : Sra.City
+                                };
+                    return View(query);
+
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
         public IActionResult _SPDashModal(int id)
@@ -788,6 +940,7 @@ namespace Helperland.Controllers
             return PartialView(query);
         }
 
+        //Accept Service
         public IActionResult AcceptServiceRequest(int id)
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
@@ -801,32 +954,51 @@ namespace Helperland.Controllers
             return RedirectToAction("SPDashboard");
         }
 
+        //Service Provider Settings
         public IActionResult SPSettings()
         {
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = (from u in _db.Users
-                        join ad in _db.UserAddresses on u.UserId equals ad.UserId into address
-                        from ad in address.DefaultIfEmpty()
-                        where u.UserId == id
-                        select new SPSettings
-                        {
-                            UserId = u.UserId,
-                            FirstName = u.FirstName,
-                            LastName = u.LastName,
-                            Email = u.Email,
-                            Mobile = u.Mobile,
-                            DateOfBirth = u.DateOfBirth,
-                            Gender = u.Gender,
-                            UserProfilePicture = u.UserProfilePicture,
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = (from u in _db.Users
+                                join ad in _db.UserAddresses on u.UserId equals ad.UserId into address
+                                from ad in address.DefaultIfEmpty()
+                                where u.UserId == id
+                                select new SPSettings
+                                {
+                                    UserId = u.UserId,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName,
+                                    Email = u.Email,
+                                    Mobile = u.Mobile,
+                                    DateOfBirth = u.DateOfBirth,
+                                    Gender = u.Gender,
+                                    UserProfilePicture = u.UserProfilePicture,
 
-                            AddressId = ad == null ? 0 : ad.AddressId,
-                            AddressLine1 = ad == null ? "" : ad.AddressLine1,
-                            AddressLine2 = ad == null ? "" : ad.AddressLine2,
-                            City = ad == null ? "" : ad.City,
-                            PostalCode = ad == null ? "" : ad.PostalCode 
-                        }).Single();
-            return View(query);
+                                    AddressId = ad == null ? 0 : ad.AddressId,
+                                    AddressLine1 = ad == null ? "" : ad.AddressLine1,
+                                    AddressLine2 = ad == null ? "" : ad.AddressLine2,
+                                    City = ad == null ? "" : ad.City,
+                                    PostalCode = ad == null ? "" : ad.PostalCode 
+                                }).Single();
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
         [HttpPost]
@@ -849,7 +1021,9 @@ namespace Helperland.Controllers
                 user.LastName = sp.LastName;
                 user.Mobile = sp.Mobile;
                 user.Gender = sp.Gender;
+                user.UserProfilePicture = sp.UserProfilePicture;
                 user.DateOfBirth = sp.DateOfBirth;
+                user.ZipCode = sp.PostalCode;
                 _db.Users.Update(user);
                 UserAddress useraddress = new UserAddress()
                 {
@@ -888,28 +1062,45 @@ namespace Helperland.Controllers
         public IActionResult SPUpcoming()
         {
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = from sr in _db.ServiceRequests
-                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
-                        from Sra in srad.DefaultIfEmpty()
-                        join user in _db.Users on sr.UserId equals user.UserId
-                        where sr.ServiceProviderId==id && sr.Status == 1 //pending
-                        select new CustomModel
-                        {
-                            ServiceRequestId = sr.ServiceRequestId,
-                            ServiceId = sr.ServiceId,
-                            ServiceStartDate = sr.ServiceStartDate,
-                            TotalCost = sr.TotalCost,
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                                from Sra in srad.DefaultIfEmpty()
+                                join user in _db.Users on sr.UserId equals user.UserId
+                                where sr.ServiceProviderId == id && sr.Status == 1 //pending
+                                select new CustomModel
+                                {
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    ServiceId = sr.ServiceId,
+                                    ServiceStartDate = sr.ServiceStartDate,
+                                    TotalCost = sr.TotalCost,
 
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
 
-                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
-                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
-                            PostalCode = Sra == null ? "" : Sra.PostalCode,
-                            City = Sra == null ? "" : Sra.City
-                        };
-            return View(query);
+                                    AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                                    AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                                    PostalCode = Sra == null ? "" : Sra.PostalCode,
+                                    City = Sra == null ? "" : Sra.City
+                                };
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
         }
 
         public IActionResult _SPUpcomingModal(int id)
@@ -1012,69 +1203,187 @@ namespace Helperland.Controllers
             return RedirectToAction("SPUpcoming");
         }
 
+        //Service History
         public IActionResult SPServiceHistory()
         {
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = from sr in _db.ServiceRequests
-                        join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
-                        from Sra in srad.DefaultIfEmpty()
-                        join user in _db.Users on sr.UserId equals user.UserId
-                        where sr.ServiceProviderId == id && sr.Status == 2 //completed
-                        select new CustomModel
-                        {
-                            ServiceId = sr.ServiceId,
-                            ServiceStartDate = sr.ServiceStartDate,
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
+                                from Sra in srad.DefaultIfEmpty()
+                                join user in _db.Users on sr.UserId equals user.UserId
+                                where sr.ServiceProviderId == id && sr.Status == 2 //completed
+                                select new CustomModel
+                                {
+                                    ServiceId = sr.ServiceId,
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    ServiceStartDate = sr.ServiceStartDate,
 
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
 
-                            AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
-                            AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
-                            PostalCode = Sra == null ? "" : Sra.PostalCode,
-                            City = Sra == null ? "" : Sra.City
-                        };
-            return View(query);
+                                    AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
+                                    AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
+                                    PostalCode = Sra == null ? "" : Sra.PostalCode,
+                                    City = Sra == null ? "" : Sra.City
+                                };
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
         }
 
+        //Service History Modal
+        public IActionResult _SPServiceHistoryModal(int id)
+        {
+            ServiceRequestExtra[] obj = _db.ServiceRequestExtras.Where(x => x.ServiceRequestId == id).ToArray();
+            List<string> extras = new List<string>();
+            foreach (var item in obj)
+            {
+                switch (item.ServiceExtraId)
+                {
+                    case 1:
+                        extras.Add("Inside Cabinet");
+                        break;
+                    case 2:
+                        extras.Add("Inside Fridge");
+                        break;
+                    case 3:
+                        extras.Add("Inside Oven");
+                        break;
+                    case 4:
+                        extras.Add("Laundry Wash & Dry");
+                        break;
+                    case 5:
+                        extras.Add("Interior Windows");
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            var query = (from SR in _db.ServiceRequests
+                         join SRaddress in _db.ServiceRequestAddresses on SR.ServiceRequestId equals SRaddress.ServiceRequestId into srad
+                         from SRa in srad.DefaultIfEmpty()
+                         join user in _db.Users on SR.UserId equals user.UserId
+                         where SR.ServiceRequestId == id
+                         select new CustomModel
+                         {
+                             ServiceRequestId = SR.ServiceRequestId,
+                             ServiceId = SR.ServiceId,
+                             ServiceStartDate = SR.ServiceStartDate,
+                             ServiceHours = SR.ServiceHours,
+                             Comments = SR.Comments,
+                             HasPets = SR.HasPets,
+                             TotalCost = SR.TotalCost,
+
+                             FirstName = user.FirstName,
+                             LastName = user.LastName,
+
+                             AddressLine1 = SRa == null ? "" : SRa.AddressLine1,
+                             AddressLine2 = SRa == null ? "" : SRa.AddressLine2,
+                             City = SRa == null ? "" : SRa.City,
+                             State = SRa == null ? "" : SRa.State,
+                             PostalCode = SRa == null ? "" : SRa.PostalCode,
+                             Mobile = SRa == null ? "" : SRa.Mobile,
+
+                             ServiceExtraId = String.Join(", ", extras)
+                         }).Single();
+
+            return PartialView(query);
+        }
+
+        // Service Provider Ratings page
         public IActionResult SPRatings()
         {
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = from rate in _db.Ratings
-                        join sr in _db.ServiceRequests on rate.ServiceRequestId equals sr.ServiceRequestId
-                        join user in _db.Users on rate.RatingFrom equals user.UserId
-                        where rate.RatingTo == id
-                        select new CustomModel
-                        {
-                            ServiceId = sr.ServiceId,
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = from rate in _db.Ratings
+                                join sr in _db.ServiceRequests on rate.ServiceRequestId equals sr.ServiceRequestId
+                                join user in _db.Users on rate.RatingFrom equals user.UserId
+                                where rate.RatingTo == id
+                                select new CustomModel
+                                {
+                                    ServiceId = sr.ServiceId,
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
 
-                            Ratings = rate.Ratings,
-                            Comments = rate.Comments,
-                            RatingDate = rate.RatingDate
-                        };
-            return View(query);
+                                    Ratings = rate.Ratings,
+                                    Comments = rate.Comments,
+                                    RatingDate = rate.RatingDate
+                                };
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
+        // SP Block Customer Page
         public IActionResult SPBlockCustomer()
         {
             int id = (int)HttpContext.Session.GetInt32("UserID_Session");
+            User sp = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
 
-            var query = from user in _db.Users
-                        join fav in _db.FavoriteAndBlockeds on user.UserId equals fav.TargetUserId
-                        where fav.UserId == id
-                        select new CustomModel
-                        {
-                            FirstName = user.FirstName,
-                            LastName = user.LastName,
-                            IsBlocked = fav.IsBlocked,
-                            Id = fav.Id
-                        };
-            return View(query);
+            if (sp != null)
+            {
+                if (sp.UserTypeId == 2)
+                {
+                    var query = from user in _db.Users
+                                join fav in _db.FavoriteAndBlockeds on user.UserId equals fav.TargetUserId
+                                where fav.UserId == id
+                                select new CustomModel
+                                {
+                                    FirstName = user.FirstName,
+                                    LastName = user.LastName,
+                                    IsBlocked = fav.IsBlocked,
+                                    Id = fav.Id
+                                };
+                    return View(query);
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "You have to login to access the page.";
+                return RedirectToAction("Index");
+            }
+
         }
 
+        // SP Block Customer (POST)
         public IActionResult BlockCustomer(int id)
         {
             FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
@@ -1084,6 +1393,7 @@ namespace Helperland.Controllers
             return RedirectToAction("SPBlockCustomer");
         }
 
+        // SP Unblock Customer (POST)
         public IActionResult UnblockCustomer(int id)
         {
             FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
@@ -1091,6 +1401,144 @@ namespace Helperland.Controllers
             _db.FavoriteAndBlockeds.Update(fav);
             _db.SaveChanges();
             return RedirectToAction("SPBlockCustomer");
+        }
+
+        //====================================
+        //          Admin-Pages
+        //====================================
+
+        public IActionResult AdminUserManagement()
+        {
+            var userID = HttpContext.Session.GetInt32("UserID_Session");
+            //var userName = HttpContext.Session.GetInt32("UserName_Session");
+
+            if (userID != null)
+            {
+                User user = _db.Users.Where(x => x.UserId == userID).FirstOrDefault();
+                if (user.UserTypeId == 1)
+                {
+                    List<User> users = _db.Users.ToList();
+                    ViewBag.AdminPage = true;
+                    return View(users);
+                }
+                else
+                {
+                    TempData["Msg4Popup"] = "Only Admin(s) are Authenticated to Visit this page.";
+                    return RedirectToAction("Index");
+                }
+            }
+            TempData["Msg4Popup"] = "You have to login to Visit this Page";
+            return RedirectToAction("Index");
+        }
+
+        //Activate or Deactivate User
+        public IActionResult UserStatus(int id)
+        {
+            User user = _db.Users.Where(x => x.UserId == id).FirstOrDefault();
+            if (user.Status == 1)
+            {
+                user.Status = 0;
+            }
+            else
+            {
+                user.Status = 1;
+            }
+            _db.Users.Update(user);
+            _db.SaveChanges();
+            return RedirectToAction("AdminUserManagement");
+        }
+
+        //Admin Service Requests
+        public IActionResult AdminServiceRequests()
+        {
+            var userID = HttpContext.Session.GetInt32("UserID_Session");
+            //var userName = HttpContext.Session.GetInt32("UserName_Session");
+
+            if (userID != null)
+            {
+                User user = _db.Users.Where(x => x.UserId == userID).FirstOrDefault();
+                if (user.UserTypeId == 1)
+                {
+                    var query = from sr in _db.ServiceRequests
+                                join sradd in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sradd.ServiceRequestId
+                                join customer in _db.Users on sr.UserId equals customer.UserId
+                                join sp in _db.Users on sr.ServiceProviderId equals sp.UserId into abc
+                                from sp in abc.DefaultIfEmpty()
+                                join rate in _db.Ratings on sr.ServiceRequestId equals rate.ServiceRequestId into xyz
+                                from rate in xyz.DefaultIfEmpty()
+                                select new CustomModel
+                                {
+                                    ServiceRequestId = sr.ServiceRequestId,
+                                    ServiceId = sr.ServiceId,
+                                    ServiceStartDate = sr.ServiceStartDate,
+                                    TotalCost = sr.TotalCost,
+                                    Status = sr.Status,
+                                    ServiceProviderId = sr.ServiceProviderId,
+
+                                    FirstName = customer.FirstName,
+                                    LastName = customer.LastName,
+                                    AddressLine1 = sradd.AddressLine1,
+                                    AddressLine2 = sradd.AddressLine2,
+                                    PostalCode = sradd.PostalCode,
+                                    City = sradd.City,
+
+                                    SPFirstName = sp == null ? "" : sp.FirstName,
+                                    SPLastName = sp == null ? "" : sp.LastName,
+                                    Ratings = rate == null ? 0 : rate.Ratings
+                                };
+
+                    ViewBag.AdminPage = true;
+                    return View(query);
+                }
+                else
+                {
+                    TempData["Msg4Popup"] = "Only Admin(s) are Authenticated to Visit this page.";
+                    return RedirectToAction("Index");
+                }
+            }
+            TempData["Msg4Popup"] = "You have to login to Visit this Page";
+            return RedirectToAction("Index");
+        }
+
+        // Edit and Reschedule Modal
+        public IActionResult _EditandReschedule(int id)
+        {
+            var query = (from sr in _db.ServiceRequests
+                        join sradd in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sradd.ServiceRequestId
+                        where sr.ServiceRequestId == id
+                        select new CustomModel
+                        {
+                            ServiceRequestId = sr.ServiceRequestId,
+                            ServiceId = sr.ServiceId,
+                            ServiceStartDate = sr.ServiceStartDate,
+                            AddressLine1 = sradd.AddressLine1,
+                            AddressLine2 = sradd.AddressLine2,
+                            PostalCode = sradd.PostalCode,
+                            City = sradd.City
+                        }).Single();
+            return PartialView(query);
+        }
+
+        // Edit and Reschedule Request (POST)
+        public bool EditandRescheduleService(CustomModel obj)
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == obj.ServiceRequestId).FirstOrDefault();
+            ServiceRequestAddress sradd = _db.ServiceRequestAddresses.Where(x => x.ServiceRequestId == obj.ServiceRequestId).FirstOrDefault();
+            sr.ServiceStartDate = obj.ServiceStartDate;
+            sradd.AddressLine1 = obj.AddressLine1;
+            sradd.AddressLine2 = obj.AddressLine2;
+            sradd.PostalCode = obj.PostalCode;
+            sr.ZipCode = obj.PostalCode;
+            sradd.City = obj.City;
+            sr.Comments = obj.Comments;
+            sr.ModifiedDate = DateTime.Now;
+            sr.ModifiedBy = userid;
+            _db.ServiceRequests.Update(sr);
+            _db.ServiceRequestAddresses.Update(sradd);
+            _db.SaveChanges();
+            return true;
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

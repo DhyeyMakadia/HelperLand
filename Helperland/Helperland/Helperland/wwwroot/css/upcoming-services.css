@@ -332,16 +332,16 @@ bottom: 13.5px !important;
     margin-top: 10px;
 }
 
-#mysettings #my-details-st form input[name='Avatar']{
+#mysettings #my-details-st form input[name='UserProfilePicture']{
     display: none;
 }
 
-#mysettings #my-details-st form input[name='Avatar'] ~ img{
+#mysettings #my-details-st form input[name='UserProfilePicture'] ~ img{
     border: 2px solid transparent;
     border-radius: 50%;
 }
 
-#mysettings #my-details-st form input[name='Avatar']:checked ~ img{
+#mysettings #my-details-st form input[name='UserProfilePicture']:checked ~ img{
     border: 2px solid #1D7A8C;
     border-radius: 50%;
 }

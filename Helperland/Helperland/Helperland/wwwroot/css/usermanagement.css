@@ -129,15 +129,11 @@ aside .nav-pills .sub-item {
 /***************************************
              ContentArea
 ***************************************/
-#content-area{
+#content-area {
     /* margin-left: 273px; */
     background-color: #F2F4F5;
     /* width: calc(100% - 273px); */
     min-height: calc(100vh - 60px);
-    -webkit-transition: all 0.3s linear, all 0.3s ease-out;
-    -moz-transition: all 0.3s linear, all 0.3s ease-out;
-    -o-transition: all 0.3s linear, all 0.3s ease-out;
-    transition: all 0.3s linear , all 0.3s ease-out;
 }
 
 #content-area .content-header{
@@ -156,7 +152,12 @@ aside .nav-pills .sub-item {
   font-size: 14px;
 }
 
-#content-area .table{
+#content-area .search-filter-btn {
+    background-color: #1FB6FF;
+    color: #FFFFFF;
+}
+
+#content-area .table {
     border: 1px solid #e1e1e1;
     overflow-x: scroll;
 }
@@ -210,5 +211,11 @@ aside .nav-pills .sub-item {
     .sidebar .navbar-header a {
         display: block;
         position: fixed;
+    }
+    #content-area {
+        -webkit-transition: left 0.3s linear, all 0.3s ease-out;
+        -moz-transition: left 0.3s linear, all 0.3s ease-out;
+        -o-transition: left 0.3s linear, all 0.3s ease-out;
+        transition: left 0.3s linear, all 0.3s ease-out;
     }
 }

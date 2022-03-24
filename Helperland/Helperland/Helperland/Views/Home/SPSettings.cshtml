@@ -83,11 +83,11 @@
                                 <h5 class="l-head">Basic details</h5>
                                 <hr>
                             </div>
-                            <div class="details-img">
+                            <div class="details-img" id="AvatarforSP">
                                 <img src="~/assets/avatar-car.png" alt="">
                             </div>
                         </div>
-                        <div asp-validation-summary="All" class="text-danger"></div>
+                        @*<div asp-validation-summary="All" class="text-danger"></div>*@
                         <form method="post" asp-action="SPSettings">
                             <div class="form-row mx-auto">
                                 <div class="form-group col-md-4">
@@ -141,53 +141,53 @@
                             </div>
 
                             <label for="gender" class="l-label">Gender</label>
-                            <div class="form-row mx-auto mb-3">
+                            <div class="form-row mx-auto mb-3 selectgender">
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" value="1">Male</label>
+                                        <input type="radio" class="form-check-input"  asp-for="Gender" value="1">Male</label>
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" value="2">Female</label>
+                                        <input type="radio" class="form-check-input"  asp-for="Gender" value="2">Female</label>
                                 </div>
                                 <div class="form-check-inline">
                                     <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="gender" value="0" checked>Rather not to say
+                                        <input type="radio" class="form-check-input"  asp-for="Gender" value="0">Rather not to say
                                     </label>
                                 </div>
                             </div>
 
                             <label for="inputAvatar" class="l-label">Select Avatar</label>
                             <div class="form-row mx-auto mb-3">
-                                <div class="form-group col">
+                                <div class="form-group col selectavatar">
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar" checked><img src="~/assets/avatar-car.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="car" Avatar="car"><img src="~/assets/avatar-car.png" alt="">
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-female.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="female" Avatar="female"><img src="~/assets/avatar-female.png" alt="">
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-hat.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="hat" Avatar="hat"><img src="~/assets/avatar-hat.png" alt="">
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-iron.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="iron" Avatar="iron"><img src="~/assets/avatar-iron.png" alt="">
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-male.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="male" Avatar="male"><img src="~/assets/avatar-male.png" alt="">
                                         </label>
                                     </div>
                                     <div class="form-check-inline">
                                         <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="Avatar"><img src="~/assets/avatar-ship.png" alt="">
+                                            <input type="radio" class="form-check-input" name="UserProfilePicture" asp-for="UserProfilePicture" value="ship" Avatar="ship"><img src="~/assets/avatar-ship.png" alt="">
                                         </label>
                                     </div>
                                 </div>
@@ -305,5 +305,16 @@
                 });
             }
         });
+
+        $("input[name=UserProfilePicture]").click(function () {
+            $("#AvatarforSP img").attr("src", "/assets/avatar-" + $(this).attr("Avatar") + ".png");
+        });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#AvatarforSP img").attr("src", "/assets/avatar-" + $("input[name=UserProfilePicture]:checked").val() + ".png");
+        });
+    </script>
+
 }

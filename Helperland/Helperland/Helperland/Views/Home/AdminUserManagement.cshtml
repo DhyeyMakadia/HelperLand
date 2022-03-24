@@ -1,0 +1,348 @@
+﻿@model IEnumerable<Helperland.Models.User>
+@{
+    ViewData["Title"] = "User Management";
+}
+
+
+@section Styles{
+    <link href="~/css/usermanagement.css" rel="stylesheet" />
+}
+
+<header>
+    <nav id="navbar" class="navbar navbar-expand fixed-top justify-content-between">
+        <a class="navbar-brand" asp-action="Index">helperland</a>
+        <div class="" id="navbarNavAltMarkup">
+            <div class="navbar-nav align-items-center">
+                <a class="nav-item nav-link active text-white" href="#">
+                    <img src="~/assets/admin-user.png" alt="" class="mr-1">
+                    @HttpContextAccessor.HttpContext.Session.GetString("UserName_Session") <span class="sr-only">(current user)</span>
+                </a>
+                <a class="nav-item nav-link" asp-action="Logout">
+                    <img src="~/assets/logout.png" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<aside class="sidebar">
+    <div class="navbar-header">
+        <a id="navbar2-btn" class="navbar-toggle" data-toggle="collapse" data-target="#navbar2"
+           aria-expanded="true" aria-controls="navbar2">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="ic fa fa-bars" style="color:white;"></i>
+        </a>
+    </div>
+    <nav id="navbar2" class="col-sm-5 sidebar navbar-collapse collapse show">
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Service Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Role Management</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#cc-manage" data-toggle="collapse" aria-controls="#cc-manage"
+                   aria-expanded="false">
+                    Coupon Code Management
+                    <span style="padding-right: 15px;float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="cc-manage">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Escalation Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="AdminServiceRequests">Service Requests</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Service Providers</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="#">User Management <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#finance-module" data-toggle="collapse" aria-controls="#finance-module"
+                   aria-expanded="false">
+                    Finance Module
+                    <span style="padding-right: 15px; float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="finance-module">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Zip Code Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Rating Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inquiry Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Newsletter Management</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#content-manage" data-toggle="collapse" aria-controls="#content-manage"
+                   aria-expanded="false">
+                    Content Management
+                    <span style="padding-right: 15px; float: right;">
+                        <img src="~/assets/keyboard-right-arrow-button.png" class="menu-arrow" alt="">
+                    </span>
+                </a>
+            </li>
+            <div class="collapse" id="content-manage">
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link1</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link2</a>
+            </li>
+            <li class="nav-item sub-item">
+                <a class="nav-link" href="#">Submenu Link3</a>
+            </li>
+            </div>
+        </ul>
+    </nav>
+</aside>
+
+<section id="content-area">
+    <div class="container-fluid">
+
+        <div class="content-header d-flex justify-content-between align-items-center flex-sm-row flex-column">
+            <div class="heading">User Management</div>
+            <div class="add-new-user">
+                <button role="button" class="btn">
+                    <img src="~/assets/add.png" class="mr-1" alt="">
+                    <span>Add New User</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="card mt-3">
+            <div class="card-body">
+                <form id="FilterForm">
+                    <div class="row">
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="text" class="form-control" id="UserSearch" placeholder="User Name">
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <select class="form-control" id="UserTypeSearch">
+                                <option>User role</option>
+                                @*<option>Option 1</option>
+                                 <option>Option 2</option>*@
+                            </select>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">+49</div>
+                                </div>
+                                <input type="tel" class="form-control" id="PhoneSearch"
+                                       placeholder="Phone Number">
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-3 col-md-6 mb-2">
+                            <input type="text" class="form-control" id="ZipSearch" placeholder="Zipcode">
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-6 mb-2">
+                            <button type="button" class="btn btn-primary search-filter-btn" id="SearchFilter">Search</button>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 col-md-6 mb-2">
+                            <button class="btn border-dark" id="ClearSearch">Clear</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table id="mysorttable" class="table mb-0 table-hover table-responsive-lg"
+                               table-responsive="false" cellspacing="0" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="th-sm">User Name</th>
+                                    <th class="th-sm">Role</th>
+                                    <th class="th-sm">Date of Registration</th>
+                                    <th class="th-sm">User Type</th>
+                                    <th class="th-sm">Phone</th>
+                                    <th class="th-sm">Postal Code</th>
+                                    <th class="th-sm text-center">Status</th>
+                                    <th class="th-sm text-center">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.FirstName @item.LastName</td>
+                                        <td></td>
+                                        <td>@item.CreatedDate.ToString("yyyy/MM/dd")</td>
+                                        <td>
+                                            @switch (item.UserTypeId)
+                                            {
+                                                case 1:
+                                                    <div>Admin</div>
+                                                    break;
+                                                case 2:
+                                                    <div>Service Provider</div>
+                                                    break;
+                                                case 3:
+                                                    <div>Customer</div>
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        </td>
+                                        <td>@item.Mobile</td>
+                                        <td>@item.ZipCode</td>
+                                        <td>
+                                            @if (item.Status == 1)
+                                            {
+                                                <div class="badge status-active">Active</div>
+                                            }
+                                            else
+                                            {
+                                                <div class="badge status-inactive">Inactive</div>
+                                            }
+                                        </td>
+                                        <td class="actions-btn text-center align-middle">
+                                            <div class="dropdown">
+                                                <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
+                                                   id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                                    <i class="fas fa-ellipsis-v"></i>
+                                                </a>
+
+                                                <div class="dropdown-menu dropdown-menu-right"
+                                                     aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    @if (item.Status == 1)
+                                                    {
+                                                        <a class="dropdown-item" asp-action="UserStatus" asp-route-id="@item.UserId">Deactivate</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a class="dropdown-item" asp-action="UserStatus" asp-route-id="@item.UserId">Activate</a>
+                                                    }
+                                                    @if (item.UserTypeId != 1)
+                                                    {
+                                                        <a class="dropdown-item" href="#">Service History</a>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="footer-section mt-3">
+    <div class="copyright-content">©2018 Helperland. All rights reserved.</div>
+</section>
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#mysorttable').DataTable({
+                "aaSorting": [],
+                columnDefs: [{
+                    orderable: false,
+                    targets: [1, 2, 4, 7]
+                }]
+            });
+            $('.dataTables_length').addClass('bs-select');
+
+            $('#SearchFilter').on('click', function () {
+                table.columns(5).search($("#ZipSearch").val()).draw();
+                table.columns(0).search($("#UserSearch").val()).draw();
+                table.columns(4).search($("#PhoneSearch").val()).draw();
+            });
+
+            $("#ClearSearch").on("click", function () {
+                $("#FilterForm")[0].reset();
+                $("#SearchFilter")[0].click();
+                return false;
+            });
+
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#navbar2-btn").click(function () {
+                var display1 = $("#navbar2-btn").attr("aria-expanded");
+                if (display1) {
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                    $('#content-area').css("transition-delay", '.3s');
+                }
+                if (display1 == 'true') {
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                }
+
+            });
+        });
+
+        jQuery(document).ready(function ($) {
+            var alterClass = function () {
+                var ww = document.body.clientWidth;
+                var display2 = $("#navbar2-btn").attr("aria-expanded");
+                if (ww <= 1024) {
+                    $('#navbar2').removeClass('show');
+                    $('#navbar2-btn').addClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "false");
+                    $('#content-area').attr('style', 'margin-left: 0px');
+                } else if (ww > 1024) {
+                    $('#navbar2').addClass('show');
+                    $('#navbar2-btn').removeClass('collapsed');
+                    $("#navbar2-btn").attr("aria-expanded", "true");
+                    $('#content-area').attr('style', 'margin-left: 273px');
+                };
+            };
+            $(window).resize(function () {
+                alterClass();
+            });
+            //Fire it when the page first loads:
+            alterClass();
+        });
+    </script>
+}
