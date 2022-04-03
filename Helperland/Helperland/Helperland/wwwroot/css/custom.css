@@ -1,0 +1,41 @@
+/***************************************
+            Logout Modal
+***************************************/
+#Logout-success-modal{
+    padding-right: 0;
+}
+
+#Logout-success-modal .modal-body{
+    margin-top: 25px;
+}
+
+#Logout-success-modal .logout-success-symbol {
+    background-color: green;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+#Logout-success-modal .logout-success-symbol img {
+    width: 25px;
+}
+
+#Logout-success-modal .ok-btn button {
+    width: 70px;
+    height: 40px;
+    border-radius: 50vw;
+    background-color: #006072;
+    color: white;
+    border: none;
+}
+
+@media screen and (max-width:575px) {
+    #Logout-success-modal{
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    #Logout-success-modal .modal-dialog{
+        max-width: 300px;
+    }
+}

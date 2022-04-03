@@ -97,8 +97,8 @@
     <aside>
         <ul class="nav nav-tabs flex-column" id="myTab" role="tablist">
             <li class="nav-item">
-                <a class="nav-link sidebar-only navlink-dashboard active" id="dashboard-tab" data-toggle="tab"
-                   href="#dashboard" role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
+                <a class="nav-link sidebar-only navlink-dashboard active" id="dashboard-tab" 
+                    role="tab" aria-controls="dashboard" aria-selected="false">Dashboard</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link sidebar-only navlink-servicehistory" id="servicehistory-tab" asp-action="CustomerServiceHistory"
@@ -109,8 +109,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" data-toggle="tab"
-                   href="#serviceschedule" role="tab" aria-controls="serviceschedule" aria-selected="false">
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" asp-action="CustomerServiceSchedule"
+                   role="tab" aria-controls="serviceschedule" aria-selected="false">
                     Service
                     Schedule
                 </a>
@@ -145,6 +145,18 @@
 
             <!-- Dashboard Tab -->
             <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+
+                @if (TempData["Msg4Alert"] != null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                       <h4 class="alert-heading"><b>OOPS!</b></h4>
+                        <p> @TempData["Msg4Alert"] </p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                }
+
                 <div class="d-flex dashboard-head">
                     <h2>Dashboard</h2>
                     <Button onclick="location.href='@Url.Action("BookService", "Home")'">Add New Service Request</Button>
@@ -163,7 +175,8 @@
 
                         @foreach (var item in Model)
                         {
-                            <tr>
+
+                            <tr class="@("status" + item.Status)">
                                 <td class="SRDashModal" data-target="#ServiceHistoryDashModal" data-toggle="modall" SRid="@item.ServiceRequestId" style="cursor: pointer;">
                                     @item.ServiceId
                                 </td>
@@ -172,25 +185,30 @@
                                     <b>@item.ServiceStartDate</b>
                                     <div>
                                         <img src="~/assets/layer-712.png" alt="">
-                                        12:00 - 18:00
+                                        @{ 
+                                            var start = item.ServiceStartDate.TimeOfDay;
+                                            TimeSpan t = new TimeSpan(0, (int)item.ServiceHours,0,0);
+                                            var end = start.Add(t);
+                                        }
+                                        @start.Hours:@start.Minutes - @end.Hours:@end.Minutes 
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="service-provider-datatab">
+                                    <div class="service-provider-datatab align-items-center">
                                         @if (item.Status == 1)
                                         {
-                                        <div class="profile-sp">
-                                            <img src="~/assets/cap.png"  alt="">
-                                        </div>
+                                            <div class="profile-sp">
+                                                <img src="~/assets/cap.png" alt="">
+                                            </div>
                                             <div>@item.FirstName @item.LastName</div>
-                                            
+
                                         }
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <div class="price ml-xl-0 ml-2">@item.TotalCost <span>€</span></div>
                                 </td>
-                                <td class="text-center align-middle d-flex justify-content-center align-items-center">
+                                <td class="text-center align-middle">
                                     <button class="res-dash-btn mr-1 reschedule-date" data-target="#ServiceHistoryRescheduleModal"
                                             data-toggle="modal" SRid="@item.ServiceRequestId">
                                         Reschedule

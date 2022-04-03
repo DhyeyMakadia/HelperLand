@@ -7,15 +7,8 @@
     <div class="form-row">
         <div class="form-group col-md-12">
             <label for="datepicker3" class="cm-dez">Date</label>
-            <input type="datetime-local" class="form-control" placeholder="From Date" asp-for="ServiceStartDate">
+            <input id="RescheduleDate" type="datetime-local" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-ddThh:mm")" placeholder="From Date" name="ServiceStartDate" asp-for="ServiceStartDate">
         </div>
-        @*<div class="form-group col-md-6">
-            <label class="cm-dez">Time</label>
-            <select class="form-control">
-                <option selected>12:30</option>
-                <option>01:30</option>
-            </select>
-        </div>*@
     </div>
     <div class="form-row mt-2">
         <h6 class="cm-dez">Service Address</h6>
@@ -23,24 +16,24 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="InputStreetName">Street Name</label>
-            <input type="text" class="form-control" id="InputStreetName" placeholder="Street Name"
+            <input type="text" class="form-control" id="ResAddressLine1" placeholder="Street Name"
                    asp-for="AddressLine1">
         </div>
         <div class="form-group col-md-6">
             <label for="InputHouseNumber">House number</label>
-            <input type="text" class="form-control" id="InputHouseNumber" placeholder="House Number"
+            <input type="text" class="form-control" id="ResAddressLine2" placeholder="House Number"
                    asp-for="AddressLine2">
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="InputPostalCode">Postal Code</label>
-            <input type="number" class="form-control" id="InputPostalCode" placeholder="Street Name"
+            <input type="number" class="form-control" id="ResPostalCode" placeholder="Street Name"
                    asp-for="PostalCode">
         </div>
         <div class="form-group col-md-6">
             <label for="Inputcity">City</label>
-            <input type="text" class="form-control" id="Inputcity" placeholder="City"
+            <input type="text" class="form-control" id="ResCity" placeholder="City"
                    asp-for="City">
         </div>
     </div>
@@ -79,7 +72,7 @@
                 Why do you want to reschedule service
                 request?
             </label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"
+            <textarea class="form-control" id="ResComment" rows="4"
                       placeholder="Why do you want to reschedule service request?" asp-for="Comments">
                             </textarea>
         </div>
@@ -97,3 +90,13 @@
         </div>
     </div>
 </form>
+
+
+@section Scripts{ 
+    <script>
+        //$(document).on('click', '.EditandReschedule', function () {
+            var today = new Date().toISOString().split('T')[0];
+            document.getElementsByName("ServiceStartDate")[0].setAttribute('min', today);
+        //});
+    </script>
+}

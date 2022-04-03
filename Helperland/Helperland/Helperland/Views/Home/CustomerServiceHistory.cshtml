@@ -44,7 +44,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" asp-action="CustomerServiceSchedule"
                    role="tab" aria-controls="serviceschedule" aria-selected="false">
                     Service
                     Schedule
@@ -83,6 +83,7 @@
                 <table id="mysorttable2" class="table mb-0" cellspacing="0" width="100%">
                     <thead>
                         <tr>
+                            <th class="th-sm service-details">Service ID</th>
                             <th class="th-sm service-details">Service Details</th>
                             <th class="th-sm text-center">Service Provider</th>
                             <th class="th-sm price-head">Price</th>
@@ -94,13 +95,19 @@
                         @foreach (var item in Model)
                         {
                             <tr>
+                                <td>@item.ServiceId</td>
                                 <td>
                                     <div>
                                         <img src="~/assets/calendar.png" alt="">
-                                        <b>@item.ServiceStartDate.ToShortDateString()</b>
+                                        <b>@item.ServiceStartDate.ToString("yyyy/MM/dd")</b>
                                     </div>
                                     <div>
-                                        12:00 - 18:00
+                                        @{
+                                            var start = item.ServiceStartDate.TimeOfDay;
+                                            TimeSpan t = new TimeSpan(0, (int)item.ServiceHours, 0, 0);
+                                            var end = start.Add(t);
+                                        }
+                                        @start.Hours:@start.Minutes - @end.Hours:@end.Minutes
                                     </div>
                                 </td>
                                 <td>
@@ -152,17 +159,22 @@
                                 <td>
                                     <div class="price"> <span>€</span>@item.TotalCost</div>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     @if (item.Status == 2)
                                     {
                                         <div class="badge status-complete">Completed</div>
                                     }
-                                    else if(item.Status == 3){
+                                    else if (item.Status == 3)
+                                    {
                                         <div class="status-incomplete badge">Cancelled</div>
+                                    }
+                                    else if (item.Status == 5)
+                                    {
+                                        <div class="badge badge-warning text-white px-2 py-1">Expired</div>
                                     }
                                 </td>
                                 <td class="rate-btn text-center align-middle noExl">
-                                    @if (item.ServiceProviderId != null)
+                                    @if (item.ServiceProviderId != null && item.Status == 2)
                                     {
                                         <button class="CustomerRateSP" SRid="@item.ServiceRequestId" SPId="@item.ServiceProviderId" rateid="">Rate SP</button>
                                     }
@@ -188,7 +200,7 @@
                 "aaSorting": [],
                 columnDefs: [{
                     orderable: false,
-                    targets: [1, 4]
+                    targets: [2, 5]
                 }]
             });
         });

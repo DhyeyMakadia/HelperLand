@@ -14,9 +14,15 @@
 
         <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto align-items-center">
-                <li class="nav-item active">
-                    <button class="btn my-sm-0 text-white book-now-faq" onclick="location.href='@Url.Action("BookService", "Home")'">Book Now</button>
-                </li>
+                @{
+                    var usertype = HttpContextAccessor.HttpContext.Session.GetInt32("UserType_Session");
+                    if (usertype == null || usertype == 3)
+                    {
+                        <li class="nav-item active">
+                            <button class="btn my-sm-0 text-white book-now-faq" onclick="location.href='@Url.Action("BookService", "Home")'">Book Now</button>
+                        </li>
+                    }
+                }
                 <li class="nav-item">
                     <button class="btn my-sm-0 text-white prices-faq" onclick="location.href='@Url.Action("Prices", "Home")'">Prices & Services</button>
                 </li>

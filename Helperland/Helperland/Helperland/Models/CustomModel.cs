@@ -30,6 +30,7 @@ namespace Helperland.Models
         public string ServiceExtraId { get; set; }
 
         //User
+        public int UserId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string SPFirstName { get; set; }
@@ -38,6 +39,7 @@ namespace Helperland.Models
 
         //Favourite and Blocked
         public bool IsBlocked { get; set; }
+        public bool IsFavorite { get; set; }
         public int Id { get; set; }
 
         //Ratings
@@ -47,5 +49,7 @@ namespace Helperland.Models
         public decimal OnTimeArrival { get; set; }
         public decimal Friendly { get; set; }
         public decimal QualityOfService { get; set; }
+
+        public decimal Count { get; set; }
     }
 }

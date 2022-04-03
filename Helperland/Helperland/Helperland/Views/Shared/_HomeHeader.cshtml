@@ -12,9 +12,16 @@
 
         <div class="collapse navbar-collapse text-right" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto align-items-center">
-                <li class="nav-item active">
-                    <button class="btn my-sm-0 btn-height btn-book-cleaner" onclick="location.href='@Url.Action("BookService", "Home")'">Book a Cleaner</button>
-                </li>
+                @{
+                    var usertype = HttpContextAccessor.HttpContext.Session.GetInt32("UserType_Session");
+                    if (usertype == null || usertype == 3)
+                    {
+                        <li class="nav-item active">
+                            <button class="btn my-sm-0 btn-height btn-book-cleaner" onclick="location.href='@Url.Action("BookService", "Home")'">Book a Cleaner</button>
+                        </li>
+                    }
+                }
+
                 <li class="nav-item">
                     <a class="nav-link" asp-controller="Home" asp-action="Prices">Prices</a>
                 </li>

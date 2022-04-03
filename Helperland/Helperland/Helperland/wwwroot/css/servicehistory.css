@@ -15,6 +15,10 @@ a,a:hover{
     text-decoration: none;
 }
 
+.status4 {
+    background-color: #ffc10729;
+}
+
 /***************************************
                 Modal
 ***************************************/
@@ -280,9 +284,9 @@ bottom: 13.5px !important;
     vertical-align: middle;
 }
 
-.table-content table tbody tr td:nth-child(4){
+.table-content table#mysorttable2 tbody tr td:nth-child(5) {
     text-align: center;
-    padding-left:0 ;
+    padding-left: 0;
     padding-right: 0;
 }
 
@@ -545,10 +549,6 @@ bottom: 13.5px !important;
 
     .table-content table{
         font-size: 12px;
-    }
-
-    .table-content table tbody > tr{
-        min-height: 285px;
     }
 
     .table-content .res-dash-btn{

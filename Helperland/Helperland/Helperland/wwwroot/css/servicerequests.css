@@ -19,11 +19,14 @@ a, a:hover {
 /***************************************
                Modal
 ***************************************/
+#EditReqModal{
+    z-index:9999;
+}
 
 #EditReqModal .modal-body form .cm-dez,
 #RefundModal .modal-body form .cm-dez,
 #RefundModal .modal-header h5,
-#EditReqModal .modal-header h5{
+#EditReqModal .modal-header h5 {
     font-weight: bold;
     color: #646464;
 }
@@ -127,7 +130,7 @@ aside .nav-pills .sub-item {
     box-shadow: 3px 0px 9px #0000001A;
     width: 35px;
     text-align: center;
-    z-index: 9999;
+    z-index: 9998;
     -webkit-transition: left 0.3s linear, left 0.3s ease-out;
     -moz-transition: left 0.3s linear, left 0.3s ease-out;
     -o-transition: left 0.3s linear, left 0.3s ease-out;

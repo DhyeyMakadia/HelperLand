@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<Helperland.Models.CustomModel>
 @{
     ViewData["Title"] = "CustomerFavouritePros";
 }
@@ -32,7 +32,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab"
+                <a class="nav-link sidebar-only navlink-serviceschedule" id="serviceschedule-tab" asp-action="CustomerServiceSchedule"
                    role="tab" aria-controls="serviceschedule" aria-selected="false">
                     Service
                     Schedule
@@ -72,60 +72,70 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>
-                                <div class="favourite-pros-datatab mt-2">
-                                    <div class="profile-sp m-auto">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div class="text-center favpro-texttab">
-                                        <div>Sandip Patel</div>
-                                        <div>
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star1.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>4</span>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="favourite-pros-datatab mt-2">
+                                        <div class="profile-sp m-auto">
+                                            <img src="~/assets/cap.png" alt="">
+                                        </div>
+                                        <div class="text-center favpro-texttab">
+                                            <div>@item.FirstName @item.LastName</div>
+                                            <div>
+                                                @for (int i = 0; i < 5; i++)
+                                                {
+                                                    @if (i < (int)item.Ratings)
+                                                    {
+                                                        <img src="~/assets/star1.png" alt="">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/assets/star2.png" alt="">
+                                                    }
+                                                }
+                                                @*<img src="~/assets/star1.png" alt="">
+                                                <img src="~/assets/star1.png" alt="">
+                                                <img src="~/assets/star1.png" alt="">
+                                                <img src="~/assets/star1.png" alt="">
+                                                <img src="~/assets/star2.png" alt="">*@
+                                                <span>@item.Ratings.ToString("F")</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="">18 Cleanings</div>
-                            </td>
-                            <td class="text-center align-middle d-flex justify-content-center align-items-center">
-                                <button class="res-dash-btn mr-2">Remove</button>
-                                <button class="cl-dash-btn">Block</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <div class="favourite-pros-datatab mt-2">
-                                    <div class="profile-sp m-auto">
-                                        <img src="~/assets/cap.png" alt="">
-                                    </div>
-                                    <div class="text-center favpro-texttab">
-                                        <div>Gaurang Patel</div>
-                                        <div>
-                                            <img src="~/assets/star2.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <img src="~/assets/star2.png" alt="">
-                                            <span>0</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="">1 Cleanings</div>
-                            </td>
-                            <td class="text-center align-middle d-flex justify-content-center align-items-center">
-                                <button class="res-dash-btn mr-2">Remove</button>
-                                <button class="cl-dash-btn">Block</button>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <div class="">@((int)item.Count) Cleanings</div>
+                                </td>
+                                <td class="text-center align-middle d-flex justify-content-center align-items-center">
+                                    @if (item.IsFavorite == true)
+                                    {
+                                        <a asp-action="RemoveFav" asp-route-id="@item.Id">
+                                            <button class="res-dash-btn mr-2">Remove</button>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="AddFav" asp-route-id="@item.Id">
+                                            <button class="res-dash-btn mr-2">Add</button>
+                                        </a>
+                                    }
+                                    @if (item.IsBlocked == true)
+                                    {
+                                        <a asp-action="UnblockSP" asp-route-id="@item.Id">
+                                            <button class="cl-dash-btn">Unblock</button>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-action="BlockSP" asp-route-id="@item.Id">
+                                            <button class="cl-dash-btn">Block</button>
+                                        </a>
+                                    }
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>

@@ -38,6 +38,8 @@ namespace Helperland.Models
         public string AddressLine2 { get; set; }
         [Required]
         public string City { get; set; }
+
+        [RegularExpression("^[0-9]{6}$",ErrorMessage = "Enter 6 Digit Valid Postal Code!")]
         [Required]
         public string PostalCode { get; set; }
     }

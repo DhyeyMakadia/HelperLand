@@ -1,0 +1,87 @@
+﻿@model Helperland.Models.ServiceRequest
+
+@{ 
+    var inbalance = Model.TotalCost - (Model.RefundedAmount ?? 0);
+}
+
+<form>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+            <div>Paid Amount</div>
+            <div><span>@Model.TotalCost</span> €</div>
+        </div>
+        <div class="form-group col-md-4">
+            <div>Refunded Amount</div>
+            <div><span>@(Model.RefundedAmount??0)</span> €</div>
+        </div>
+        <div class="form-group col-md-4">
+            <div>In Balance Amount</div>
+            <div><span id="inbalance">@inbalance</span> €</div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="return-amount" class="cm-dez">Amount</label>
+            <div class="input-group">
+                <input type="number" id="refundamount" class="form-control">
+                <select class="selectpicker form-control">
+                    <option selected>Percentage</option>
+                    <option>...</option>
+                    <option>...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Calculate" class="cm-dez">Calculate</label>
+            <div class="input-group">
+                <button type="button" class="btn border-secondary" id="calculate123">Calculate</button>
+                <input type="text" class="form-control" id="printrfnd" readonly>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label class="cm-dez">
+                Why do you want to reschedule service
+                request?
+            </label>
+            <textarea class="form-control" id="commentrefund" rows="4"
+                      placeholder="Why do you want to reschedule service request?"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label for="EMPNotes" class="cm-dez">Call Center EMP Notes</label>
+            <textarea class="form-control" id="EMPNotes" rows="3"
+                      placeholder="Enter Notes"></textarea>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <button type="button" class="refund-btn w-100" id="refundamont" SRid="@Model.ServiceRequestId">Refund</button>
+        </div>
+    </div>
+</form>
+
+
+<script>
+    var per, balance, total;
+    $(document).on("click", "#calculate123", function () {
+        console.log("clicked");
+        per = parseInt($("#refundamount").val());
+        balance = parseInt($("#inbalance").html());
+        if (per > 100 || per == '') {
+            alert("Max Percentage is 100 only and It can't be NULL!");
+        }
+        else {
+
+            console.log($("#inbalance").html());
+            total = parseInt(balance * (per / 100));
+            console.log(total);
+            console.log(per);
+            console.log(balance);
+            $("#printrfnd").val(total);
+        }
+    });
+</script>
+

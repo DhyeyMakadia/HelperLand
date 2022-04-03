@@ -80,9 +80,27 @@ namespace Helperland.Controllers
             HttpContext.Session.Remove("UserID_Session");
             HttpContext.Session.Remove("UserName_Session");
             HttpContext.Session.Remove("UserType_Session");
+            TempData["LogoutPopup"] = "Logout";
             return RedirectToAction("Index");
         }
 
+        //Block
+        public void Block(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsBlocked = true;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+        }
+
+        //Unblock
+        public void Unblock(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsBlocked = false;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+        }
         //====================================
         //          Public-Pages
         //====================================
@@ -257,6 +275,18 @@ namespace Helperland.Controllers
             return View();
         }
 
+        // Changes Status of Not Accepted Request in Given Time
+        public void ExpiredRequests()
+        {
+            List<ServiceRequest> req = _db.ServiceRequests.Where(x => (x.Status == 0 || x.Status == 1) && x.ServiceStartDate < DateTime.Now).ToList();
+            foreach (var item in req)
+            {
+                item.Status = 4; //Expired
+                _db.ServiceRequests.Update(item);
+            }
+            _db.SaveChanges();
+        }
+
         //Customer Dashboard
         public IActionResult CustomerDashboard()
         {
@@ -266,12 +296,13 @@ namespace Helperland.Controllers
             {
                 if (cust.UserTypeId == 3)
                 {
+                    ExpiredRequests();
                     var query = from sr in _db.ServiceRequests
                                 join user in _db.Users on sr.ServiceProviderId equals user.UserId into abc
                                 from user in abc.DefaultIfEmpty()
                                 join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into x
                                 from rate in x.DefaultIfEmpty()
-                                where sr.UserId == userid && sr.Status == 0 || sr.Status == 1
+                                where sr.UserId == userid && (sr.Status == 0 || sr.Status == 1 || sr.Status == 4)
                                 select new CustomModel
                                 {
                                     ServiceRequestId = sr.ServiceRequestId,
@@ -282,20 +313,25 @@ namespace Helperland.Controllers
                                     Ratings = rate == null? 0 : rate.Ratings,
                                     FirstName = user.FirstName,
                                     LastName = user.LastName,
-                                    UserProfilePicture = user.UserProfilePicture
+                                    UserProfilePicture = user.UserProfilePicture,
+                                    ServiceHours = sr.ServiceHours
                                 };
-
+                    var hasexpiry = query.Any(x => x.Status == 4);
+                    if (hasexpiry)
+                    {
+                        TempData["Msg4Alert"] = "You have some EXPIRED requests in your Dashboard. Please Reschedule it so that our Service Provider can assist you.";
+                    }
                     return View(query);
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have customer access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
         }
@@ -330,7 +366,6 @@ namespace Helperland.Controllers
             }
             var query = (from SR in _db.ServiceRequests
                         join SRaddress in _db.ServiceRequestAddresses on SR.ServiceRequestId equals SRaddress.ServiceRequestId
-                        //join SRextra in _db.ServiceRequestExtras on SRaddress.ServiceRequestId equals SRextra.ServiceRequestId
                         where SR.ServiceRequestId == id
                         select new CustomModel
                         {
@@ -363,6 +398,12 @@ namespace Helperland.Controllers
             if (output == -1)
             {
                 obj.ServiceStartDate = DateTime.Parse(sr.Date);
+                if (obj.Status == 4)
+                {
+                    obj.Status = 0;
+                    obj.ServiceProviderId = null;
+                    obj.SpacceptedDate = null;
+                }
                 _db.ServiceRequests.Update(obj);
                 _db.SaveChanges();
                 return true;
@@ -374,7 +415,16 @@ namespace Helperland.Controllers
         public bool CustomerDashboardCancelRequest([FromBody] ServiceRequest sr)
         {
             ServiceRequest obj = _db.ServiceRequests.Where(x => x.ServiceRequestId == sr.ServiceRequestId).FirstOrDefault();
-            obj.Status = 3;
+            if (obj.Status == 4)
+            {
+                obj.Status = 5; //Expired and moved to service history
+                sr.ServiceProviderId = null;
+                sr.SpacceptedDate = null;
+            }
+            else
+            {
+                obj.Status = 3; //Cancelled
+            }
             obj.Comments = sr.Comments;
             _db.ServiceRequests.Update(obj);
             _db.SaveChanges();
@@ -394,13 +444,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have customer access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
         }
@@ -526,15 +576,17 @@ namespace Helperland.Controllers
                                 from user in x.DefaultIfEmpty()
                                 join r in _db.Ratings on sr.ServiceRequestId equals r.ServiceRequestId into abc
                                 from rate in abc.DefaultIfEmpty()
-                                where sr.UserId == userid && sr.Status == 2 || sr.Status == 3
+                                where sr.UserId == userid && (sr.Status == 2 || sr.Status == 3 || sr.Status == 5)
                                 select new CustomModel
                                 {
+                                    ServiceId = sr.ServiceId,
+                                    ServiceRequestId = sr.ServiceRequestId,
                                     ServiceStartDate = sr.ServiceStartDate,
-                                    Ratings = rate == null ? 0 : rate.Ratings,
+                                    ServiceHours = sr.ServiceHours,
                                     TotalCost = sr.TotalCost,
                                     Status = sr.Status,
                                     ServiceProviderId = sr.ServiceProviderId,
-                                    ServiceRequestId = sr.ServiceRequestId,
+                                    Ratings = rate == null ? 0 : rate.Ratings,
                                     FirstName = user == null ? "" : user.FirstName,
                                     LastName = user == null ? "" : user.LastName
                                 };
@@ -543,13 +595,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have customer access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
 
@@ -605,7 +657,13 @@ namespace Helperland.Controllers
             return "true";
         }
 
-        //Customer Service History Tab
+        //Customer Service Schedule tab
+        public IActionResult CustomerServiceSchedule()
+        {
+            return View();
+        }
+
+        //Customer Favourite Pros Tab
         public IActionResult CustomerFavouritePros()
         {
             int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
@@ -615,20 +673,68 @@ namespace Helperland.Controllers
             {
                 if (cust.UserTypeId == 3)
                 {
-                    return View();
+                    var query =  from u in _db.Users
+                                 join f in _db.FavoriteAndBlockeds
+                                 on u.UserId equals f.TargetUserId
+                                 where f.UserId == userid
+                                 select new CustomModel
+                                 {
+                                     Id = f.Id,
+                                     FirstName = u.FirstName,
+                                     LastName = u.LastName,
+                                     IsBlocked = f.IsBlocked,
+                                     IsFavorite = f.IsFavorite,
+                                     Ratings = (from Rating in _db.Ratings where Rating.RatingTo.Equals(u.UserId) select Rating.Ratings).Average(),
+                                     Count = (from Rating in _db.Ratings where Rating.RatingTo.Equals(u.UserId) select Rating.Ratings).Count()
+                                 };
+
+                    return View(query);
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have customer access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
+        }
 
+        //Add Favourite
+        public IActionResult AddFav(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsFavorite = true;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+            return RedirectToAction("CustomerFavouritePros");
+        }
+        
+        //Remove Favourite
+        public IActionResult RemoveFav(int id)
+        {
+            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
+            fav.IsFavorite = false;
+            _db.FavoriteAndBlockeds.Update(fav);
+            _db.SaveChanges();
+            return RedirectToAction("CustomerFavouritePros");
+        }
+
+        //Block SP
+        public IActionResult BlockSP(int id)
+        {
+            Block(id);
+            return RedirectToAction("CustomerFavouritePros");
+        }
+        
+        //Unblock SP
+        public IActionResult UnblockSP(int id)
+        {
+            Unblock(id);
+            return RedirectToAction("CustomerFavouritePros");
         }
 
         //====================================
@@ -647,7 +753,7 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have customer access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have customer access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
@@ -842,40 +948,41 @@ namespace Helperland.Controllers
             {
                 if (sp.UserTypeId == 2)
                 {
+
                     var query = from sr in _db.ServiceRequests
-                                join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
-                                from Sra in srad.DefaultIfEmpty()
-                                join user in _db.Users on sr.UserId equals user.UserId
-                                join f in _db.FavoriteAndBlockeds on sr.UserId equals f.TargetUserId into fav
-                                from f in fav.DefaultIfEmpty()
-                                where sp.ZipCode == sr.ZipCode && sr.Status == 0 && (f.UserId == id || f.UserId == null) && (f.IsBlocked != true || f.IsBlocked == null)
+                                join sa in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sa.ServiceRequestId
+                                join u in _db.Users on sr.UserId equals u.UserId
+                                join f in _db.FavoriteAndBlockeds on new {Uid =  sr.UserId, SPid = id} equals new {Uid = f.TargetUserId, SPid = f.UserId} into abc
+                                from f in abc.DefaultIfEmpty()
+                                where sr.ZipCode == sp.ZipCode && sr.Status == 0 && ( f.IsBlocked == false || f.IsBlocked == null ) && (sr.ServiceStartDate > DateTime.Now)
                                 select new CustomModel
                                 {
                                     ServiceRequestId = sr.ServiceRequestId,
                                     ServiceId = sr.ServiceId,
                                     ServiceStartDate = sr.ServiceStartDate,
                                     TotalCost = sr.TotalCost,
+                                    ServiceHours = sr.ServiceHours,
 
-                                    FirstName = user.FirstName,
-                                    LastName = user.LastName,
+                                    FirstName = u.FirstName,
+                                    LastName = u.LastName,
 
-                                    AddressLine1 = Sra == null ? "" : Sra.AddressLine1,
-                                    AddressLine2 = Sra == null ? "" : Sra.AddressLine2,
-                                    PostalCode = Sra == null ? "" : Sra.PostalCode,
-                                    City = Sra == null ? "" : Sra.City
+                                    AddressLine1 = sa == null ? "" : sa.AddressLine1,
+                                    AddressLine2 = sa == null ? "" : sa.AddressLine2,
+                                    PostalCode = sa == null ? "" : sa.PostalCode,
+                                    City = sa == null ? "" : sa.City
                                 };
-                    return View(query);
 
+                    return View(query);
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
 
@@ -951,6 +1058,7 @@ namespace Helperland.Controllers
             sr.SpacceptedDate = DateTime.Now;
             _db.ServiceRequests.Update(sr);
             _db.SaveChanges();
+            TempData["Msg4Popup"] = "Request Accepted!";
             return RedirectToAction("SPDashboard");
         }
 
@@ -989,13 +1097,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
 
@@ -1010,7 +1118,6 @@ namespace Helperland.Controllers
                 ModelState.Remove("AddressLine1");
                 ModelState.Remove("City");
                 ModelState.Remove("PostalCode");
-                
             }
 
             if (ModelState.IsValid)
@@ -1072,13 +1179,14 @@ namespace Helperland.Controllers
                                 join sraddress in _db.ServiceRequestAddresses on sr.ServiceRequestId equals sraddress.ServiceRequestId into srad
                                 from Sra in srad.DefaultIfEmpty()
                                 join user in _db.Users on sr.UserId equals user.UserId
-                                where sr.ServiceProviderId == id && sr.Status == 1 //pending
+                                where sr.ServiceProviderId == id && sr.Status == 1 && (sr.ServiceStartDate > DateTime.Now)
                                 select new CustomModel
                                 {
                                     ServiceRequestId = sr.ServiceRequestId,
                                     ServiceId = sr.ServiceId,
                                     ServiceStartDate = sr.ServiceStartDate,
                                     TotalCost = sr.TotalCost,
+                                    ServiceHours = sr.ServiceHours,
 
                                     FirstName = user.FirstName,
                                     LastName = user.LastName,
@@ -1092,13 +1200,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
         }
@@ -1172,6 +1280,7 @@ namespace Helperland.Controllers
             sr.SpacceptedDate = null;
             _db.ServiceRequests.Update(sr);
             _db.SaveChanges();
+            TempData["Msg4Popup"] = "Request Cancelled";
             return RedirectToAction("SPUpcoming");
         }
 
@@ -1183,6 +1292,7 @@ namespace Helperland.Controllers
             sr.Status = 2; //completed
 
             bool isa = _db.FavoriteAndBlockeds.Any(x => x.UserId == userid && x.TargetUserId == sr.UserId);
+            bool isc = _db.FavoriteAndBlockeds.Any(x => x.UserId == sr.UserId && x.TargetUserId == userid);
 
             if (!isa)
             {
@@ -1194,6 +1304,17 @@ namespace Helperland.Controllers
                     IsBlocked = false
                 };
                 _db.FavoriteAndBlockeds.Add(FB);
+            }
+            if (!isc)
+            {
+                FavoriteAndBlocked FBC = new FavoriteAndBlocked()
+                {
+                    UserId = sr.UserId,
+                    TargetUserId = userid,
+                    IsFavorite = false,
+                    IsBlocked = false
+                };
+                _db.FavoriteAndBlockeds.Add(FBC);
             }
             
             _db.ServiceRequests.Update(sr);
@@ -1223,6 +1344,7 @@ namespace Helperland.Controllers
                                     ServiceId = sr.ServiceId,
                                     ServiceRequestId = sr.ServiceRequestId,
                                     ServiceStartDate = sr.ServiceStartDate,
+                                    ServiceHours = sr.ServiceHours,
 
                                     FirstName = user.FirstName,
                                     LastName = user.LastName,
@@ -1236,13 +1358,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
         }
@@ -1307,6 +1429,31 @@ namespace Helperland.Controllers
             return PartialView(query);
         }
 
+        //SP Service Schedule
+        public IActionResult SPServiceSchedule()
+        {
+            return View();
+        }
+
+        public JsonResult SPServiceScheduleApi()
+        {
+            int userid = (int)HttpContext.Session.GetInt32("UserID_Session");
+            var query = (from sr in _db.ServiceRequests
+                        join u in _db.Users on sr.UserId equals u.UserId
+                        where sr.ServiceProviderId == userid && (sr.Status == 1 || sr.Status == 2)
+                        select new SSApi
+                        {
+                            id = sr.ServiceRequestId,
+                            title = u.FirstName + u.LastName,
+                            start = sr.ServiceStartDate.ToString("yyyy-MM-dd"),
+                            end = sr.ServiceStartDate.ToString("yyyy-MM-dd"),
+                            color = sr.Status == 1 ? "#1d7a8c" : "#efefef",
+                            textColor = sr.Status == 1 ? "White" : "Black"
+                        }).ToList();
+
+            return Json(query);
+        }
+
         // Service Provider Ratings page
         public IActionResult SPRatings()
         {
@@ -1335,13 +1482,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
 
@@ -1371,13 +1518,13 @@ namespace Helperland.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You don't have Service Provider access. Please Contact Admin for further details.";
+                    TempData["Msg4Popup"] = "You don't have Service Provider access. Please Contact Admin for further details.";
                     return RedirectToAction("Index");
                 }
             }
             else
             {
-                TempData["ErrorMsg"] = "You have to login to access the page.";
+                TempData["Msg4Popup"] = "You have to login to access the page.";
                 return RedirectToAction("Index");
             }
 
@@ -1386,20 +1533,14 @@ namespace Helperland.Controllers
         // SP Block Customer (POST)
         public IActionResult BlockCustomer(int id)
         {
-            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
-            fav.IsBlocked = true;
-            _db.FavoriteAndBlockeds.Update(fav);
-            _db.SaveChanges();
+            Block(id);
             return RedirectToAction("SPBlockCustomer");
         }
 
         // SP Unblock Customer (POST)
         public IActionResult UnblockCustomer(int id)
         {
-            FavoriteAndBlocked fav = _db.FavoriteAndBlockeds.Where(x => x.Id == id).FirstOrDefault();
-            fav.IsBlocked = false;
-            _db.FavoriteAndBlockeds.Update(fav);
-            _db.SaveChanges();
+            Unblock(id);
             return RedirectToAction("SPBlockCustomer");
         }
 
@@ -1418,6 +1559,7 @@ namespace Helperland.Controllers
                 if (user.UserTypeId == 1)
                 {
                     List<User> users = _db.Users.ToList();
+                    users.Remove(user);
                     ViewBag.AdminPage = true;
                     return View(users);
                 }
@@ -1474,6 +1616,7 @@ namespace Helperland.Controllers
                                     TotalCost = sr.TotalCost,
                                     Status = sr.Status,
                                     ServiceProviderId = sr.ServiceProviderId,
+                                    ServiceHours = sr.ServiceHours,
 
                                     FirstName = customer.FirstName,
                                     LastName = customer.LastName,
@@ -1526,6 +1669,12 @@ namespace Helperland.Controllers
 
             ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == obj.ServiceRequestId).FirstOrDefault();
             ServiceRequestAddress sradd = _db.ServiceRequestAddresses.Where(x => x.ServiceRequestId == obj.ServiceRequestId).FirstOrDefault();
+            if (sr.Status == 4)
+            {
+                sr.Status = 0;
+                sr.ServiceProviderId = null;
+                sr.SpacceptedDate = null;
+            }
             sr.ServiceStartDate = obj.ServiceStartDate;
             sradd.AddressLine1 = obj.AddressLine1;
             sradd.AddressLine2 = obj.AddressLine2;
@@ -1539,6 +1688,22 @@ namespace Helperland.Controllers
             _db.ServiceRequestAddresses.Update(sradd);
             _db.SaveChanges();
             return true;
+        }
+
+        public IActionResult _Refund(int id)
+        {
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == id).FirstOrDefault();
+            return PartialView(sr);
+        }
+
+        public string Refund([FromBody] ServiceRequest refund)
+        {
+            ServiceRequest sr = _db.ServiceRequests.Where(x => x.ServiceRequestId == refund.ServiceRequestId).FirstOrDefault();
+            sr.Comments = refund.Comments;
+            sr.RefundedAmount = refund.RefundedAmount;
+            _db.ServiceRequests.Update(sr);
+            _db.SaveChanges();
+            return "true";
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
