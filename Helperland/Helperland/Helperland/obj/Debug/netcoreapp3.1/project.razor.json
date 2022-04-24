@@ -14497,6 +14497,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_Refund.cshtml",
+      "TargetPath": "Views\\Shared\\_Refund.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\CustomerSignup.cshtml",
       "TargetPath": "Views\\Home\\CustomerSignup.cshtml",
       "FileKind": "mvc"
@@ -14549,6 +14554,11 @@
     {
       "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Shared\\_MobileMenu.cshtml",
       "TargetPath": "Views\\Shared\\_MobileMenu.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "e:\\TATVASOFT\\Project-Helperland\\Helperland\\Helperland\\Helperland\\Views\\Home\\SPServiceSchedule.cshtml",
+      "TargetPath": "Views\\Home\\SPServiceSchedule.cshtml",
       "FileKind": "mvc"
     },
     {
